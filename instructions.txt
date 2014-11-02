@@ -1,0 +1,22 @@
+Hi, you must be 2014Group3 users.
+
+** Identification Token:6jQkcT79. Do NOT change this line. **
+
+This is an empty repository for your group members.
+Please use this repo to manage your source codes for term project.
+
+DB connection config:
+
+host: sdm2.im.ntu.edu.tw
+port: 3306
+username: 2014Group3
+password: 6jQkcT79
+database: 2014Group3
+encoding: utf8-general-ci
+
+All other authentication configurations are belong to the LDAP settings.
+
+May you want to contact TA, please mail to 
+sdm.ta@ntuim.twbbs.org
+r03725007@ntu.edu.tw (if the above doesn't work)
+
