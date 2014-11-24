@@ -12,4 +12,12 @@ router.get('/profile', function(req, res) {
   res.render('profile', { title: 'Express' });
 });
 
+router.get('/profile_edit', function(req, res) {
+  res.render('profile_edit', { title: 'Express' });
+});
+
+router.get('/forum', function(req, res) {
+  res.render('forum', { title: 'Express' });
+});
+
 module.exports = router;
