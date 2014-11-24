@@ -13,9 +13,10 @@
 
   <div class="container" ng-controller="ArticleController">
     <div class="col-sm-offset-3 col-sm-6 article" ng-repeat="article in articles">
-      	{{article.user_name}}
+      	{{article.title}}
+    	<a class="article-more" ng-href="{{article.article_id}}">觀看更多</a>
     </div>
-    
+
   </div>
 
   <% include ../views/partials/js %>

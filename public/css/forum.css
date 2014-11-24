@@ -5,3 +5,8 @@
 	border: 1px solid #bbb;
 	border-radius: 6px;
 }
+
+.article-more {
+	color: #AAA;
+	float: right;
+}
