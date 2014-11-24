@@ -7,6 +7,16 @@
 }
 
 .article-more {
-	color: #AAA;
+	font-size: 10px;
+	font-weight: 70;
+	color: #BBB;
 	float: right;
+}
+
+.btn-full{
+	width: 100%;
+}
+
+.item-center{
+	text-align: center;
 }

@@ -12,8 +12,11 @@
   <% include ../views/partials/nav %>
 
   <div class="container" ng-controller="ArticleController">
+  	<div class="col-sm-offset-3 col-sm-6 item-center">
+  		<button class="btn btn-primary">張貼文章</button>
+  	</div>
     <div class="col-sm-offset-3 col-sm-6 article" ng-repeat="article in articles">
-      	{{article.title}}
+      	<div>{{article.title}}</div>
     	<a class="article-more" ng-href="{{article.article_id}}">觀看更多</a>
     </div>
 
