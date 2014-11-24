@@ -42,13 +42,13 @@
 			<span class="col-sm-5">
 				<img class="thumbnail" src="http://deaenij3kiw8r.cloudfront.net/system/users/avatars/141380/original/production-b3612f96cc66fee631be82853dd2c316-man_bartlett_bw.jpg?1369799811"/>
 			</span>
-			<span class="col-sm-7 name">{{me.name}}</span>
-			<span class="col-sm-7 email">{{me.email}}</span>
-			<span class="col-sm-7 phone">{{me.phone_mobile}}</span>
+			<span class="col-sm-7 name">{{user.name}}</span>
+			<span class="col-sm-7 email">{{user.email}}</span>
+			<span class="col-sm-7 phone">{{user.phone_mobile}}</span>
 		</div>
 		<ul class="col-sm-8 profile-experience">
 			<div class="subtitle col-sm-12">Experience</div>
-			<li class=" col-sm-12" ng-repeat="experience in me.experience">
+			<li class=" col-sm-12" ng-repeat="experience in user.experience">
 				<span class="main">{{experience.position}}</span>
 				<span class="sub">{{experience.org}}</span>
 				<span class="sub">{{experience.dept}}</span>
@@ -59,7 +59,7 @@
 		</ul>
 		<ul class="col-sm-8 profile-education">
 			<div class="subtitle col-sm-12">Education</div>
-			<li class=" col-sm-12" ng-repeat="education in me.education">
+			<li class=" col-sm-12" ng-repeat="education in user.education">
 				<span class="main">{{education.degree}}</span>
 				<span class="sub">{{education.institute}}</span>
 				<span class="sub">{{education.dept}}</span>
