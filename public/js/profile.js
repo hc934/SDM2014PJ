@@ -1,11 +1,12 @@
-angular.module('profile', [])
-	.controller('ProfileController', ['$scope', function($scope){
+app = angular.module('profile', [])
+	
+
+app.controller('ProfileController', ['$scope', function($scope){
 		$scope.user;
 		$scope.user = tempData();
 	}]);
 
-angular.module('profile', [])
-	.controller('ProfileEditController', ['$scope', function($scope){
+app.controller('ProfileEditController', ['$scope', function($scope){
 		$scope.user;
 		$scope.user = tempData();
 	}]);
