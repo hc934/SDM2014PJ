@@ -1,7 +1,13 @@
 angular.module('profile', [])
 	.controller('ProfileController', ['$scope', function($scope){
-		$scope.me;
-		$scope.me = tempData();
+		$scope.user;
+		$scope.user = tempData();
+	}]);
+
+angular.module('profile', [])
+	.controller('ProfileEditController', ['$scope', function($scope){
+		$scope.user;
+		$scope.user = tempData();
 	}]);
 	
 function tempData(){

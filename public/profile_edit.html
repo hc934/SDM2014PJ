@@ -1,0 +1,78 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="js/angular.min.js"></script>
+	<script src="js/profile.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/profile.css" rel="stylesheet">
+</head>
+<body ng-app="profile">
+	<!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">SDM Group3</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../forum.html">Forum</a></li>
+            <li class="active"><a href="#">Profile<span class="sr-only">(current)</span></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Setting <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Language</a></li>
+                <li><a href="#">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+	<div class="container" ng-controller="ProfileEditController">
+		<div class="profile col-sm-8">
+			<span class="col-sm-5">
+				<img class="thumbnail" src="http://deaenij3kiw8r.cloudfront.net/system/users/avatars/141380/original/production-b3612f96cc66fee631be82853dd2c316-man_bartlett_bw.jpg?1369799811"/>
+			</span>
+			<div class="col-sm-7">
+				<div class="input">姓名<input type="text" ng-model="user.name"></div>
+				信箱<input type="text" ng-model="user.email">
+				手機<input type="text" ng-model="user.phone_mobile">
+			</div>
+		</div>
+		<ul class="col-sm-8 profile-experience">
+			<div class="subtitle col-sm-12">Experience</div>
+			<li class=" col-sm-12" ng-repeat="experience in user.experience">
+				<span class="main">{{experience.position}}</span>
+				<span class="sub">{{experience.org}}</span>
+				<span class="sub">{{experience.dept}}</span>
+				<span class="date">{{experience.startdate}} - {{experience.enddate}}</span>
+				
+				
+			</li>
+		</ul>
+		<ul class="col-sm-8 profile-education">
+			<div class="subtitle col-sm-12">Education</div>
+			<li class=" col-sm-12" ng-repeat="education in user.education">
+				<span class="main">{{education.degree}}</span>
+				<span class="sub">{{education.institute}}</span>
+				<span class="sub">{{education.dept}}</span>
+				<span class="date">{{education.startdate}} - {{education.enddate}}</span>
+				
+				
+			</li>
+		</ul>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
+
