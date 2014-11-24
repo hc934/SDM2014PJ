@@ -43,18 +43,20 @@
 				<img class="thumbnail" src="http://deaenij3kiw8r.cloudfront.net/system/users/avatars/141380/original/production-b3612f96cc66fee631be82853dd2c316-man_bartlett_bw.jpg?1369799811"/>
 			</span>
 			<div class="col-sm-7">
-				<div class="input">姓名<input type="text" ng-model="user.name"></div>
-				信箱<input type="text" ng-model="user.email">
-				手機<input type="text" ng-model="user.phone_mobile">
+				<div>姓名<input type="text" ng-model="user.name"></div>
+				<div>信箱<input type="text" ng-model="user.email"></div>
+				<div>手機<input type="text" ng-model="user.phone_mobile"></div>
 			</div>
 		</div>
 		<ul class="col-sm-8 profile-experience">
 			<div class="subtitle col-sm-12">Experience</div>
 			<li class=" col-sm-12" ng-repeat="experience in user.experience">
-				<span class="main">{{experience.position}}</span>
-				<span class="sub">{{experience.org}}</span>
-				<span class="sub">{{experience.dept}}</span>
-				<span class="date">{{experience.startdate}} - {{experience.enddate}}</span>
+				<div>職位<input type="text" ng-model="experience.position"></div>
+				<div>單位<input type="text" ng-model="experience.org"></div>
+				<div>部門<input type="text" ng-model="experience.dept"></div>
+				<div>開始日期<input type="text" ng-model="experience.startdate"></div>
+				<div>結束日期<input type="text" ng-model="experience.enddate"></div>
+				
 				
 				
 			</li>
@@ -62,11 +64,11 @@
 		<ul class="col-sm-8 profile-education">
 			<div class="subtitle col-sm-12">Education</div>
 			<li class=" col-sm-12" ng-repeat="education in user.education">
-				<span class="main">{{education.degree}}</span>
-				<span class="sub">{{education.institute}}</span>
-				<span class="sub">{{education.dept}}</span>
-				<span class="date">{{education.startdate}} - {{education.enddate}}</span>
-				
+				<div>學歷<input type="text" ng-model="education.degree"></div>
+				<div>學校<input type="text" ng-model="education.institute"></div>
+				<div>學系<input type="text" ng-model="education.dept"></div>
+				<div>開始日期<input type="text" ng-model="education.startdate"></div>
+				<div>結束日期<input type="text" ng-model="education.enddate"></div>
 				
 			</li>
 		</ul>
