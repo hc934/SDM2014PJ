@@ -136,6 +136,7 @@ router.post('/article', function(req, res) {
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
+      res.json(result);
       return true;
     });
   });

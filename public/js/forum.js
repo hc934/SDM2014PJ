@@ -24,6 +24,7 @@ app.controller('PostController',['$scope','$http',function($scope,$http){
     $http.post('/api/article', data).
       success(function(data, status, headers, config) {   
         alert('新增成功！');
+        window.location.href = "/forum";
       }).
       error(function(data, status, headers, config) {   
         console.log(data);
