@@ -124,6 +124,55 @@ router.get('/article/:article_id', function(req, res) {
   });
 });
 
+router.post('/article', function(req, res) {
+
+  console.log(req.body);
+
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var user_id = 'b00705033';
+    var sql = 'INSERT INTO forum_article (user_id, title, content, post_time, edit_time) ';
+    sql += 'VALUE("'+user_id+'","'+req.body.title+'","'+req.body.content+'",NOW(),NOW());';
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      return true;
+    });
+  });
+});
+
+router.post('/:article_id/comment', function(req, res) {
+  
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var user_id = 'b00705033';
+    var sql = 'INSERT INTO forum_comment (user_id, article_id, content, post_time, edit_time) ';
+    sql += 'VALUE("'+user_id+'","'+req.params.article_id+'","'+req.body.content+'",NOW(),NOW());';
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.json(result);
+      return true;
+    });
+  });
+});
+
+router.delete('/:article_id/comment', function(req, res) {
+  
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var user_id = 'b00705033';
+    var sql = 'DELETE FROM forum_comment ';
+    sql += 'WHERE user_id="'+user_id+'" AND article_id="'+req.params.article_id+'";';
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.json(result);
+      return true;
+    });
+  });
+});
+
 // router.get('/example', function(req, res) {
 //   appPool.getConnection(function(err, connection) {
 //     if (err) throw err;
