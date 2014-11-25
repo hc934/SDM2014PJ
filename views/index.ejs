@@ -10,11 +10,11 @@
     <h1><%= title %></h1>
     <p><%= __("Welcome") %> <%= title %></p>
     <div class="container" ng-controller="LoginController">
-      <form class="col-sm-offset-4 col-sm-4 login-frame">
+      <form class="col-sm-offset-4 col-sm-4 login-frame" name="loginForm">
         <input class="form-control form-margin-wide" placeholder="School ID" ng-model="user.id" required>
         <input class="form-control form-margin-wide" placeholder="Password" ng-model="user.password" required>
         <div class="item-center">
-          <button class="btn btn-primary" ng-click="login()"><%= __("Login") %></button>
+          <button class="btn btn-primary" ng-click="check(loginForm.$valid)"><%= __("Login") %></button>
         </div>
       </form>
     </div>
