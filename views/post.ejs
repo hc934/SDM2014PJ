@@ -13,8 +13,8 @@
 
   <div class="container" ng-controller="PostController">
   	
-    <input class="col-sm-offset-3 col-sm-6 article article-title" ng-model="post.title">
-    <input class="col-sm-offset-3 col-sm-6 article article-content" ng-model="post.content">
+    <input class="col-sm-offset-3 col-sm-6 article article-title" ng-model="post.title" placeholder="<%= __("Title") %>">
+    <input class="col-sm-offset-3 col-sm-6 article article-content" ng-model="post.content" placeholder="<%= __("Content") %>">
     <div class="col-sm-offset-3 col-sm-6 item-center">
       <button class="btn btn-primary" ng-click="submitArticle()"><%= __("Send") %></button>
     </div> 
