@@ -12,6 +12,12 @@
 	color: #BBB;
 	float: right;
 }
+.article-title {
+	height: 50px;
+}
+.article-content {
+	height: 300px;
+}
 
 .btn-full{
 	width: 100%;

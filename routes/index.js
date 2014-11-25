@@ -20,4 +20,12 @@ router.get('/forum', function(req, res) {
   res.render('forum', { title: 'Express' });
 });
 
+router.get('/post', function(req, res) {
+  res.render('post', { title: 'Express' });
+});
+
+router.get('/articles_001', function(req, res) {
+  res.render('articles_001', { title: 'Express' });
+});
+
 module.exports = router;

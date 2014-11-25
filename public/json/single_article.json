@@ -1,0 +1,44 @@
+{
+	"article_id" : "001",
+	"user_id" : "user id",
+	"user_name" : "name",
+	"user_email" : "mail",
+	"title" : "title",
+	"content" : "content~~~~~~~~~",
+	"post_time" : "post time",
+	"edit_time" : "edit time",
+	"click_num" : "click num",
+	"like_num" : "like num",
+	"comment" :[
+		{
+			"comment_id" : "001",
+			"user_id" : "user id",
+			"user_name" : "name",
+			"user_email" : "",
+			"article_id" : "001",
+			"content" : "comment 1 content",
+			"post_time" : "",
+			"edit_time" : ""
+		},
+		{
+			"comment_id" : "004",
+			"user_id" : "user id",
+			"user_name" : "name",
+			"user_email" : "",
+			"article_id" : "001",
+			"content" : "comment 2 content",
+			"post_time" : "",
+			"edit_time" : ""
+		},
+		{
+			"comment_id" : "005",
+			"user_id" : "user id",
+			"user_name" : "name",
+			"user_email" : "",
+			"article_id" : "001",
+			"content" : "comment 2 content",
+			"post_time" : "",
+			"edit_time" : ""
+		}
+	]
+}

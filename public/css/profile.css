@@ -61,3 +61,10 @@ ul > li > span{
 #kp .comment {
 
 }
+
+.btn-right {
+	float: right;
+}
+.item-center {
+	text-align: center;
+}
