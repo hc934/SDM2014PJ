@@ -20,7 +20,7 @@
     {{article.content}}
     </div>
     <form ng-submit="submitComment()">
-    <input class="col-sm-offset-3 col-sm-6 article article-comment" placeholder="留言" ng-model="comment">
+    <input class="col-sm-offset-3 col-sm-6 article article-comment" placeholder="<%= __("Leave a comment") %>" ng-model="comment">
     </form>
     <div class="col-sm-offset-3 col-sm-6 article article-comment" ng-repeat=" comment in article.comment">
     {{comment.content}}
