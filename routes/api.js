@@ -14,15 +14,31 @@ router.get('/api', function(req, res) {
 
 router.get('/profile', function(req, res) {
 
-  var sql = 'SELECT * ';
-  sql += 'FROM forum_article_info;';
-
   appPool.getConnection(function(err, connection) {
-    connection.query(sql, function(err, rows) {
+    if (err) throw err;
+    connection.query('SELECT * FROM contact;', function(err, contacts) {
       if (err) throw err;
-      console.log(rows);
-      connection.release();
-      res.json('index'+ rows);
+      connection.query('SELECT * FROM experience;', function(err, experiences) {
+        if (err) throw err;
+        connection.query('SELECT * FROM education;', function(err, educations) {
+          var profile = contacts;
+          for (id in profile) {
+            profile[id].experience = [];
+            profile[id].education = [];
+            for (exp_id in experiences) {
+              if (id == exp_id) {
+                profile[id].experience.push(experiences[exp_id]);
+              }
+            } // end for
+            for (edu_id in educations) {
+              if (id == edu_id) {
+                profile[id].education.push(educations[edu_id]);
+              }
+            } // end for
+          } // end for
+          res.json(profile);
+        }); // end last query
+      });
     });
   });
 
