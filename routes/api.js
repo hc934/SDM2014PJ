@@ -86,7 +86,7 @@ router.get('/articles', function(req, res) {
     var sql = 'SELECT * ';
     sql += 'FROM forum_article_info';
     connection.query(sql, function(err, articles) {
-      console.log(articles);
+      // console.log(articles);
       res.json(articles);
     });
   });
