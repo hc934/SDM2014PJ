@@ -61,3 +61,7 @@ ul > li > span{
 #kp .comment {
 
 }
+
+.btn-right {
+	float: right;
+}
