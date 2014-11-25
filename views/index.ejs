@@ -4,18 +4,19 @@
     <title><%= title %></title>
     <% include ../views/partials/head %>
     <link rel='stylesheet' href='/css/index.css' />
+    <script src="js/login.js"></script>
   </head>
-  <body>
+  <body ng-app="login">
     <h1><%= title %></h1>
     <p><%= __("Welcome") %> <%= title %></p>
-    <div class="container">
-      <div class="col-sm-offset-4 col-sm-4 login-frame">
-        <input class="form-control form-margin-wide" placeholder="School ID">
-        <input class="form-control form-margin-wide" placeholder="Password">
+    <div class="container" ng-controller="LoginController">
+      <form class="col-sm-offset-4 col-sm-4 login-frame">
+        <input class="form-control form-margin-wide" placeholder="School ID" ng-model="user.id" required>
+        <input class="form-control form-margin-wide" placeholder="Password" ng-model="user.password" required>
         <div class="item-center">
-          <button class="btn btn-primary">登入</button>
+          <button class="btn btn-primary" ng-click="login()"><%= __("Login") %></button>
         </div>
-      </div>
+      </form>
     </div>
   </body>
 </html>
