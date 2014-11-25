@@ -1,4 +1,4 @@
-app = angular.module('forum',[]);
+var app = angular.module('forum',['lang']);
 
 app.controller('ForumController', ['$scope', '$http', function($scope, $http) {
   $scope.articles;
@@ -60,17 +60,3 @@ app.controller('ArticleController',['$scope', '$http', function($scope, $http){
     });  
 }]);
 
-app.controller('NavController',['$scope', '$http', function($scope, $http){
-  var href = window.location.href;
-  $scope.changeToEnglish = function() {
-    if ($http.post('/api/setLocale/English')) {
-      window.location.href = href;
-    }
-  };
-
-  $scope.changeToChinese = function() {
-    if ($http.post('/api/setLocale/Chinese')) {
-      window.location.href = href;
-    }
-  };
-}]);
