@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <% include ../views/partials/head %>
+  <link href="css/forum.css" rel="stylesheet">
+  <script src="js/forum.js"></script>
+</head>
+
+<body ng-app="forum">
+
+  <% include ../views/partials/nav %>
+
+  <div class="container" ng-controller="ArticleController">
+  	
+    <div class="col-sm-offset-3 col-sm-6 article article-title">
+    </div>
+    <div class="col-sm-offset-3 col-sm-6 article article-content" >
+    </div>
+    <div class="col-sm-offset-3 col-sm-6 article article-comment" >
+    </div>
+  </div>
+
+  <% include ../views/partials/js %>
+
+</body>
+</html>
