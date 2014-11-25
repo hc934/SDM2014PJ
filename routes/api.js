@@ -12,6 +12,25 @@ router.get('/api', function(req, res) {
   });
 });
 
+router.post('/login', function(req, res) {
+
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    connection.query('SELECT * FROM user_login WHERE user_id="'+req.body.id+'" and user_password="'+req.body.password+'";', function(err, account) {
+      if(account!=null){
+        res.json({
+          "status": true
+        });
+      } else{
+        res.json({
+          "status": false
+        });
+      }
+    });
+
+  })
+});
+
 router.get('/profile', function(req, res) {
   var profile_id = "b00705028";
   appPool.getConnection(function(err, connection) {
