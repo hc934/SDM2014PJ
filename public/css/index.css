@@ -1,0 +1,21 @@
+.login-frame {
+	margin-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 1px solid #bbb;
+	border-radius: 6px;
+}
+
+.form-margin {
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+.form-margin-wide {
+	margin-top: 12px;
+	margin-bottom: 12px;
+}
+
+.item-center {
+	text-align: center;
+}
