@@ -2,13 +2,20 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/css/style.css' />
+    <% include ../views/partials/head %>
+    <link rel='stylesheet' href='/css/index.css' />
   </head>
   <body>
     <h1><%= title %></h1>
     <p><%= __("Welcome") %> <%= title %></p>
-    <a href="/profile"><%= __("Profile") %></a>
-    <a href="/profile_edit"><%= __("Edit Profile") %></a>
-    <a href="/forum"><%= __("Forum") %></a>
+    <div class="container">
+      <div class="col-sm-offset-4 col-sm-4 login-frame">
+        <input class="form-control form-margin-wide" placeholder="School ID">
+        <input class="form-control form-margin-wide" placeholder="Password">
+        <div class="item-center">
+          <button class="btn btn-primary">登入</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
