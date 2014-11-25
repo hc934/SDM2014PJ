@@ -14,9 +14,16 @@ app.controller('ProfileController', ['$scope', '$http', function($scope, $http){
     // $scope.user = tempData();
   }]);
 
-app.controller('ProfileEditController', ['$scope', function($scope){
+app.controller('ProfileEditController', ['$scope', '$http', function($scope, $http){
     $scope.user;
-    $scope.user = tempData();
+    $http.get('/api/profile').
+    success(function(data, status, headers, config) {
+      $scope.user = data[0];
+      console.log(data);
+    }).
+    error(function(data, status, headers, config) {
+      console.log(data);
+    });
   }]);
   
 function tempData(){
