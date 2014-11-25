@@ -46,7 +46,7 @@ router.get('/profile', function(req, res) {
 
 router.put('/profile', function(req, res) {
   // req.body
-  console.log(req.body);
+  
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'UPDATE contact ';
@@ -78,5 +78,29 @@ router.put('/profile', function(req, res) {
 
   });
 });
+
+
+router.get('/articles', function(req, res) {
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'SELECT * ';
+    sql += 'FROM forum_article_info';
+    connection.query(sql, function(err, articles) {
+      console.log(articles);
+      res.json(articles);
+    });
+  });
+});
+
+
+// router.get('/example', function(req, res) {
+//   appPool.getConnection(function(err, connection) {
+//     if (err) throw err;
+//     var sql = 'SELECT *';
+//     sql += 'FROM forum_article_info';
+//     connection.query(sql, function(err, res) {
+
+//     )};
+// });
 
 module.exports = router;
