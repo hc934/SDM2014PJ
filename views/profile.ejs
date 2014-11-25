@@ -22,11 +22,11 @@
         <div class="phone">{{user.phone_mobile}}</div>
       </div>
       <div class="col-sm-2">
-        <button class="btn btn-default btn-right" onclick="location.href='profile_edit'">編輯個人資料</button>
+        <button class="btn btn-default btn-right" onclick="location.href='profile_edit'"><%= __("Edit Profile") %></button>
       </div>
     </div>
     <ul class="col-sm-8 profile-experience">
-      <div class="subtitle col-sm-12">Experience</div>
+      <div class="subtitle col-sm-12"><%= __("Experience") %></div>
       <li class=" col-sm-12" ng-repeat="experience in user.experience">
         <span class="main">{{experience.position}}</span>
         <span class="sub">{{experience.org}}</span>
@@ -35,7 +35,7 @@
       </li>
     </ul>
     <ul class="col-sm-8 profile-education">
-      <div class="subtitle col-sm-12">Education</div>
+      <div class="subtitle col-sm-12"><%= __("Education") %></div>
       <li class=" col-sm-12" ng-repeat="education in user.education">
         <span class="main">{{education.degree}}</span>
         <span class="sub">{{education.institute}}</span>
