@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var config = require('./config/config');
+var mysql = require('mysql');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
@@ -22,6 +25,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// database
+appPool = mysql.createPool({
+    host : config.db_host,
+    port : config.db_port,
+    user : config.db_username,
+    password : config.db_password,
+    database : config.db_name
+});
 
 app.use('/', routes);
 app.use('/users', users);
