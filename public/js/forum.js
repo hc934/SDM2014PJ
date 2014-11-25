@@ -1,6 +1,7 @@
 var app = angular.module('forum',['lang']);
 
 app.controller('ForumController', ['$scope', '$http', function($scope, $http) {
+  $scope.localCookies = sessionStorage.getItem('id');
   $scope.articles;
   $http.get('/api/articles').
     success(function(data, status, headers, config) {   
@@ -13,13 +14,15 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http) {
 
 
 app.controller('PostController',['$scope','$http',function($scope,$http){
+  $scope.localCookies = sessionStorage.getItem('id');
   $scope.post = {};
   $scope.post.title;
   $scope.post.content;
   $scope.submitArticle = function() {
     var data = {
       title: $scope.post.title,
-      content: $scope.post.content
+      content: $scope.post.content,
+      id: $scope.localCookies
     }
     $http.post('/api/article', data).
       success(function(data, status, headers, config) {   
@@ -33,11 +36,13 @@ app.controller('PostController',['$scope','$http',function($scope,$http){
 }]);
 
 app.controller('ArticleController',['$scope', '$http', function($scope, $http){
+  $scope.localCookies = sessionStorage.getItem('id');
   $scope.article;
   $scope.comment;
   $scope.submitComment = function(){
     var data = {
       content: $scope.comment,
+      id: $scope.localCookies
     }
     $http.post('/api/'+article_id+'/comment',data).
       success(function(data, status, headers, config) {   

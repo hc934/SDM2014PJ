@@ -11,11 +11,11 @@ app.controller('LoginController', ['$scope', '$http', function($scope,$http){
     }
 		$scope.login = function(){
 			// check login information
-      console.log($scope.user);
+      
       $http.post('/api/login', $scope.user).
       success(function(data, status, headers, config) {
-        $scope.localCookies = $scope.user; // FAKE COOKIE
         if(data.status){
+          sessionStorage.setItem('id',$scope.user.id); // SAVE USERINFO VIA COOKIE
           window.location.href = "/forum";
         }
       }).
