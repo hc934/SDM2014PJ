@@ -19,14 +19,16 @@ app.controller('PostController',['$scope','$http',function($scope,$http){
   };
 }]);
 
-app.controller('ArticleController',['$scope','$http',function($scope,$http){
+app.controller('ArticleController',['$scope', '$http', function($scope, $http){
   $scope.article;
-  $http({
-        method: 'GET',   
-        url: '/json/single_article.json'
-    }).success(function(data, status, headers, config) {   
-        $scope.article = data;
+  var temp_array = location.href.split('/');
+  var article_id = temp_array[temp_array.length-1];
+  console.log(article_id);
+  $http.get('/api/article/'+article_id).
+    success(function(data, status, headers, config) {
+      console.log(data);   
+      $scope.article = data;
     }).error(function(data, status, headers, config) {   
-           
+      console.log('error');     
     });  
 }]);

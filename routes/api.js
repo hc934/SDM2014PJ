@@ -92,6 +92,37 @@ router.get('/articles', function(req, res) {
   });
 });
 
+router.get('/article/:article_id', function(req, res) {
+
+  console.log(req.params.article_id);
+  
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'SELECT * ';
+    sql += 'FROM forum_article_info ';
+    sql += 'WHERE article_id="'+req.params.article_id+'"';
+
+    connection.query(sql, function(err, article) {
+      
+      var returnData = article[0];
+      returnData.comment = [];
+
+      var sql2 = 'SELECT * ';
+      sql2 += 'FROM forum_comment_info ';
+      sql2 += 'WHERE article_id="'+req.params.article_id+'"';
+      
+      connection.query(sql2, function(err, comments) {
+        for (i in comments) {
+          returnData.comment.push(comments[i]);
+        }
+        console.log(returnData);
+        res.json(returnData);
+      });
+
+    });
+
+  });
+});
 
 // router.get('/example', function(req, res) {
 //   appPool.getConnection(function(err, connection) {
