@@ -9,6 +9,11 @@ app.controller('ProfileController', ['$scope', function($scope){
 app.controller('ProfileEditController', ['$scope', function($scope){
 		$scope.user;
 		$scope.user = tempData();
+
+		$scope.save = function(){
+			// save user info.
+			
+		};
 	}]);
 	
 function tempData(){
