@@ -18,7 +18,7 @@
     	</div>
     </div>
     <div class="row">
-      <div class="col-sm-offset-3 col-sm-6 article" ng-repeat="article in articles">
+      <div class="col-sm-offset-3 col-sm-6 article" ng-repeat="article in articles | orderBy:'post_time':true">
         	<div>{{article.title}}</div>
       	<a class="article-more" ng-href="/article/{{article.article_id}}"><%= __("More") %></a>
       </div>
