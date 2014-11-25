@@ -6,12 +6,11 @@ app.controller('ProfileController', ['$scope', '$http', function($scope, $http){
     $http.get('/api/profile').
     success(function(data, status, headers, config) {
       $scope.user = data[0];
-      console.log(data);
+      // console.log(data);
     }).
     error(function(data, status, headers, config) {
-      console.log(data);
+      // console.log(data);
     });
-    // $scope.user = tempData();
   }]);
 
 app.controller('ProfileEditController', ['$scope', '$http', function($scope, $http){
@@ -19,11 +18,16 @@ app.controller('ProfileEditController', ['$scope', '$http', function($scope, $ht
     $http.get('/api/profile').
     success(function(data, status, headers, config) {
       $scope.user = data[0];
-      console.log(data);
+      // console.log(data);
     }).
     error(function(data, status, headers, config) {
-      console.log(data);
+      // console.log(data);
     });
+    $scope.update_profile = function() {
+      if ($http.put('/api/profile', $scope.user)) {
+        alert("更新成功")
+      }
+    };
   }]);
   
 function tempData(){
