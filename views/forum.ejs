@@ -11,9 +11,9 @@
 
   <% include ../views/partials/nav %>
 
-  <div class="container" ng-controller="ArticleController">
+  <div class="container" ng-controller="ForumController">
   	<div class="col-sm-offset-3 col-sm-6 item-center">
-  		<button class="btn btn-primary">張貼文章</button>
+  		<button class="btn btn-primary" onclick="location.href='/post'">張貼文章</button>
   	</div>
     <div class="col-sm-offset-3 col-sm-6 article" ng-repeat="article in articles">
       	<div>{{article.title}}</div>
