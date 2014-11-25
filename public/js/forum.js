@@ -25,9 +25,9 @@ app.controller('ArticleController',['$scope','$http',function($scope,$http){
 	$scope.article;
 	$http({
         method: 'GET',   
-        url: '/json/article.json'
+        url: '/json/single_article.json'
     }).success(function(data, status, headers, config) {   
-        $scope.article = data[0];
+        $scope.article = data;
     }).error(function(data, status, headers, config) {   
            
     });  
