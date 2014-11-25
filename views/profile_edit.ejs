@@ -17,38 +17,38 @@
         <img class="thumbnail" src="http://deaenij3kiw8r.cloudfront.net/system/users/avatars/141380/original/production-b3612f96cc66fee631be82853dd2c316-man_bartlett_bw.jpg?1369799811"/>
       </span>
       <div class="col-sm-7">
-        <div>姓名<input class="form-control" type="text" ng-model="user.name"></div>
-        <div>信箱<input class="form-control" type="text" ng-model="user.email"></div>
-        <div>手機<input class="form-control" type="text" ng-model="user.phone_mobile"></div>
+        <div><%= __("Name") %><input class="form-control" type="text" ng-model="user.name"></div>
+        <div><%= __("Email") %><input class="form-control" type="text" ng-model="user.email"></div>
+        <div><%= __("Mobile") %><input class="form-control" type="text" ng-model="user.phone_mobile"></div>
       </div>
     </div>
     <ul class="col-sm-8 profile-experience">
-      <div class="subtitle col-sm-12">Experience</div>
+      <div class="subtitle col-sm-12"><%= __("Experience") %></div>
       <li class=" col-sm-12" ng-repeat="experience in user.experience">
-        <div>職位<input class="form-control" type="text" ng-model="experience.position"></div>
-        <div>單位<input class="form-control" type="text" ng-model="experience.org"></div>
-        <div>部門<input class="form-control" type="text" ng-model="experience.dept"></div>
-        <div>開始日期<input class="form-control" type="text" ng-model="experience.startdate"></div>
-        <div>結束日期<input class="form-control" type="text" ng-model="experience.enddate"></div>
+        <div><%= __("Position") %><input class="form-control" type="text" ng-model="experience.position"></div>
+        <div><%= __("Organization") %><input class="form-control" type="text" ng-model="experience.org"></div>
+        <div><%= __("Org Department") %><input class="form-control" type="text" ng-model="experience.dept"></div>
+        <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="experience.startdate"></div>
+        <div><%= __("End Date") %><input class="form-control" type="text" ng-model="experience.enddate"></div>
         
         
         
       </li>
     </ul>
     <ul class="col-sm-8 profile-education">
-      <div class="subtitle col-sm-12">Education</div>
+      <div class="subtitle col-sm-12"><%= __("Education") %></div>
       <li class=" col-sm-12" ng-repeat="education in user.education">
-        <div>學歷<input class="form-control" type="text" ng-model="education.degree"></div>
-        <div>學校<input class="form-control" type="text" ng-model="education.institute"></div>
-        <div>學系<input class="form-control" type="text" ng-model="education.dept"></div>
-        <div>開始日期<input class="form-control" type="text" ng-model="education.startdate"></div>
-        <div>結束日期<input class="form-control" type="text" ng-model="education.enddate"></div>
+        <div><%= __("Degree") %><input class="form-control" type="text" ng-model="education.degree"></div>
+        <div><%= __("Institute") %><input class="form-control" type="text" ng-model="education.institute"></div>
+        <div><%= __("School Department") %><input class="form-control" type="text" ng-model="education.dept"></div>
+        <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="education.startdate"></div>
+        <div><%= __("End Date") %><input class="form-control" type="text" ng-model="education.enddate"></div>
         
       </li>
     </ul>
     <div class="col-sm-8 item-center">
-      <button class="btn btn-default" ng-click="update_profile();">儲存</button>
-      <button class="btn btn-default" onclick="location.href='/profile'">回到上一頁</button>
+      <button class="btn btn-default" ng-click="update_profile();"><%= __("Save") %></button>
+      <button class="btn btn-default" onclick="location.href='/profile'"><%= __("Back") %></button>
     </div>
   </div>
 
