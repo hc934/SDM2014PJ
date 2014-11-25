@@ -19,7 +19,8 @@ var i18n = require('i18n');
 i18n.configure({
     locales:['en', 'zh_TW'],
     directory: __dirname + '/locales',
-    defaultLocale: "en"
+    defaultLocale: "zh_TW",
+    cookie: "sdm2014fall"
 });
 
 // view engine setup

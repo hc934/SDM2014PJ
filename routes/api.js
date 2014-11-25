@@ -173,6 +173,18 @@ router.delete('/:article_id/comment', function(req, res) {
   });
 });
 
+router.post('/setLocale/:language', function(req, res) {
+  var locale;
+  if (req.params.language == 'English') {
+    locale = 'en';
+  } else if (req.params.language == 'Chinese') {
+    locale = 'zh_TW';
+  }
+  // console.log(locale);
+  res.setLocale(locale);
+  return true;
+});
+
 // router.get('/example', function(req, res) {
 //   appPool.getConnection(function(err, connection) {
 //     if (err) throw err;
