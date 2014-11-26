@@ -3,7 +3,7 @@
 <head>
 
   <% include ../views/partials/head %>
-  <link href="css/profile.css" rel="stylesheet">
+  <link href="css/theme/profile.css" rel="stylesheet">
   <script src="js/profile.js"></script>
 </head>
 
@@ -12,7 +12,7 @@
   <% include ../views/partials/nav %>
 
   <div class="container" ng-controller="ProfileController">
-    <div class="profile col-sm-8">
+    <div class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
       <span class="col-sm-4">
         <img class="thumbnail" src="http://deaenij3kiw8r.cloudfront.net/system/users/avatars/141380/original/production-b3612f96cc66fee631be82853dd2c316-man_bartlett_bw.jpg?1369799811"/>
       </span>
@@ -25,7 +25,7 @@
         <button class="btn btn-default btn-right" onclick="location.href='profile_edit'"><%= __("Edit Profile") %></button>
       </div>
     </div>
-    <ul class="col-sm-8 profile-experience">
+    <ul class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
       <div class="subtitle col-sm-12"><%= __("Experience") %></div>
       <li class=" col-sm-12" ng-repeat="experience in user.experience">
         <span class="main">{{experience.position}}</span>
@@ -34,7 +34,7 @@
         <span class="date">{{experience.startdate}} - {{experience.enddate}}</span>
       </li>
     </ul>
-    <ul class="col-sm-8 profile-education">
+    <ul class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
       <div class="subtitle col-sm-12"><%= __("Education") %></div>
       <li class=" col-sm-12" ng-repeat="education in user.education">
         <span class="main">{{education.degree}}</span>
