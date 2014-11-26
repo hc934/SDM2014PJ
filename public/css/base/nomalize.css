@@ -4,16 +4,6 @@ body {
 }
 
 /* put item into center side */
-.item-center{
+.item-center {
 	text-align: center;
-}
-
-/* align button to right side */
-.btn-right {
-	float: right;
-}
-
-
-.btn-full{
-	width: 100%;
 }
