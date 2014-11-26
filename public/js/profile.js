@@ -23,6 +23,12 @@ app.controller('ProfileEditController', ['$scope', '$http', function($scope, $ht
       'id': $scope.session
     }
     $scope.user;
+    if($scope.user.experience == null){
+      $scope.user.experience = [];
+    }
+    if($scope.user.education == null){
+      $scope.user.education = [];
+    }
     $http.post('/api/profile',data).
     success(function(data, status, headers, config) {
       $scope.user = data[0];
