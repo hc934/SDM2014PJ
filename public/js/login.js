@@ -26,7 +26,12 @@ app.controller('LoginController', ['$scope', '$http', function($scope,$http){
           }
         }).
         error(function(data, status, headers, config) {
-           console.log(data);
+          $scope.showMsg = true;
+          $scope.message = 'OH NO，有問題！'
+          $scope.user.id = null;
+          $scope.user.password = null;
+          window.location.href = "/";
+          console.log(data);
         });
     };
 
