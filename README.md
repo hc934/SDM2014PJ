@@ -44,3 +44,40 @@ File Usage
 * `instruction.txt`: The file that include the DB account and password.
 * `package.json`: Use for node.js to install the packages.
 * `README.md`: I am README.md!
+
+Code Style
+-------------------
+* `js`: indent use `2 space`, convert indention to space
+* `js`: one space after `,` , one space before `{`
+* `css`: indent use `2 space`, convert indention to space
+* `css`: one space before `{`, one space after `:`, no space before `;`, `}` in a single line
+* `html | ejs`: indent use `2 space`, convert indention to space
+
+Code Style Example
+-------------------
+JS
+```
+$scope.example = function(req, res) {
+  if (a > b && a > c) {
+    // do something
+  } else {
+    // do something
+  }
+}
+```
+
+CSS
+```
+ // good practice
+.article-name {
+  color: #3b5998;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+// bad practice
+.article-name{
+  color:#3b5998;
+  font-size:14px ;
+  font-weight: 600;}
+```
