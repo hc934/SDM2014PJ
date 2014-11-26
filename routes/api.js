@@ -16,12 +16,15 @@ router.post('/login', function(req, res) {
 
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    connection.query('SELECT * FROM user_login WHERE user_id="'+req.body.id+'" AND user_password="'+req.body.password+'";', function(err, account) {
-      if(account!=null){
+    var sql = 'SELECT * ';
+    sql += 'FROM user_login WHERE user_id="'+req.body.id+'" AND user_password="'+req.body.password+'";';
+    connection.query(sql, function(err, account) {
+      if (account.length > 0) {
+        // user exist
         res.json({
           "status": true
         });
-      } else{
+      } else {
         res.json({
           "status": false
         });
