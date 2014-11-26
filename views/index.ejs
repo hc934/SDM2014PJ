@@ -13,6 +13,7 @@
       <form class="col-sm-offset-4 col-sm-4 login-frame" name="loginForm">
         <input type="text" class="form-control form-margin-wide" placeholder="School ID" ng-model="user.id" required>
         <input type="password" class="form-control form-margin-wide" placeholder="Password" ng-model="user.password" required>
+        <p class="text-danger" ng-show="showMsg">{{message}}</p>
         <div class="item-center">
           <button class="btn btn-primary" ng-click="check(loginForm.$valid)"><%= __("Login") %></button>
         </div>
