@@ -1,0 +1,13 @@
+@import "compass/css3";
+@import "compass/layout";
+@import "compass/typography";
+@import "compass/utilities";
+
+@import 'test-import';
+$test-green: #82d62d;
+
+.test {
+  color: $test-green;
+  height: 60vh;
+  @include justify-content(center);
+}
