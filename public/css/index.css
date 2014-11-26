@@ -19,10 +19,6 @@ body {
 	margin-bottom: 12px;
 }
 
-.item-center {
-	text-align: center;
-}
-
 .text-center {
 	text-align: center;
 }
@@ -30,3 +26,4 @@ body {
 .container {
 	margin-top: 50px;
 }
+
