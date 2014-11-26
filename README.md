@@ -51,7 +51,9 @@ Code Style
 * `js`: one space after `,` , one space before `{`
 * `css`: indent use `2 space`, convert indention to space
 * `css`: one space before `{`, one space after `:`, no space before `;`, `}` in a single line
-* more css style guide : https://github.com/styleguide/css
+* more css style guide : 
+* 1. https://github.com/styleguide/css
+* 2. http://learn.shayhowe.com/advanced-html-css/performance-organization/
 * `html | ejs`: indent use `2 space`, convert indention to space
 
 Code Style Example
