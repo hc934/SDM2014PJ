@@ -14,11 +14,11 @@
       <form class="col-sm-offset-4 col-sm-4 login-frame" name="loginForm">
       <div class="form-group">
         <label for="user.id">學號：</label>
-        <input type="text" class="form-control form-margin-wide" placeholder="School ID" ng-model="user.id" required>
+        <input type="text" class="form-control form-margin-wide" placeholder="School ID" ng-model="user.id" name="user.id" required>
       </div>
       <div class="form-group">
-        <label for="user.id">密碼：</label>
-        <input type="password" class="form-control form-margin-wide" placeholder="Password" ng-model="user.password" required>
+        <label for="user.password">密碼：</label>
+        <input type="password" class="form-control form-margin-wide" placeholder="Password" ng-model="user.password" name="user.password" required>
       </div>
       <p class="text-danger" ng-show="showMsg">{{message}}</p>
       <div class="item-center">
