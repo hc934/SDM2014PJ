@@ -60,7 +60,7 @@ router.post('/profile', function(req, res) {
             } // end for
           } // end for
           connection.release();
-          res.json(profile);
+          res.json(profile[0]);
         }); // end last query
       });
     });
@@ -94,7 +94,7 @@ router.put('/profile', function(req, res) {
           if (err) throw err;
           console.log(res);
           connection.release();
-          return true;    
+          return true;
         });
 
       });
