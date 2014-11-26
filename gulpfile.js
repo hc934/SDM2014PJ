@@ -24,7 +24,7 @@ gulp.task('clean_sass', ['compass'], function () {
 
 gulp.task('default', function() {
   nodemon({ script: './bin/www', ext: 'html js scss ejs' })
-    .on('change', ['compass'], ['clean_sass'])
+    .on('change', ['compass'])
     .on('restart', function () {
       console.log('restarted!')
     });

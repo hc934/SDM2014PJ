@@ -8,6 +8,6 @@ $test-green: #82d62d;
 
 .test {
   color: $test-green;
-  height: 80vh;
+  height: 40vh;
   @include justify-content(center);
 }

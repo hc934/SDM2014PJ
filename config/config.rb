@@ -29,6 +29,7 @@ line_comments = false
 
 # sourcemap = !production?
 asset_cache_buster :none
+cache = false
 # If you prefer the indented syntax, you might want to regenerate this
 # project again passing --syntax sass, or you can uncomment this:
 # preferred_syntax = :sass
