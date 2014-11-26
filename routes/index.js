@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'SDM Group3' });
+  res.render('index', { title: 'NTUIM 校友系統' });
 });
 
 
