@@ -3,10 +3,14 @@
 	"Forum": "論壇",
 	"Profile": "個人資訊",
 	"Language": "語系",
+	"Login": "登入",
 	"Logout": "登出",
 	"Setting": "設定",
 	"Post": "張貼文章",
+	"Title": "標題",
+	"Content": "內容",
 	"More": "觀看更多",
+	"Leave a comment": "留言",
 	"Send": "送出文章",
 	"Edit Profile": "編輯個人資料",
 	"Experience": "經歷",
@@ -26,6 +30,5 @@
 	"Education": "教育程度",
 	"Welcome": "歡迎來到",
 	"Chinese": "中文",
-	"English": "英文",
-	"Login": "Login"
+	"English": "英文"
 }

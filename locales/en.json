@@ -8,6 +8,7 @@
 	"Setting": "Setting",
 	"Post": "Post",
 	"More": "More",
+	"Leave a comment": "Leave a comment",
 	"Send": "Send",
 	"Edit Profile": "Edit Profile",
 	"Experience": "Experience",
@@ -25,7 +26,9 @@
 	"Save": "Save",
 	"Back": "Back",
 	"Education": "Education",
-    "Welcome": "Welcome to",
-    "Chinese": "Chinese",
-    "English": "English"
+	"Welcome": "Welcome to",
+	"Chinese": "Chinese",
+	"English": "English",
+	"Title": "Title",
+	"Content": "Content"
 }

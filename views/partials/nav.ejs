@@ -1,7 +1,7 @@
 <!-- views/partials/nav.ejs -->
 
 <!-- Static navbar -->
-  <nav class="navbar navbar-default navbar-static-top" role="navigation" ng-controller="NavController">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" ng-app="lang" ng-controller="LanguageController">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -10,7 +10,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/"><%= __("SDM Group3") %></a>
+        <a class="navbar-brand" href="/forum"><%= __("SDM Group3") %></a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         
@@ -20,14 +20,14 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= __("Language") %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a ng-click="changeToEnglish()"><%= __("English") %></a></li>
-              <li><a ng-click="changeToChinese()"><%= __("Chinese") %></a></li>
+              <li><a href="#" ng-click="changeToEnglish()"><%= __("English") %></a></li>
+              <li><a href="#" ng-click="changeToChinese()"><%= __("Chinese") %></a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= __("Setting") %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#"><%= __("Logout") %></a></li>
+              <li><a href="/"><%= __("Logout") %></a></li>
             </ul>
           </li>
         </ul>
