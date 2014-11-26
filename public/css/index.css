@@ -1,7 +1,11 @@
+body {
+	position: relative;
+}
+
 .login-frame {
 	margin-bottom: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	border: 1px solid #bbb;
 	border-radius: 6px;
 }
@@ -12,10 +16,17 @@
 }
 
 .form-margin-wide {
-	margin-top: 12px;
 	margin-bottom: 12px;
 }
 
 .item-center {
 	text-align: center;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.container {
+	margin-top: 50px;
 }
