@@ -16,7 +16,7 @@ router.post('/login', function(req, res) {
 
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    connection.query('SELECT * FROM user_login WHERE user_id="'+req.body.id+'" and user_password="'+req.body.password+'";', function(err, account) {
+    connection.query('SELECT * FROM user_login WHERE user_id="'+req.body.id+'" AND user_password="'+req.body.password+'";', function(err, account) {
       if(account!=null){
         res.json({
           "status": true

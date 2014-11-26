@@ -13,4 +13,9 @@ langApp.controller('LanguageController',['$scope', '$http', function($scope, $ht
       window.location.href = href;
     }
   };
+
+  $scope.logout = function() {
+    sessionStorage.setItem('id',null);
+    window.location.href = '/';
+  }
 }]);
