@@ -1,23 +1,18 @@
-.profile .thumbnail {
-  width: 200px;
+.theme-profile {
+
+}
+
+.theme-profile .thumbnail {
+  width: 100%;
   height: auto;
 }
 
-.profile .name {
+.theme-profile .name {
   font-size: 24px;
   font-weight: 900;
 }
 
-.profile,
-.profile-experience,
-.profile-education {
-  margin: 10px 0 10px 0;
-  padding: 10px 10px 10px 15px;
-  box-shadow: 1px 2px 2px #AAA;
-}
-
-.profile-experience .subtitle,
- .profile-education .subtitle {
+.theme-profile .subtitle {
   font-size: 20px;
   font-weight: 750;
   color: #999;
@@ -26,38 +21,32 @@
   /*background-color: #111;*/
 }
 
-
-.profile-education .main,
-.profile-experience .main {
+.theme-profile .main {
   font-size: 20px;
   font-weight: 800;
   color: #000;
   margin-right: 8px;
 }
 
-.profile-education .sub,
-.profile-experience .sub {
+.theme-profile .sub {
   font-size: 16px;
   font-weight: 450;
   color: #000;
 
 }
 
-
-.profile-education .date,
-.profile-experience .date {
+.theme-profile .date {
   font-size: 12px;
   font-weight: 200;
   color: #AAA;
 }
 
 
-ul > li {
+.theme-profile > li {
   list-style-type: none;
   text-align: text-bottom;
 }
 
-ul > li > span {
+.theme-profile > li > span {
   margin: 2px;
 }
-

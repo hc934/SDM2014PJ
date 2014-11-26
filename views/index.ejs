@@ -3,7 +3,7 @@
   <head>
     <title><%= title %></title>
     <% include ../views/partials/head %>
-    <link rel='stylesheet' href='/css/theme/index.css' />
+    
     <script src="js/login.js"></script>
   </head>
   <body ng-app="login">
@@ -11,7 +11,7 @@
     <h1 class="text-center"><%= title %></h1>
     <p class="text-center"><%= __("Welcome") %> <%= title %></p>
     <div class="container" ng-controller="LoginController">
-      <form class="col-sm-offset-4 col-sm-4 login-frame" name="loginForm">
+      <form class="col-sm-offset-4 col-sm-4 frame frame-border" name="loginForm">
       <div class="form-group">
         <label for="user.id">學號：</label>
         <input type="text" class="form-control form-margin-wide" placeholder="School ID" ng-model="user.id" name="user.id" required>

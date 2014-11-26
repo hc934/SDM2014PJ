@@ -12,7 +12,7 @@
   <% include ../views/partials/nav %>
 
   <div class="container" ng-controller="ProfileEditController">
-    <div class="profile col-sm-8">
+    <div class="theme-profile col-sm-8">
       <span class="col-sm-5">
         <img class="thumbnail" src="http://deaenij3kiw8r.cloudfront.net/system/users/avatars/141380/original/production-b3612f96cc66fee631be82853dd2c316-man_bartlett_bw.jpg?1369799811"/>
       </span>
@@ -22,7 +22,7 @@
         <div><%= __("Mobile") %><input class="form-control" type="text" ng-model="user.phone_mobile"></div>
       </div>
     </div>
-    <ul class="col-sm-8 profile-experience">
+    <ul class="col-sm-8 theme-profile">
       <div class="subtitle col-sm-12"><%= __("Experience") %></div>
       <li class=" col-sm-12" ng-repeat="experience in user.experience">
         <div><%= __("Position") %><input class="form-control" type="text" ng-model="experience.position"></div>
@@ -35,7 +35,7 @@
         
       </li>
     </ul>
-    <ul class="col-sm-8 profile-education">
+    <ul class="col-sm-8 theme-profile">
       <div class="subtitle col-sm-12"><%= __("Education") %></div>
       <li class=" col-sm-12" ng-repeat="education in user.education">
         <div><%= __("Degree") %><input class="form-control" type="text" ng-model="education.degree"></div>
