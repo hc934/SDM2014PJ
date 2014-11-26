@@ -12,6 +12,7 @@
     "ejs": "~0.8.5",
     "express": "~4.9.0",
     "gulp": "^3.8.10",
+    "gulp-clean": "^0.3.1",
     "gulp-compass": "^2.0.3",
     "gulp-nodemon": "^1.0.4",
     "i18n": "^0.5.0",
