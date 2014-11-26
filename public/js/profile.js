@@ -7,9 +7,9 @@ app.controller('ProfileController', ['$scope', '$http', function($scope, $http){
       id: $scope.session
     }
     $scope.user;
-    $http.post('/api/profile',data).
+    $http.post('/api/profile', data).
     success(function(data, status, headers, config) {
-      $scope.user = data[0];
+      $scope.user = data;
       // console.log(data);
     }).
     error(function(data, status, headers, config) {
@@ -24,11 +24,9 @@ app.controller('ProfileEditController', ['$scope', '$http', function($scope, $ht
     }
     $scope.user;
 
-    $http.post('/api/profile',data).
+    $http.post('/api/profile', data).
     success(function(data, status, headers, config) {
-      $scope.user = data[0];
-
-      
+      $scope.user = data;
     }).
     error(function(data, status, headers, config) {
       // console.log(data);

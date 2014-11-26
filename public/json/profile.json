@@ -1,0 +1,33 @@
+{
+  "id": "guest",
+  "name": "哲維",
+  "address": "",
+  "email": "test@ntu.edu.tw",
+  "phone_mobile": "0911111111",
+  "phone_work": "",
+  "phone_home": "",
+  "experience": [
+    {
+      "id": "guest",
+      "org": "台積電",
+      "dept": "清潔部",
+      "position": "處長",
+      "startdate": "2014-11-25T16:00:00.000Z",
+      "enddate": "2014-11-22T16:00:00.000Z",
+      "description": ""
+    }
+  ],
+  "education": [
+    {
+      "id": "guest",
+      "degree": "學士",
+      "stuid": "guest",
+      "institute": "台大",
+      "dept": "資管",
+      "startdate": "2014-11-14T16:00:00.000Z",
+      "enddate": "2014-11-21T16:00:00.000Z",
+      "concentration": "",
+      "obtained": 0
+    }
+  ]
+}
