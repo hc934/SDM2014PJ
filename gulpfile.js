@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var compass = require('gulp-compass');
 var nodemon = require('gulp-nodemon');
+var clean = require('gulp-clean');
 
 gulp.task('compass', function() {
   gulp.src('./public/scss/*.scss')
@@ -14,6 +15,11 @@ gulp.task('compass', function() {
 
 gulp.task('watch', ['compass'], function(cb) {
   gulp.watch('./public/scss/*.scss', ['compass']);
+});
+
+gulp.task('clean_sass', ['compass'], function () {
+  return gulp.src('./.sass-cache/*')
+    .pipe(clean({force: true}));
 });
 
 gulp.task('default', function() {
