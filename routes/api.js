@@ -20,11 +20,13 @@ router.post('/login', function(req, res) {
     sql += 'FROM user_login WHERE user_id="'+req.body.id+'" AND user_password="'+req.body.password+'";';
     connection.query(sql, function(err, account) {
       if (account.length > 0) {
+        connection.release();
         // user exist
         res.json({
           "status": true
         });
       } else {
+        connection.release();
         res.json({
           "status": false
         });
@@ -57,6 +59,7 @@ router.post('/profile', function(req, res) {
               }
             } // end for
           } // end for
+          connection.release();
           res.json(profile);
         }); // end last query
       });
@@ -90,6 +93,7 @@ router.put('/profile', function(req, res) {
         connection.query(sql3, function(err, res) {
           if (err) throw err;
           console.log(res);
+          connection.release();
           return true;    
         });
 
@@ -108,6 +112,7 @@ router.get('/articles', function(req, res) {
     sql += 'FROM forum_article_info';
     connection.query(sql, function(err, articles) {
       // console.log(articles);
+      connection.release();
       res.json(articles);
     });
   });
@@ -137,6 +142,7 @@ router.get('/article/:article_id', function(req, res) {
           returnData.comment.push(comments[i]);
         }
         console.log(returnData);
+        connection.release();
         res.json(returnData);
       });
 
@@ -156,6 +162,7 @@ router.post('/article', function(req, res) {
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
+      connection.release();
       res.json(result);
       return true;
     });
@@ -171,6 +178,7 @@ router.post('/:article_id/comment', function(req, res) {
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
+      connection.release();
       res.json(result);
       return true;
     });
@@ -187,6 +195,7 @@ router.delete('/:article_id/comment', function(req, res) {
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
+      connection.release();
       res.json(result);
       return true;
     });
