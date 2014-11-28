@@ -4,6 +4,8 @@
 
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 /* RESTful API */
 router.get('/api', function(req, res) {
@@ -12,34 +14,91 @@ router.get('/api', function(req, res) {
   });
 });
 
-router.post('/login', function(req, res) {
-
-  appPool.getConnection(function(err, connection) {
-    if (err) throw err;
-    var sql = 'SELECT * ';
-    sql += 'FROM user_login WHERE user_id="'+req.body.id+'" AND user_password="'+req.body.password+'";';
-    connection.query(sql, function(err, account) {
-      if (account.length > 0) {
-        connection.release();
-        // user exist
-        res.json({
-          "status": true
-        });
-      } else {
-        connection.release();
-        res.json({
-          "status": false
-        });
-      }
+router.post('/login', passport.authenticate('local'), function(req, res) {
+    res.json({
+      "status": true
     });
-
-  })
 });
 
+// Strategies
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    console.log("before");
+    appPool.getConnection(function(err, connection) {
+      if (err) throw err;
+      var sql = 'SELECT * FROM user_login WHERE user_id="'+username+'" AND user_password="'+password+'"';
+      connection.query(sql, function(err, user) {
+        console.log("hi");
+        if (err) { return done(err); }
+        console.log("after hi");
+        return done(null, user);
+      });
+    });
+  }
+));
+
+// serialize and deserialize
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+// passport.serializeUser(function(user, done) {
+//   console.log("in serializeUser");
+//   console.log(user);
+//   done(null, user.username);
+// });
+
+// passport.deserializeUser(function(id, done) {
+//   console.log(id);
+//   appPool.getConnection(function(err, connection) {
+//     if (err) throw err;
+//     var sql = 'SELECT * FROM user_login WHERE user_id="'+id+'"';
+//     connection.query(sql, function(err, user) {
+//       if (!err) done(null, user);
+//       else done(err, null)
+//     });
+//   });
+// });
+
+
+// router.post('/login', function(req, res) {
+
+//   appPool.getConnection(function(err, connection) {
+//     if (err) throw err;
+//     var sql = 'SELECT * ';
+//     sql += 'FROM user_login WHERE user_id="'+req.body.id+'" AND user_password="'+req.body.password+'";';
+//     connection.query(sql, function(err, account) {
+//       if (account.length > 0) {
+//         connection.release();
+//         // user exist
+//         req.session.passport.id = account[0].user_id;
+//         res.json({
+//           "status": true
+//         });
+//       } else {
+//         connection.release();
+//         req.session.passport.id = null;
+//         res.json({
+//           "status": false
+//         });
+//       }
+//     });
+
+//   })
+// });
+
 router.post('/profile', function(req, res) {
+  console.log(req.user[0].user_id);
+  console.log(req.session);
+  console.log(req.session.passport.user[0].user_id);
+
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    connection.query('SELECT * FROM contact WHERE id="'+req.body.id+'";', function(err, contacts) {
+    connection.query('SELECT * FROM contact WHERE id="'+req.user[0].user_id+'";', function(err, contacts) {
       if (err) throw err;
       connection.query('SELECT * FROM experience;', function(err, experiences) {
         if (err) throw err;

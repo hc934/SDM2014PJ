@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 
 var config = require('./config/config');
 var mysql = require('mysql');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -33,6 +36,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+    secret: 'sdm2014fall-group3',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(i18n.init);
 
@@ -50,6 +60,11 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
 app.use('/article', article);
+app.use('/login', passport.authenticate('local'), function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    res.redirect('/forum');
+  });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -11,6 +11,7 @@
     "debug": "~2.0.0",
     "ejs": "~0.8.5",
     "express": "~4.9.0",
+    "express-session": "^1.9.2",
     "gulp": "^3.8.10",
     "gulp-clean": "^0.3.1",
     "gulp-compass": "^2.0.3",

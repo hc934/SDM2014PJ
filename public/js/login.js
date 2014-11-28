@@ -13,8 +13,10 @@ app.controller('LoginController', ['$scope', '$http', function($scope,$http){
     }
     $scope.login = function() {
       // check login information
+      console.log($scope.user);
       $http.post('/api/login', $scope.user).
         success(function(data, status, headers, config) {
+          console.log(data);
           if(data.status){
             sessionStorage.setItem('id',$scope.user.id); // SAVE USERINFO VIA COOKIE
             window.location.href = "/forum";
@@ -30,8 +32,12 @@ app.controller('LoginController', ['$scope', '$http', function($scope,$http){
           $scope.message = 'OH NO，有問題！'
           $scope.user.id = null;
           $scope.user.password = null;
-          window.location.href = "/";
+          // window.location.href = "/";
           console.log(data);
+          console.log(status);
+          console.log(headers);
+          console.log(config);
+
         });
     };
 
