@@ -15,7 +15,7 @@
 .theme-profile .subtitle {
   font-size: 20px;
   font-weight: 750;
-  color: #999;
+  color: $subtitle-color;
   width: auto;
   margin: 0 0 10px 0;
   /*background-color: #111;*/
@@ -38,7 +38,7 @@
 .theme-profile .date {
   font-size: 12px;
   font-weight: 200;
-  color: #AAA;
+  color: $subtitle-color;
 }
 
 
