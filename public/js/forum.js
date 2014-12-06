@@ -1,6 +1,6 @@
-var app = angular.module('forum',['lang']);
+angular.module('forum',['lang'])
 
-app.controller('ForumController', ['$scope', '$http', function($scope, $http) {
+.controller('ForumController', ['$scope', '$http', function($scope, $http) {
   $scope.localCookies = sessionStorage.getItem('id');
   $scope.articles;
   $http.get('/api/articles').
@@ -10,10 +10,10 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http) {
     error(function(data, status, headers, config) {   
       console.log(data);   
     });  
-}]);
+}])
 
 
-app.controller('PostController',['$scope','$http',function($scope,$http){
+.controller('PostController',['$scope','$http',function($scope,$http){
   $scope.localCookies = sessionStorage.getItem('id');
   $scope.post = {};
   $scope.post.title;
@@ -33,9 +33,9 @@ app.controller('PostController',['$scope','$http',function($scope,$http){
         console.log(data);
       }); 
   };
-}]);
+}])
 
-app.controller('ArticleController',['$scope', '$http', function($scope, $http){
+.controller('ArticleController',['$scope', '$http', function($scope, $http){
   $scope.localCookies = sessionStorage.getItem('id');
   $scope.article;
   $scope.comment;

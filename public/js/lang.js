@@ -1,6 +1,6 @@
-var langApp = angular.module('lang',[]);
+angular.module('lang',[])
 
-langApp.controller('LanguageController',['$scope', '$http', function($scope, $http){
+.controller('LanguageController',['$scope', '$http', function($scope, $http){
   var href = window.location.href;
   $scope.changeToEnglish = function() {
     if ($http.post('/api/setLocale/English')) {

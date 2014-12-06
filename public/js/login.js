@@ -1,6 +1,6 @@
-app = angular.module('login', ['lang']);
+angular.module('login', ['lang'])
 
-app.controller('LoginController', ['$scope', '$http', function($scope,$http){
+.controller('LoginController', ['$scope', '$http', function($scope,$http){
     $scope.user;
     $scope.localCookies;
     $scope.showMsg = false;

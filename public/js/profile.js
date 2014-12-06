@@ -1,7 +1,7 @@
-app = angular.module('profile', ['lang'])
+angular.module('profile', ['lang'])
   
 
-app.controller('ProfileController', ['$scope', '$http', function($scope, $http){
+.controller('ProfileController', ['$scope', '$http', function($scope, $http){
     $scope.session = sessionStorage.getItem('id');
     data = {
       id: $scope.session
@@ -15,9 +15,9 @@ app.controller('ProfileController', ['$scope', '$http', function($scope, $http){
     error(function(data, status, headers, config) {
       // console.log(data);
     });
-  }]);
+  }])
 
-app.controller('ProfileEditController', ['$scope', '$http', function($scope, $http){
+.controller('ProfileEditController', ['$scope', '$http', function($scope, $http){
     $scope.session = sessionStorage.getItem('id');
     data = {
       'id': $scope.session
