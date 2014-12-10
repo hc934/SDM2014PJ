@@ -36,4 +36,8 @@ router.get('/new_job', function(req, res) {
     res.render('new_job', { title: 'new_job' });
 });
 
+router.get('/show_job', function(req, res) {
+    res.render('job/single_job', { title: 'new_job' });
+});
+
 module.exports = router;

@@ -10,27 +10,35 @@
 
     <% include ../views/partials/nav %>
 
-    <div class="container" ng-controller="PostController">
+    <div class="container" ng-controller="NewJobController">
 
         <div class="row">
             <h3 class="col-sm-3 align-center">Information</h3>
         </div><br>
 
         <div class="row">
-            <label class="col-sm-3 align-right">Name</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+            <label class="col-sm-3 align-right">Corporation</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="" placeholder="Google">
         </div>
 
         <div class="row">
-            <label class="col-sm-3 align-right">Location</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+            <label class="col-sm-3 align-right">Job Type</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="" placeholder="Programmer">
         </div>
 
         <div class="row">
-            <label class="col-sm-3 align-right">Payment</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+            <label class="col-sm-3 align-right">Location</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="" placeholder="Taipei 101">
         </div>
 
         <div class="row">
-            <label class="col-sm-3 align-right">Content</label>
-            <input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+            <label class="col-sm-3 align-right">Work Type</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="" placeholder="Full-time">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Payment</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="" placeholder="$100/hour">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Characters</label>
+            <textarea class="col-sm-6 frame frame-border frame-high content" ng-model=""></textarea>
         </div>
 
         <br><div class="row">
@@ -39,22 +47,22 @@
 
         <div class="row">
             <label class="col-sm-2 col-sm-offset-1 align-right">Work Experience</label>
-            <input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="" placeholder="3 years work experience">
         </div>
 
         <div class="row">
             <label class="col-sm-2 col-sm-offset-1 align-right">Education</label>
-            <input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="" placeholder="University">
         </div>
 
         <div class="row">
-            <label class="col-sm-2 col-sm-offset-1 align-right">Department</label>
-            <input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Major In</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="" placeholder="Information Management">
         </div>
 
         <div class="row">
             <label class="col-sm-2 col-sm-offset-1 align-right">Language Requirement</label>
-            <input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="" placeholder="Japanese/Chinese">
         </div>
 
 
