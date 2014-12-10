@@ -28,4 +28,12 @@ router.get('/articles_001', function(req, res) {
   res.render('articles_001', { title: 'Express' });
 });
 
+router.get('/job', function(req, res) {
+    res.render('job', { title: 'job' });
+});
+
+router.get('/new_job', function(req, res) {
+    res.render('new_job', { title: 'new_job' });
+});
+
 module.exports = router;

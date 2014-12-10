@@ -110,3 +110,12 @@ body {
   -webkit-justify-content: center;
   justify-content: center;
 }
+
+.align-right{
+    text-align: right;
+}
+
+.align-center{
+    text-align: center;
+}
+

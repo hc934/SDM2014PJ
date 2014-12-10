@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include ../views/partials/head %>
+    <script src="js/job.js"></script>
+</head>
+
+<body ng-app="job">
+
+    <% include ../views/partials/nav %>
+
+    <div class="container" ng-controller="PostController">
+
+        <div class="row">
+            <h3 class="col-sm-3 align-center">Information</h3>
+        </div><br>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Name</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Location</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Payment</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Content</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+        </div>
+
+        <br><div class="row">
+            <h3 class="col-sm-3 align-center">Qualifications</h3>
+        </div><br>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Work Experience</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Education</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Department</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Language Requirement</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="">
+        </div>
+
+
+        <br><div class="row">
+            <h3 class="col-sm-3 align-center">Other Requirement</h3>
+        </div><br>
+
+        <div>
+            <textarea class="col-sm-offset-3 col-sm-6 frame frame-border frame-high content" ng-model=""></textarea>
+        </div>
+
+        <div class="col-sm-offset-3 col-sm-6 item-center">
+            <button class="btn btn-primary" ng-click=""><%= __("Send") %></button>
+        </div>
+    </div>
+
+    <% include ../views/partials/js %>
+
+</body>
+</html>
