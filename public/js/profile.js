@@ -27,6 +27,10 @@ angular.module('profile', ['lang'])
         });  
      };
 
+     $scope.insert = function() {
+      
+     }
+
      $scope.update = function(block) {
       switch(block) {
         case 'info':

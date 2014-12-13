@@ -3,6 +3,7 @@
 <head>
 
   <% include ../views/partials/head %>
+    <link href="/css/forum.css" rel="stylesheet">
   <script src="js/forum.js"></script>
 </head>
 
@@ -19,21 +20,29 @@
     <br>
     <div class="row">
       <div class="col-md-2 col-md-offset-3">
-        <button class="btn btn-primary" onclick="">sort by like</button>
+        <button class="btn btn-primary" onclick="location.href='/forum:like'">sort by like</button>
       </div>
       <div class="col-md-offset-2 col-md-2 ">
-        <button class="btn btn-primary">sort by time</button>
+        <button class="btn btn-primary" onclick="location.href='/forum:sort'">sort by time</button>
       </div>
     </div>
+    <br>
     <div class="row">
-      <div class="col-sm-offset-3 col-sm-5 frame frame-border theme-article" ng-repeat="article in articles | orderBy:'post_time':true">
-        	<div>
-            <span class="name">{{article.user_name}}</span>
-          </div>
+      <div ng-repeat="article in articles">
+        <a ng-href="/article/{{article.article_id}}">
+          <div class="col-sm-offset-3 col-sm-5 frame frame-border theme-article">
           
+            <span class="name col-md-4">{{article.user_name}}</span>
+            <div class="col-md-offset-10">{{article.like_num}} likes</div>
+        
           <div class="">{{article.title}}</div>
-      	<a class="more" ng-href="/article/{{article.article_id}}"><%= __("More") %></a>
+          
+          <div class="col-md-offset-8">{{article.post_time | date:'MM/dd @ h:mma'}}</div>
+        <!-- <a class="more" ng-href="/article/{{article.article_id}}"><%= __("More") %></a> -->
       </div>
+        </a>
+      </div> 
+      
     </div>
   </div>
 
