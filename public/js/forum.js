@@ -91,7 +91,7 @@ angular.module('forum',['lang'])
   $scope.delete = function(){
     var data ={
       id: $scope.localCookies,
-      article_id:article_id
+      article_id:$scope.article_id
     }
     $http.delete('/api/article',data).
       success(function(data,status, headers,config){
