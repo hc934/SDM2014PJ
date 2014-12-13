@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../views/partials/head %>
+    <script src="js/job.js"></script>
+</head>
+
+<body ng-app="job">
+
+    <% include ../views/partials/nav %>
+
+    <div class="container" ng-controller="JobController">
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-5 item-center">
+                <button class="btn btn-primary" onclick="location.href='/new_job'"><%= __("New Job") %></button>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-5 frame frame-border theme-article" ng-repeat="job in jobs" onclick="location.href='/show_job'">
+                <div>
+                    <span class="name">{{job.corporation}}</span>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-offset-1">{{job.job_type}}</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <% include ../views/partials/js %>
+
+</body>
+</html>
