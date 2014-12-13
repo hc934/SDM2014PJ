@@ -16,7 +16,15 @@
     		<button class="btn btn-primary" onclick="location.href='/post'"><%= __("Post") %></button>
     	</div>
     </div>
-
+    <br>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-3">
+        <button class="btn btn-primary" onclick="">sort by like</button>
+      </div>
+      <div class="col-md-offset-2 col-md-2 ">
+        <button class="btn btn-primary">sort by time</button>
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-offset-3 col-sm-5 frame frame-border theme-article" ng-repeat="article in articles | orderBy:'post_time':true">
         	<div>
