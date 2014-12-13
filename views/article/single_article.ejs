@@ -7,22 +7,37 @@
   <script src="/js/forum.js"></script>
 </head>
 
-<body ng-app="forum">
+<body ng-app="forum" >
 
   <% include ../../views/partials/nav %>
 
   <div class="container" ng-controller="ArticleController" ng-init="init()">
     
-    <div class="col-sm-offset-2 col-sm-8 article article-title">
-    <h1><small>{{article.user_name}} : </small>  {{article.title}} </h1>
+    <div class="row" >
+      <div class="col-sm-offset-2 col-sm-6 article article-title">
+      <h1><small>{{article.user_name}} : </small>  {{article.title}} </h1>
+      </div>
+      <button type="button" class="btn btn-default btn-lg  col-sm-1" ng-click="like()">
+        <!-- @TODO 判斷有沒有按過讚 -->
+        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> 讚</span>
+      </button>
     </div>
     <div class="col-sm-offset-2 col-sm-8 article article-content" >
+
+    <br>
     {{article.content}}
     </br>
     </br>
-    <button type="button" class="btn btn-default" aria-label="Left Align">
-      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    <!-- @TODO 判斷是不是自己PO的 -->
+    <a ng-href="/edit/{{article.article_id}}">
+      <button type="button" class="btn btn-default btn-sm col-md-offset-11">
+        <span class="glyphicon glyphicon-pencil" > 修改</span>
+      </button>
+    </a>
+    <button type="button" class="btn btn-default btn-sm col-md-offset-11">
+      <span class="glyphicon glyphicon-remove" ng-click="delete()"> 刪除</span>
     </button>
+    
     </br>
     </div>
     

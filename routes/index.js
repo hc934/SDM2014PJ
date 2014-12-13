@@ -31,6 +31,10 @@ router.get('/post', function(req, res) {
   res.render('post', { title: 'Express' });
 });
 
+router.get('/edit/:article_id',function(req,res){
+	res.render('edit',{title :'Express'});
+});
+
 router.get('/articles_001', function(req, res) {
   res.render('articles_001', { title: 'Express' });
 });
