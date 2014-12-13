@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 
 
 /* GET profile page. */
-router.get('/profile', function(req, res) {
+router.get('/profile:profile_id', function(req, res) {
   res.render('profile', { title: 'Express' });
 });
 
