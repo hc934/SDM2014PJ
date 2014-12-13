@@ -3,6 +3,7 @@
 <head>
 
   <% include ../views/partials/head %>
+    <link href="/css/forum.css" rel="stylesheet">
   <script src="js/forum.js"></script>
 </head>
 
@@ -28,7 +29,7 @@
     <br>
     <div class="row">
       <div ng-repeat="article in articles">
-        <a style="color:black" ng-href="/article/{{article.article_id}}">
+        <a ng-href="/article/{{article.article_id}}">
           <div class="col-sm-offset-3 col-sm-5 frame frame-border theme-article">
           
             <span class="name col-md-4">{{article.user_name}}</span>

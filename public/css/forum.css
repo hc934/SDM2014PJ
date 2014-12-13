@@ -1,0 +1,25 @@
+a{
+	color:black;
+}
+
+.article-title{
+	
+}
+
+.article-content{
+	background-color:#eaeaea;
+
+}
+
+
+div.blank{
+	height: 10px;
+}
+div.line{
+	height:5px;
+	background-color:#d3d3d3;
+}
+
+div.article-comment{
+	background-color: #EAEAEA;
+}
