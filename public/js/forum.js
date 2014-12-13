@@ -3,6 +3,7 @@ angular.module('forum',['lang'])
 .controller('ForumController', ['$scope', '$http', function($scope, $http) {
   $scope.localCookies = sessionStorage.getItem('id');
   $scope.articles;
+  $scope.src = "http://topwalls.net/wp-content/uploads/2012/07/Grass-In-The-Wind-.jpg";
   $http.get('/api/articles')
     .success(function(data, status, headers, config) {   
       $scope.articles = data;
@@ -53,6 +54,10 @@ angular.module('forum',['lang'])
         console.log(data);
       }); 
   };
+  $scope.init = function() {
+    console.log('init');
+  };
+
 
   var temp_array = location.href.split('/');
   var article_id = temp_array[temp_array.length-1];
