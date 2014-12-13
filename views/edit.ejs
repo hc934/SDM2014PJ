@@ -12,8 +12,14 @@
 
   <div class="container" ng-controller="EditController" ng-init="init()">
     
-    <input class="col-sm-offset-3 col-sm-6 frame frame-border theme-article title" ng-model="article.title">
-    <textarea class="col-sm-offset-3 col-sm-6 frame frame-border frame-high content" ng-model="article.content" ></textarea>
+  <div class="row">
+    <h2><small class="col-sm-1 col-sm-offset-2">標題：</small></h4>
+    <input class="col-sm-6 frame frame-border theme-article title" ng-model="article.title">
+  </div>
+  <div class="row">
+    <h2><small class="col-sm-1 col-sm-offset-2">內容：</small></h4>
+    <textarea class=" col-sm-6 frame frame-border frame-high content" ng-model="article.content" ></textarea>
+  </div>
     <div class="col-sm-offset-3 col-sm-6 item-center">
       <button class="btn btn-primary" ng-click="EditArticle()">修改文章</button>
     </div> 
