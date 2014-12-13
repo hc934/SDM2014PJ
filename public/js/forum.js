@@ -3,11 +3,11 @@ angular.module('forum',['lang'])
 .controller('ForumController', ['$scope', '$http', function($scope, $http) {
   $scope.localCookies = sessionStorage.getItem('id');
   $scope.articles;
-  $http.get('/api/articles').
-    success(function(data, status, headers, config) {   
+  $http.get('/api/articles')
+    .success(function(data, status, headers, config) {   
       $scope.articles = data;
-    }).
-    error(function(data, status, headers, config) {   
+    })
+    .error(function(data, status, headers, config) {   
       console.log(data);   
     });  
 }])

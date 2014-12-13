@@ -2,6 +2,9 @@ angular.module('profile', ['lang'])
   
 
 .controller('ProfileController', ['$scope', '$http', function($scope, $http){
+    $scope.info;
+    
+
     $scope.session = sessionStorage.getItem('id');
     data = {
       id: $scope.session
