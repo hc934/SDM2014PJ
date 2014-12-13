@@ -1,6 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   padding-bottom: 30px;
+  background-color: #f5f8fa;
 }
 
 /* put item into center side */
@@ -12,6 +13,7 @@ body {
   margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+  background-color: #fff;
 }
 
 .frame.frame-border {
@@ -37,25 +39,36 @@ body {
 }
 
 .theme-article .name {
-  color: #3b5998;
+  color: #000;
   font-size: 14px;
   font-weight: 600;
 }
 
 .theme-article .more {
   font-size: 10px;
-  font-weight: 70;
+  font-weight: 0;
   color: #BBB;
   float: right;
 }
 
 .theme-article .title {
+  font-weight: 100;
   height: 50px;
 }
+
+.theme-article .time {
+  padding-left: 15px;
+  font-size: 9px;
+  color: #CCC;
+  font-weight: 0;
+  height: 50px;
+}
+
 
 .theme-article .content {
   height: 300px;
 }
+
 
 .theme-profile .thumbnail {
   width: 100%;
@@ -109,4 +122,19 @@ body {
   height: 40vh;
   -webkit-justify-content: center;
   justify-content: center;
+}
+
+
+
+/*  layout  */
+
+.padding-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* nav */
+
+.navbar-white {
+  background-color: #fff;
 }
