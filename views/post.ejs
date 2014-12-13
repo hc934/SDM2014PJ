@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <% include ../views/partials/head %>
+  <script src="js/forum.js"></script>
+</head>
+
+<body ng-app="forum">
+
+  <% include ../views/partials/nav %>
+
+  <div class="container" ng-controller="PostController">
+  	
+    <input class="col-sm-offset-3 col-sm-6 frame frame-border theme-article title" ng-model="post.title" placeholder="<%= __("Title") %>">
+    <textarea class="col-sm-offset-3 col-sm-6 frame frame-border frame-high content" ng-model="post.content" placeholder="<%= __("Content") %>"></textarea>
+    <div class="col-sm-offset-3 col-sm-6 item-center">
+      <button class="btn btn-primary" ng-click="submitArticle()"><%= __("Send") %></button>
+    </div> 
+
+  </div>
+
+  <% include ../views/partials/js %>
+
+</body>
+</html>

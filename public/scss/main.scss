@@ -1,0 +1,21 @@
+@import "compass/css3";
+@import "compass/layout";
+@import "compass/typography";
+@import "compass/utilities";
+
+$border-color: #eee;
+$subtitle-color: #aaa;
+$name-color: #3b5998;
+$test-green: #82d62d;
+
+@import 'partial/nomalize';
+@import 'partial/forum';
+@import 'partial/profile';
+
+
+
+.test {
+  color: $test-green;
+  height: 40vh;
+  @include justify-content(center);
+}

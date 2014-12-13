@@ -5,10 +5,26 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var config = require('./config/config');
+var mysql = require('mysql');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
+var article = require('./routes/article');
 
 var app = express();
+
+var i18n = require('i18n');
+i18n.configure({
+    locales:['en', 'zh_TW'],
+    directory: __dirname + '/locales',
+    defaultLocale: "zh_TW",
+    cookie: "sdm2014fall"
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,10 +36,35 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+    secret: 'sdm2014fall-group3',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(i18n.init);
+
+// database
+appPool = mysql.createPool({
+    host : config.db_host,
+    port : config.db_port,
+    user : config.db_username,
+    password : config.db_password,
+    database : config.db_name,
+    connectionLimit : 10
+});
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', api);
+app.use('/article', article);
+app.use('/login', passport.authenticate('local'), function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    res.redirect('/forum');
+  });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

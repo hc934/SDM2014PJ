@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <% include ../views/partials/head %>
+  <script src="js/profile.js"></script>
+</head>
+
+<body ng-app="profile">
+
+  <% include ../views/partials/nav %>
+
+  <div class="container" ng-controller="ProfileController">
+    <div class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
+      <span class="col-sm-4">
+        <img class="thumbnail" src="http://deaenij3kiw8r.cloudfront.net/system/users/avatars/141380/original/production-b3612f96cc66fee631be82853dd2c316-man_bartlett_bw.jpg?1369799811"/>
+      </span>
+      <div class="col-sm-6">
+        <div class="name">{{user.name}}</div>
+        <div class="email">{{user.email}}</div>
+        <div class="phone">{{user.phone_mobile}}</div>
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-default btn-right" onclick="location.href='profile_edit'"><%= __("Edit Profile") %></button>
+      </div>
+    </div>
+    <ul class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
+      <div class="subtitle col-sm-12"><%= __("Experience") %></div>
+      <li class=" col-sm-12" ng-repeat="experience in user.experience">
+        <span class="main">{{experience.position}}</span>
+        <span class="sub">{{experience.org}}</span>
+        <span class="sub">{{experience.dept}}</span>
+        <span class="date">{{experience.startdate}} - {{experience.enddate}}</span>
+      </li>
+    </ul>
+    <ul class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
+      <div class="subtitle col-sm-12"><%= __("Education") %></div>
+      <li class=" col-sm-12" ng-repeat="education in user.education">
+        <span class="main">{{education.degree}}</span>
+        <span class="sub">{{education.institute}}</span>
+        <span class="sub">{{education.dept}}</span>
+        <span class="date">{{education.startdate}} - {{education.enddate}}</span>
+      </li>
+    </ul>
+  </div>
+
+  <% include ../views/partials/js %>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <% include ../views/partials/head %>
+  <script src="js/profile.js"></script>
+</head>
+
+<body ng-app="profile">
+
+  <% include ../views/partials/nav %>
+
+  <div class="container" ng-controller="ProfileEditController">
+    <div class="theme-profile col-sm-8">
+      <span class="col-sm-5">
+        <img class="thumbnail" src="http://deaenij3kiw8r.cloudfront.net/system/users/avatars/141380/original/production-b3612f96cc66fee631be82853dd2c316-man_bartlett_bw.jpg?1369799811"/>
+      </span>
+      <div class="col-sm-7">
+        <div><%= __("Name") %><input class="form-control" type="text" ng-model="user.name"></div>
+        <div><%= __("Email") %><input class="form-control" type="text" ng-model="user.email"></div>
+        <div><%= __("Mobile") %><input class="form-control" type="text" ng-model="user.phone_mobile"></div>
+      </div>
+    </div>
+    <ul class="col-sm-8 theme-profile">
+      <div class="subtitle col-sm-12"><%= __("Experience") %></div>
+      <li class=" col-sm-12" ng-repeat="experience in user.experience">
+        <div><%= __("Position") %><input class="form-control" type="text" ng-model="experience.position"></div>
+        <div><%= __("Organization") %><input class="form-control" type="text" ng-model="experience.org"></div>
+        <div><%= __("Org Department") %><input class="form-control" type="text" ng-model="experience.dept"></div>
+        <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="experience.startdate"></div>
+        <div><%= __("End Date") %><input class="form-control" type="text" ng-model="experience.enddate"></div>
+        
+        
+        
+      </li>
+    </ul>
+    <ul class="col-sm-8 theme-profile">
+      <div class="subtitle col-sm-12"><%= __("Education") %></div>
+      <li class=" col-sm-12" ng-repeat="education in user.education">
+        <div><%= __("Degree") %><input class="form-control" type="text" ng-model="education.degree"></div>
+        <div><%= __("Institute") %><input class="form-control" type="text" ng-model="education.institute"></div>
+        <div><%= __("School Department") %><input class="form-control" type="text" ng-model="education.dept"></div>
+        <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="education.startdate"></div>
+        <div><%= __("End Date") %><input class="form-control" type="text" ng-model="education.enddate"></div>
+        
+      </li>
+    </ul>
+    <div class="col-sm-8 item-center">
+      <button class="btn btn-default" ng-click="update_profile();"><%= __("Save") %></button>
+      <button class="btn btn-default" onclick="location.href='/profile'"><%= __("Back") %></button>
+    </div>
+  </div>
+
+  <% include ../views/partials/js %>
+
+</body>
+</html>

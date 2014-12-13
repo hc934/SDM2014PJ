@@ -1,0 +1,52 @@
+.theme-profile {
+
+}
+
+.theme-profile .thumbnail {
+  width: 100%;
+  height: auto;
+}
+
+.theme-profile .name {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.theme-profile .subtitle {
+  font-size: 20px;
+  font-weight: 750;
+  color: $subtitle-color;
+  width: auto;
+  margin: 0 0 10px 0;
+  /*background-color: #111;*/
+}
+
+.theme-profile .main {
+  font-size: 20px;
+  font-weight: 800;
+  color: #000;
+  margin-right: 8px;
+}
+
+.theme-profile .sub {
+  font-size: 16px;
+  font-weight: 450;
+  color: #000;
+
+}
+
+.theme-profile .date {
+  font-size: 12px;
+  font-weight: 200;
+  color: $subtitle-color;
+}
+
+
+.theme-profile > li {
+  list-style-type: none;
+  text-align: text-bottom;
+}
+
+.theme-profile > li > span {
+  margin: 2px;
+}

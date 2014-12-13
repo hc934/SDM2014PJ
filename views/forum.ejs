@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <% include ../views/partials/head %>
+  <script src="js/forum.js"></script>
+</head>
+
+<body ng-app="forum">
+
+  <% include ../views/partials/nav %>
+
+  <div class="container" ng-controller="ForumController">
+    <div class="row">
+    	<div class="col-sm-offset-3 col-sm-5 item-center">
+    		<button class="btn btn-primary" onclick="location.href='/post'"><%= __("Post") %></button>
+    	</div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-offset-3 col-sm-5 frame frame-border theme-article" ng-repeat="article in articles | orderBy:'post_time':true">
+        	<div>
+            <span class="name">{{article.user_name}}</span>
+          </div>
+          
+          <div class="">{{article.title}}</div>
+      	<a class="more" ng-href="/article/{{article.article_id}}"><%= __("More") %></a>
+      </div>
+    </div>
+  </div>
+
+  <% include ../views/partials/js %>
+
+</body>
+</html>

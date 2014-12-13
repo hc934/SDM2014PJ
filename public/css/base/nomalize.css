@@ -1,0 +1,34 @@
+body {
+	font-family: Arial, sans-serif;
+	padding-bottom: 30px;
+}
+/* put item into center side */
+.item-center {
+	text-align: center;
+}
+
+.frame {
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.frame.frame-border {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.frame-margin-wide {
+  margin-bottom: 12px;
+}
+
+/* align button to right side */
+.btn-right {
+  float: right;
+}
+
+.btn-full{
+  width: 100%;
+}
+
+

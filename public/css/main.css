@@ -1,0 +1,112 @@
+body {
+  font-family: Arial, sans-serif;
+  padding-bottom: 30px;
+}
+
+/* put item into center side */
+.item-center {
+  text-align: center;
+}
+
+.frame {
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.frame.frame-border {
+  border: 1px solid #eee;
+  border-radius: 3px;
+}
+
+.frame.frame-high {
+  height: 200px;
+}
+
+.frame-margin-wide {
+  margin-bottom: 12px;
+}
+
+/* align button to right side */
+.btn-right {
+  float: right;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.theme-article .name {
+  color: #3b5998;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.theme-article .more {
+  font-size: 10px;
+  font-weight: 70;
+  color: #BBB;
+  float: right;
+}
+
+.theme-article .title {
+  height: 50px;
+}
+
+.theme-article .content {
+  height: 300px;
+}
+
+.theme-profile .thumbnail {
+  width: 100%;
+  height: auto;
+}
+
+.theme-profile .name {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.theme-profile .subtitle {
+  font-size: 20px;
+  font-weight: 750;
+  color: #aaa;
+  width: auto;
+  margin: 0 0 10px 0;
+  /*background-color: #111;*/
+}
+
+.theme-profile .main {
+  font-size: 20px;
+  font-weight: 800;
+  color: #000;
+  margin-right: 8px;
+}
+
+.theme-profile .sub {
+  font-size: 16px;
+  font-weight: 450;
+  color: #000;
+}
+
+.theme-profile .date {
+  font-size: 12px;
+  font-weight: 200;
+  color: #aaa;
+}
+
+.theme-profile > li {
+  list-style-type: none;
+  text-align: text-bottom;
+}
+
+.theme-profile > li > span {
+  margin: 2px;
+}
+
+.test {
+  color: #82d62d;
+  height: 40vh;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
