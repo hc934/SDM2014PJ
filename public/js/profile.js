@@ -11,20 +11,22 @@ angular.module('profile', ['lang'])
     data = {
       id: $scope.session
     }
-
     $scope.user;
     $scope.edit_user;
+
     $scope.init = function() {
-      $http.post('/api/profile', data).
-            success(function(data, status, headers, config) {
-              $scope.user = data;
-              $scope.edit_user = jQuery.extend({}, $scope.user); // copy of user 
-              // console.log(data);
-            }).
-            error(function(data, status, headers, config) {
-              // console.log(data);
-            });
+      var temp_array = location.href.split('/');
+      var profile_id = temp_array[temp_array.length-1];
+      
+      $http.post('/api/profile/'+profile_id).
+        success(function(data, status, headers, config) {
+          $scope.user = data;
+          $scope.edit_user = jQuery.extend({}, $scope.user); // copy of user 
+        }).error(function(data, status, headers, config) {   
+          console.log('error');     
+        });  
      };
+
      $scope.update = function(block) {
       switch(block) {
         case 'info':
