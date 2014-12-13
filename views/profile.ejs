@@ -10,7 +10,7 @@
 
   <% include ../views/partials/nav %>
 
-  <div class="container" ng-controller="ProfileController" ng-init="edit_info">
+  <div class="container" ng-controller="ProfileController" ng-init="edit_info;init()">
     <div class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
       <span class="col-sm-4">
         <img class="thumbnail" src="http://deaenij3kiw8r.cloudfront.net/system/users/avatars/141380/original/production-b3612f96cc66fee631be82853dd2c316-man_bartlett_bw.jpg?1369799811"/>
@@ -27,11 +27,11 @@
       </tab>
       <tab ng-show="edit_info">
         <div class="col-sm-8">
-          <div><%= __("Name") %><input class="form-control" type="text" ng-model="user.name"></div>
-          <div><%= __("Email") %><input class="form-control" type="text" ng-model="user.email"></div>
-          <div><%= __("Mobile") %><input class="form-control" type="text" ng-model="user.phone_mobile"></div>
-        <button class="btn btn-default" ng-click="update_profile();"><%= __("Save") %></button>
-        <button class="btn btn-default" ng-click="edit_info = !edit_info; setPristine()"><%= __("Back") %></button>
+          <div><%= __("Name") %><input class="form-control" type="text" ng-model="edit_user.name"></div>
+          <div><%= __("Email") %><input class="form-control" type="text" ng-model="edit_user.email"></div>
+          <div><%= __("Mobile") %><input class="form-control" type="text" ng-model="edit_user.phone_mobile"></div>
+        <button class="btn btn-default" ng-click="update('contact');"><%= __("Save") %></button>
+        <button class="btn btn-default" ng-click="edit_info = !edit_info; clear()"><%= __("Back") %></button>
         </div>
       </tab>
     </div>
