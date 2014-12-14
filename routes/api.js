@@ -313,4 +313,19 @@ router.post('/setLocale/:language', function(req, res) {
 //     )};
 // });
 
+/*api for show_job*/
+router.get('/show_job/:job_id', function(req, res) {
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'SELECT * ';
+    sql += 'FROM job_content ';
+    sql += 'WHERE id="'+req.params.job_id+'";';
+    connection.query(sql, function(err, show_job) {
+      //console.log(sql);
+      connection.release();
+      res.json(show_job);
+    });
+  });
+});
+
 module.exports = router;

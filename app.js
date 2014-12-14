@@ -15,6 +15,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
 var article = require('./routes/article');
+var show_job = require('./routes/show_job');
 
 var app = express();
 
@@ -60,6 +61,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
 app.use('/article', article);
+app.use('/show_job', show_job);
 app.use('/login', passport.authenticate('local'), function(req, res) {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.

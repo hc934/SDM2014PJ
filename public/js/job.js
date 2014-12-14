@@ -18,19 +18,20 @@ angular.module('job', ['lang'])
 }])
 
 .controller('ShowJobController', ['$scope','$http',function($scope,$http){
-    $scope.job = {
-        corporation: "Google",
-        job_type: "Programmer",
-        location: "Taipei 101",
-        work_type: "Full-time",
-        payment: "$100/hour",
-        chracters: "Handsome, Billionaire",
-        work_experience: "3 years work experience",
-        education: "University",
-        major_in: "Information Management",
-        language_requirement: "Japanese/Chinese",
-        other_requirement: "Handsome, Billionaire and Handsome, Billionaire"
-    };
+    $scope.localCookies = sessionStorage.getItem('id');
+    $scope.job;
+
+    var temp_array = location.href.split('/');
+    var job_id = temp_array[temp_array.length-1];
+    $http.get('/api/show_job/'+job_id).
+    success(function(data, status, headers, config) {
+        //alert(data);
+        //console.log(data); 
+        $scope.job = data[0];
+    }).error(function(data, status, headers, config) {   
+        console.log('error');     
+    });  
+
 }])
 
 .controller('NewJobController', ['$scope','$http',function($scope,$http){
