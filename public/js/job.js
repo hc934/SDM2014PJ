@@ -53,7 +53,14 @@ angular.module('job', ['lang'])
 
         console.log(data);
 
-            
+        $http.post('/api/new_job', data).
+            success(function(data, status, headers, config) {   
+            alert('新增成功！');
+            window.location.href = "/job";
+            }).
+            error(function(data, status, headers, config) {   
+            console.log(data);
+            });     
     };
 
 

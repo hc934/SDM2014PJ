@@ -261,6 +261,36 @@ router.delete('/:article_id/comment', function(req, res) {
   });
 });
 
+/*job apis*/
+router.get('/jobs', function(req, res) {
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'SELECT * ';
+    sql += 'FROM job_content';
+    connection.query(sql, function(err, jobs) {
+      connection.release();
+      res.json(jobs);
+    });
+  });
+});
+
+router.post('/new_job', function(req, res) {
+  // req.body
+  
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'INSERT INTO job_content (student_id, corporation, job_type, location, work_type, payment, characters, work_experience, education, major_in, language_requirement, other_requirement) ';
+    sql += 'VALUE("'+req.body.id+'","'+req.body.corporation+'","'+req.body.job_type+'","'+req.body.location+'","'+req.body.work_type+'","'+req.body.payment+'","'+req.body.characters+'","'+req.body.work_experience+'","'+req.body.education+'","'+req.body.major_in+'","'+req.body.language_requirement+'","'+req.body.other_requirement+'");';
+    connection.query(sql, function(err, res) {
+      if (err) throw err;
+      console.log(res);
+      connection.release();
+      return true;
+    });
+  });
+});
+/*job apis end*/
+
 router.post('/setLocale/:language', function(req, res) {
   var locale;
   if (req.params.language == 'English') {
