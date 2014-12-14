@@ -19,7 +19,7 @@
         <br>
 
         <div class="row">
-            <div class="col-sm-offset-3 col-sm-5 frame frame-border theme-article" ng-repeat="job in jobs" onclick="location.href='/show_job'">
+            <div class="col-sm-offset-3 col-sm-5 frame frame-border theme-article" ng-repeat="job in jobs">
                 <div>
                     <span class="name">{{job.corporation}}</span>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-sm-offset-1">{{job.job_type}}</div>
                 </div>
-
+                <a class="more" ng-href="/show_job/{{job.id}}"><%= __("More") %></a>
             </div>
         </div>
     </div>

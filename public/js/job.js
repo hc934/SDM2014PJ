@@ -1,7 +1,7 @@
 angular.module('job', ['lang'])
 
 .controller('JobController', ['$scope','$http',function($scope,$http){
-    $scope.jobs = [
+    /*$scope.jobs = [
         {
             corporation: "Google",
             job_type: "Programmer"
@@ -14,7 +14,17 @@ angular.module('job', ['lang'])
             corporation: "ROC army",
             job_type: "Commander"
         }
-    ];
+    ];*/
+    console.log('before get');   
+    $scope.jobs;
+    $http.get('/api/jobs').
+        success(function(data, status, headers, config) { 
+        console.log(data);   
+        $scope.jobs = data;
+        }).
+        error(function(data, status, headers, config) {   
+        console.log(data);   
+        }); 
 }])
 
 .controller('ShowJobController', ['$scope','$http',function($scope,$http){
@@ -35,10 +45,13 @@ angular.module('job', ['lang'])
 }])
 
 .controller('NewJobController', ['$scope','$http',function($scope,$http){
+    $scope.localCookies = sessionStorage.getItem('id');
 
+    console.log(sessionStorage.getItem('id'));
 
     $scope.sendMessage = function(message) {
         var data = {
+            id: $scope.localCookies,
             corporation: ($scope.job_model.corporation == undefined)?"":$scope.job_model.corporation,
             job_type: ($scope.job_model.job_type == undefined)?"":$scope.job_model.job_type,
             location: ($scope.job_model.location == undefined)?"":$scope.job_model.location,
@@ -54,7 +67,7 @@ angular.module('job', ['lang'])
 
         console.log(data);
 
-        $http.post('/api/new_job', data).
+        $http.post('/api/new_jobs', data).
             success(function(data, status, headers, config) {   
             alert('新增成功！');
             window.location.href = "/job";

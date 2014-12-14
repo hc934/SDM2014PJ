@@ -261,7 +261,6 @@ router.delete('/:article_id/comment', function(req, res) {
   });
 });
 
-/*job apis*/
 router.get('/jobs', function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
@@ -274,22 +273,25 @@ router.get('/jobs', function(req, res) {
   });
 });
 
-router.post('/new_job', function(req, res) {
+router.post('/new_jobs', function(req, res) {
   // req.body
-  
+  console.log("before conn");
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    var sql = 'INSERT INTO job_content (student_id, corporation, job_type, location, work_type, payment, characters, work_experience, education, major_in, language_requirement, other_requirement) ';
+    console.log("before send sql");
+    var sql = 'INSERT INTO job_content ( student_id, corporation, job_type, location, work_type, payment, characters, work_experience, education, major_in, language_requirement, other_requirement) ';
     sql += 'VALUE("'+req.body.id+'","'+req.body.corporation+'","'+req.body.job_type+'","'+req.body.location+'","'+req.body.work_type+'","'+req.body.payment+'","'+req.body.characters+'","'+req.body.work_experience+'","'+req.body.education+'","'+req.body.major_in+'","'+req.body.language_requirement+'","'+req.body.other_requirement+'");';
-    connection.query(sql, function(err, res) {
+    console.log(sql);
+    connection.query(sql, function(err, result) {
+      console.log("before enter if");
       if (err) throw err;
-      console.log(res);
+      console.log(result);
       connection.release();
+      res.json(result);
       return true;
     });
   });
 });
-/*job apis end*/
 
 router.post('/setLocale/:language', function(req, res) {
   var locale;
