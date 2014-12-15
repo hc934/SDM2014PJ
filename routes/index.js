@@ -31,11 +31,11 @@ router.get('/forum', function(req, res) {
   res.render('forum', { title: 'NTUIM 校友系統' });
 });
 
-router.get('/post', function(req, res) {
+router.get('/post', ensureAuthenticated, function(req, res) {
   res.render('post', { title: 'NTUIM 校友系統' });
 });
 
-router.get('/edit/:article_id',function(req,res){
+router.get('/edit/:article_id', ensureAuthenticated, function(req,res){
 	res.render('edit',{title :'NTUIM 校友系統'});
 });
 
@@ -47,12 +47,17 @@ router.get('/job', function(req, res) {
     res.render('job', { title: 'NTUIM 校友系統' });
 });
 
-router.get('/new_job', function(req, res) {
+router.get('/new_job', ensureAuthenticated, function(req, res) {
     res.render('new_job', { title: 'NTUIM 校友系統' });
 });
 
 /*router.get('/show_job', function(req, res) {
     res.render('job/single_job', { title: 'new_job' });
 });*/
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}
 
 module.exports = router;
