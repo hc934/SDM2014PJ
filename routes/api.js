@@ -91,14 +91,12 @@ passport.deserializeUser(function(user, done) {
 //   })
 // });
 
-router.post('/profile', function(req, res) {
-  console.log(req.user[0].user_id);
-  console.log(req.session);
-  console.log(req.session.passport.user[0].user_id);
+router.post('/profile/:profile_id', function(req, res) {
+  id = req.params.profile_id;
 
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    connection.query('SELECT * FROM contact WHERE id="'+req.user[0].user_id+'";', function(err, contacts) {
+    connection.query('SELECT * FROM contact WHERE id="'+ id +'";', function(err, contacts) {
       if (err) throw err;
       connection.query('SELECT * FROM experience;', function(err, experiences) {
         if (err) throw err;
@@ -259,7 +257,7 @@ router.post('/article', function(req, res) {
 
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    var sql = 'INSERT INTO forum_article (user_id, title, content, post_time, edit_time) ';
+    var sql = 'INSERT INTO forum_article (user_id, title, content, post_time, edit.time) ';
     sql += 'VALUE("'+req.body.id+'","'+req.body.title+'","'+req.body.content+'",NOW(),NOW());';
     connection.query(sql, function(err, result) {
       if (err) throw err;
@@ -275,7 +273,7 @@ router.post('/:article_id/comment', function(req, res) {
   
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    var sql = 'INSERT INTO forum_comment (user_id, article_id, content, post_time, edit_time) ';
+    var sql = 'INSERT INTO forum_comment (user_id, article_id, content, post_time, edit.time) ';
     sql += 'VALUE("'+req.body.id+'","'+req.params.article_id+'","'+req.body.content+'",NOW(),NOW());';
     connection.query(sql, function(err, result) {
       if (err) throw err;

@@ -3,44 +3,104 @@
 <head>
 
   <% include ../views/partials/head %>
-  <script src="js/profile.js"></script>
+  <script src="/js/profile.js"></script>
 </head>
 
 <body ng-app="profile">
 
   <% include ../views/partials/nav %>
-
-  <div class="container" ng-controller="ProfileController">
+  <div class="container" ng-controller="ProfileController" ng-init="init()">
     <div class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
       <span class="col-sm-4">
         <img class="thumbnail" src="http://deaenij3kiw8r.cloudfront.net/system/users/avatars/141380/original/production-b3612f96cc66fee631be82853dd2c316-man_bartlett_bw.jpg?1369799811"/>
       </span>
-      <div class="col-sm-6">
-        <div class="name">{{user.name}}</div>
-        <div class="email">{{user.email}}</div>
-        <div class="phone">{{user.phone_mobile}}</div>
-      </div>
-      <div class="col-sm-2">
-        <button class="btn btn-default btn-right" onclick="location.href='profile_edit'"><%= __("Edit Profile") %></button>
-      </div>
+      <tab ng-show="!edit.info">
+        <div class="col-sm-6">
+          <div class="name">{{user.name}}</div>
+          <div class="email">{{user.email}}</div>
+          <div class="phone">{{user.phone_mobile}}</div>
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-default btn-right" ng-click="edit.info = !edit.info"><%= __("Edit Profile") %></button>
+        </div>
+      </tab>
+      <tab ng-show="edit.info">
+        <div class="col-sm-8">
+          <div><%= __("Name") %><input class="form-control" type="text" ng-model="edit_user.name"></div>
+          <div><%= __("Email") %><input class="form-control" type="text" ng-model="edit_user.email"></div>
+          <div><%= __("Mobile") %><input class="form-control" type="text" ng-model="edit_user.phone_mobile"></div>
+        <button class="btn btn-default" ng-click="update('info');"><%= __("Save") %></button>
+        <button class="btn btn-default" ng-click="edit.info = !edit.info; clear()"><%= __("Back") %></button>
+        </div>
+      </tab>
     </div>
+
     <ul class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
       <div class="subtitle col-sm-12"><%= __("Experience") %></div>
-      <li class=" col-sm-12" ng-repeat="experience in user.experience">
-        <span class="main">{{experience.position}}</span>
-        <span class="sub">{{experience.org}}</span>
-        <span class="sub">{{experience.dept}}</span>
-        <span class="date">{{experience.startdate}} - {{experience.enddate}}</span>
-      </li>
+      <tab class="col-sm-12" ng-show="!add.exp">
+        <button class="btn btn-default" ng-click="add.exp = !add.exp"><%= __("Add") %></button>
+      </tab>
+      <tab class="col-sm-12" ng-show="add.exp">
+        <li class=" col-sm-12">
+          <div><%= __("Position") %><input class="form-control" type="text" ng-model="experience.position"></div>
+          <div><%= __("Organization") %><input class="form-control" type="text" ng-model="experience.org"></div>
+          <div><%= __("Org Department") %><input class="form-control" type="text" ng-model="experience.dept"></div>
+          <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="experience.startdate"></div>
+          <div><%= __("End Date") %><input class="form-control" type="text" ng-model="experience.enddate"></div>
+        </li>
+        <button class="btn btn-default" ng-click="insert('exp');"><%= __("Save") %></button>
+        <button class="btn btn-default" ng-click="add.exp = !add.exp; clear()"><%= __("Back") %></button>
+      </tab>
+      <tab class="col-sm-12" ng-show="!edit.exp">
+        <li class=" col-sm-10" ng-repeat="experience in user.experience">
+          <span class="main">{{experience.position}}</span>
+          <span class="sub">{{experience.org}}</span>
+          <span class="sub">{{experience.dept}}</span>
+          <span class="date">{{experience.startdate | date:'yyyy.MM'}} - {{experience.enddate | date:'yyyy.MM'}}</span>
+        </li>
+        <div class="col-sm-2">
+          <button class="btn btn-default btn-right" ng-click="edit.exp = !edit.exp"><%= __("Edit") %></button>
+        </div>
+      </tab>
+      <tab class="col-sm-12" ng-show="edit.exp">
+        <li class=" col-sm-12" ng-repeat="experience in edit_user.experience">
+          <div><%= __("Position") %><input class="form-control" type="text" ng-model="experience.position"></div>
+          <div><%= __("Organization") %><input class="form-control" type="text" ng-model="experience.org"></div>
+          <div><%= __("Org Department") %><input class="form-control" type="text" ng-model="experience.dept"></div>
+          <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="experience.startdate"></div>
+          <div><%= __("End Date") %><input class="form-control" type="text" ng-model="experience.enddate"></div>
+        </li>
+        <button class="btn btn-default" ng-click="update('exp');"><%= __("Save") %></button>
+        <button class="btn btn-default" ng-click="edit.exp = !edit.exp; clear()"><%= __("Back") %></button>
+      </tab>
     </ul>
     <ul class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
       <div class="subtitle col-sm-12"><%= __("Education") %></div>
-      <li class=" col-sm-12" ng-repeat="education in user.education">
-        <span class="main">{{education.degree}}</span>
-        <span class="sub">{{education.institute}}</span>
-        <span class="sub">{{education.dept}}</span>
-        <span class="date">{{education.startdate}} - {{education.enddate}}</span>
+      <div class="col-sm-12">
+        <button class="btn btn-default" ng-click="edit.edu = !edit.edu; clear()"><%= __("Add") %></button>
+      </div>
+      <tab class="col-sm-12" ng-show="!edit.edu">
+        <li class=" col-sm-10" ng-repeat="education in edit_user.education">
+          <span class="main">{{education.degree}}</span>
+          <span class="sub">{{education.institute}}</span>
+          <span class="sub">{{education.dept}}</span>
+          <span class="date">{{education.startdate | date:'yyyy.MM'}} - {{education.enddate | date:'yyyy.MM'}}</span>
+        </li>
+        <div class="col-sm-2">
+          <button class="btn btn-default btn-right" ng-click="edit.edu = !edit.edu"><%= __("Edit") %></button>
+        </div>
+      </tab>
+      <tab class="col-sm-12" ng-show="edit.edu">
+        <li class=" col-sm-12" ng-repeat="education in edit_user.education">
+        <div><%= __("Degree") %><input class="form-control" type="text" ng-model="education.degree"></div>
+        <div><%= __("Institute") %><input class="form-control" type="text" ng-model="education.institute"></div>
+        <div><%= __("School Department") %><input class="form-control" type="text" ng-model="education.dept"></div>
+        <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="education.startdate"></div>
+        <div><%= __("End Date") %><input class="form-control" type="text" ng-model="education.enddate"></div>
       </li>
+        <button class="btn btn-default" ng-click="update('edu');"><%= __("Save") %></button>
+        <button class="btn btn-default" ng-click="edit.edu = !edit.edu; clear()"><%= __("Back") %></button>
+      </tab>
     </ul>
   </div>
 

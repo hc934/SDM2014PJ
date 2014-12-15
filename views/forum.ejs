@@ -3,7 +3,8 @@
 <head>
 
   <% include ../views/partials/head %>
-  <script src="js/forum.js"></script>
+    <link href="/css/forum.css" rel="stylesheet">
+  <script src="/js/forum.js"></script>
 </head>
 
 <body ng-app="forum">
@@ -16,16 +17,46 @@
     		<button class="btn btn-primary" onclick="location.href='/post'"><%= __("Post") %></button>
     	</div>
     </div>
-
+    <br>
     <div class="row">
-      <div class="col-sm-offset-3 col-sm-5 frame frame-border theme-article" ng-repeat="article in articles | orderBy:'post_time':true">
-        	<div>
-            <span class="name">{{article.user_name}}</span>
-          </div>
-          
-          <div class="">{{article.title}}</div>
-      	<a class="more" ng-href="/article/{{article.article_id}}"><%= __("More") %></a>
+      <div class="col-md-2 col-md-offset-3">
+        <button class="btn btn-primary" onclick="location.href='/forum/like'">sort by like</button>
       </div>
+      <div class="col-md-offset-2 col-md-2 ">
+        <button class="btn btn-primary" onclick="location.href='/forum/sort'">sort by time</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="article-list" ng-repeat="article in articles">
+        <a ng-href="/article/{{article.article_id}}">
+          <div class="col-sm-offset-3 col-sm-6 frame frame-border theme-article">
+            <div class="col-sm-2 thumbnail">
+              <img src="{{src}}">
+            </div>
+            <div class="col-sm-10">
+              <div class="col-sm-12">
+                <span class="name"> {{article.user_name}} </span>
+                <span class="time"> {{article.post_time | date:'yyyy/MM/dd  h:mma'}} </span>
+              </div>
+              <div class="col-sm-12 padding-5">
+                <span class="title"> {{article.title}} </span>
+                <!--<span class="content"> {{article.content}} </span>-->
+              </div>
+            </div>
+          <div class="right-top-corner"> 
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{article.like_num}} 
+          </div>
+          <span class="right-bottom-corner more"> 
+              (<%= __("More") %>)
+          </span>
+          </div>
+        <!-- <a class="more" ng-href="/article/{{article.article_id}}"><%= __("More") %></a> -->
+
+      </div>
+        </a>
+      </div> 
+      
     </div>
   </div>
 

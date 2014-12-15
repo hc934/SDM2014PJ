@@ -8,13 +8,20 @@ router.get('/', function(req, res) {
 
 
 /* GET profile page. */
+
 router.get('/profile', function(req, res) {
   res.render('profile', { title: 'Express' });
 });
 
-router.get('/profile_edit', function(req, res) {
+router.get('/profile/:profile_id', function(req, res) {
+  res.render('profile', { title: 'Express' });
+});
+
+router.get('/profile/edit', function(req, res) {
   res.render('profile_edit', { title: 'Express' });
 });
+
+
 
 router.get('/forum', function(req, res) {
   res.render('forum', { title: 'Express' });
@@ -22,6 +29,10 @@ router.get('/forum', function(req, res) {
 
 router.get('/post', function(req, res) {
   res.render('post', { title: 'Express' });
+});
+
+router.get('/edit/:article_id',function(req,res){
+	res.render('edit',{title :'Express'});
 });
 
 router.get('/articles_001', function(req, res) {
