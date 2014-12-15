@@ -177,6 +177,19 @@ router.get('/articles', function(req, res) {
   });
 });
 
+router.get('/search/:keyword', function(req, res) {
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'SELECT * FROM forum_article_info';
+    sql += ' WHERE title LIKE \'%'+req.params.keyword+'%\' OR content LIKE \'%'+req.params.keyword+'%\'';
+    connection.query(sql, function(err, articles) {
+      // console.log(articles);
+      connection.release();
+      res.json(articles);
+    });
+  });
+});
+
 router.get('/article/:article_id', function(req, res) {
 
   console.log(req.params.article_id);
@@ -207,6 +220,36 @@ router.get('/article/:article_id', function(req, res) {
 
     });
 
+  });
+});
+
+router.put('/article', passport.authenticate('local'), function(req, res) {
+  console.log(req.body);
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'UPDATE forum_article SET article_id ='+req.body.article_id+', title = '+req.body.title+', content='+req.body.content+', edit_time = NOW();'
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json(result);
+      return true;
+    });
+  });
+});
+
+router.delete('/article', passport.authenticate('local'), function(req, res) {
+  console.log(req.body);
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'DELETE FROM forum_article WHERE article_id ='+req.body.article_id+';'
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json(result);
+      return true;
+    });
   });
 });
 
