@@ -32,5 +32,7 @@
 	"Title": "Title",
 	"Content": "Content",
 	"Job": "Job",
-	"New Job": "New Job"
+	"New Job": "New Job",
+	"Add": "Add",
+	"Edit": "Edit"
 }

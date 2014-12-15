@@ -23,14 +23,11 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 // Strategies
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    console.log("before");
     appPool.getConnection(function(err, connection) {
       if (err) throw err;
       var sql = 'SELECT * FROM user_login WHERE user_id="'+username+'" AND user_password="'+password+'"';
       connection.query(sql, function(err, user) {
-        console.log("hi");
         if (err) { return done(err); }
-        console.log("after hi");
         return done(null, user);
       });
     });
@@ -38,7 +35,6 @@ passport.use(new LocalStrategy(
 ));
 
 // serialize and deserialize
-
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
@@ -46,51 +42,8 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
   done(null, user);
 });
-// passport.serializeUser(function(user, done) {
-//   console.log("in serializeUser");
-//   console.log(user);
-//   done(null, user.username);
-// });
 
-// passport.deserializeUser(function(id, done) {
-//   console.log(id);
-//   appPool.getConnection(function(err, connection) {
-//     if (err) throw err;
-//     var sql = 'SELECT * FROM user_login WHERE user_id="'+id+'"';
-//     connection.query(sql, function(err, user) {
-//       if (!err) done(null, user);
-//       else done(err, null)
-//     });
-//   });
-// });
-
-
-// router.post('/login', function(req, res) {
-
-//   appPool.getConnection(function(err, connection) {
-//     if (err) throw err;
-//     var sql = 'SELECT * ';
-//     sql += 'FROM user_login WHERE user_id="'+req.body.id+'" AND user_password="'+req.body.password+'";';
-//     connection.query(sql, function(err, account) {
-//       if (account.length > 0) {
-//         connection.release();
-//         // user exist
-//         req.session.passport.id = account[0].user_id;
-//         res.json({
-//           "status": true
-//         });
-//       } else {
-//         connection.release();
-//         req.session.passport.id = null;
-//         res.json({
-//           "status": false
-//         });
-//       }
-//     });
-
-//   })
-// });
-
+// public api
 router.post('/profile/:profile_id', function(req, res) {
   id = req.params.profile_id;
 
@@ -125,7 +78,7 @@ router.post('/profile/:profile_id', function(req, res) {
 
 });
 
-router.put('/profile', function(req, res) {
+router.put('/profile', apiEnsureAuthenticated, function(req, res) {
   // req.body
   
   appPool.getConnection(function(err, connection) {
@@ -221,7 +174,7 @@ router.get('/article/:article_id', function(req, res) {
   });
 });
 
-router.put('/article', function(req, res) {
+router.put('/article', apiEnsureAuthenticated, function(req, res) {
   console.log(req.body);
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
@@ -236,7 +189,7 @@ router.put('/article', function(req, res) {
   });
 });
 
-router.delete('/article', function(req, res) {
+router.delete('/article', apiEnsureAuthenticated, function(req, res) {
   console.log(req.body);
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
@@ -251,7 +204,7 @@ router.delete('/article', function(req, res) {
   });
 });
 
-router.post('/article', function(req, res) {
+router.post('/article', apiEnsureAuthenticated, function(req, res) {
 
   console.log(req.body);
 
@@ -269,7 +222,7 @@ router.post('/article', function(req, res) {
   });
 });
 
-router.post('/:article_id/comment', function(req, res) {
+router.post('/:article_id/comment', apiEnsureAuthenticated, function(req, res) {
   
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
@@ -285,7 +238,7 @@ router.post('/:article_id/comment', function(req, res) {
   });
 });
 
-router.delete('/:article_id/comment', function(req, res) {
+router.delete('/:article_id/comment', apiEnsureAuthenticated, function(req, res) {
   
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
@@ -314,7 +267,7 @@ router.get('/jobs', function(req, res) {
   });
 });
 
-router.post('/new_jobs', function(req, res) {
+router.post('/new_jobs', apiEnsureAuthenticated, function(req, res) {
   // req.body
   console.log("before conn");
   appPool.getConnection(function(err, connection) {
@@ -346,15 +299,6 @@ router.post('/setLocale/:language', function(req, res) {
   return true;
 });
 
-// router.get('/example', function(req, res) {
-//   appPool.getConnection(function(err, connection) {
-//     if (err) throw err;
-//     var sql = 'SELECT *';
-//     sql += 'FROM forum_article_info';
-//     connection.query(sql, function(err, res) {
-
-//     )};
-// });
 
 /*api for show_job*/
 router.get('/show_job/:job_id', function(req, res) {
@@ -370,5 +314,20 @@ router.get('/show_job/:job_id', function(req, res) {
     });
   });
 });
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}
+
+function apiEnsureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.status(400);
+  res.json({
+    "status": 400,
+    "message": "Not Authenticated"
+  });
+  return;
+}
 
 module.exports = router;

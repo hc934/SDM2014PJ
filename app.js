@@ -99,5 +99,14 @@ app.use(function(err, req, res, next) {
     });
 });
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}
+
+function apiEnsureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.json({ "status": "false"});
+}
 
 module.exports = app;
