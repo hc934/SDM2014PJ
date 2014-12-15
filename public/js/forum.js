@@ -121,7 +121,7 @@ angular.module('forum',['lang'])
 
   $scope.init = function(){
     var temp_array = location.href.split('/');
-    var article_id = temp_array[temp_array.length-1];
+    article_id = temp_array[temp_array.length-1];
     $http.get('/api/article/'+article_id).
       success(function(data, status, headers, config) {
         // console.log(data); 

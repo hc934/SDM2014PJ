@@ -255,6 +255,48 @@ router.delete('/:article_id/comment', apiEnsureAuthenticated, function(req, res)
   });
 });
 
+router.post('/:article_id/like', apiEnsureAuthenticated, function(req, res) {
+  
+  appPool.getConnection(function(err, connection) {
+    
+    if (err) throw err;
+    // find and replace
+    var sql = 'SELECT * FROM forum_like WHERE user_id ="' + req.user[0].user_id + '" AND article_id = "' + req.params.article_id + '";';
+
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log('in the first query\n');
+
+      // user already like the article
+      console.log(result.length);
+      if (result.length > 0) {
+        var sql2 = 'DELETE FROM forum_like WHERE user_id ="' + req.user[0].user_id + '" AND article_id = "' + req.params.article_id + '";';
+        connection.query(sql2, function(err, result) {
+          if (err) throw err;
+          console.log(result);
+          connection.release();
+          res.json({"status": "remove one like to article"});
+          return true;
+        });
+      } else {
+        // user had not liked the article
+        var sql2 = 'INSERT INTO forum_like (user_id, article_id) ';
+        sql2 += 'VALUES ("' + req.user[0].user_id + '","' + req.params.article_id + '");';
+        connection.query(sql2, function(err, result) {
+          if (err) throw err;
+          console.log(result);
+          connection.release();
+          res.json({"status": "add one like to article"});
+          return true;
+        });
+      }
+    });
+
+  });
+
+});
+
+
 router.get('/jobs', function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;

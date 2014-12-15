@@ -27,7 +27,7 @@ router.get('/profile/edit', function(req, res) {
 
 
 
-router.get('/forum', function(req, res) {
+router.get('/forum', ensureAuthenticated, function(req, res) {
   res.render('forum', { title: 'NTUIM 校友系統' });
 });
 
