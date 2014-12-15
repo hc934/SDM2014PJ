@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include ../../views/partials/head %>
+    <script src="/js/job.js"></script>
+</head>
+
+<body ng-app="job">
+
+    <% include ../../views/partials/nav %>
+
+    <div class="container" ng-controller="ShowJobController">
+
+        <div class="row">
+            <h3 class="col-sm-3 align-center">Information</h3>
+        </div><br>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Corporation</label>
+            <span>{{job.corporation}}</span>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Job Type</label>
+            <span>{{job.job_type}}</span>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Location</label>
+            <span>{{job.location}}</span>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Work Type</label>
+            <span>{{job.work_type}}</span>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Payment</label>
+            <span>{{job.payment}}</span>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Characters</label>
+            <span class="col-sm-offset-3 col-sm-3">{{job.Characters}}</span>
+        </div>
+
+        <br><div class="row">
+            <h3 class="col-sm-3 align-center">Qualifications</h3>
+        </div><br>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Work Experience</label>
+            <span>{{job.work_experience}}</span>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Education</label>
+            <span>{{job.education}}</span>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Major In</label>
+            <span>{{job.major_in}}</span>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Language Requirement</label>
+            <span>{{job.language_requirement}}</span>
+        </div>
+
+
+        <br><div class="row">
+            <h3 class="col-sm-3 align-center">Other Requirement</h3>
+        </div><br>
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-3">
+                {{job.other_requirement}}
+            </div>
+
+        </div>
+
+    </div>
+
+    <% include ../../views/partials/js %>
+
+</body>
+</html>
