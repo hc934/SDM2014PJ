@@ -34,9 +34,5 @@
 	"Job": "職業",
 	"Edit": "編輯",
 	"Add": "新增",
-	"New Job": "New Job",
-	"SortByTime":"以時間排序",
-	"SortByLikes":"以讚數排序",
-	"Like":"讚",
-	"Delete":"刪除",
+	"New Job": "New Job"
 }
