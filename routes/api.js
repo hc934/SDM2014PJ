@@ -52,20 +52,28 @@ router.post('/profile/:profile_id', function(req, res) {
     if (err) throw err;
     connection.query('SELECT * FROM contact WHERE id="'+ id +'";', function(err, contacts) {
       if (err) throw err;
-      connection.query('SELECT * FROM experience;', function(err, experiences) {
+      connection.query('SELECT * FROM experience WHERE stuid="'+ id +'";', function(err, experiences) {
         if (err) throw err;
-        connection.query('SELECT * FROM education;', function(err, educations) {
+        connection.query('SELECT * FROM education WHERE stuid="'+ id +'";', function(err, educations) {
+          console.log("educations");
+          console.log(educations);
+
+          console.log("experiences");
+          console.log(experiences);
+
+          console.log("contacts");
+          console.log(contacts);
           var profile = contacts;
           for (i in profile) {
             profile[i].experience = [];
             profile[i].education = [];
             for (j in experiences) {
-              if (profile[i].id == experiences[j].id) {
+              if (profile[i].id == experiences[j].stuid) {
                 profile[i].experience.push(experiences[j]);
               }
             } // end for
             for (k in educations) {
-              if (profile[i].id == educations[k].id) {
+              if (profile[i].id == educations[k].stuid) {
                 profile[i].education.push(educations[k]);
               }
             } // end for
