@@ -11,8 +11,10 @@ angular.module('profile', ['lang'])
     data = {
       id: $scope.session
     }
+
     $scope.user;
     $scope.edit_user;
+
     // get session from server;
     $scope._user = window._user;
     $scope.init = function() {
@@ -54,8 +56,6 @@ angular.module('profile', ['lang'])
           $scope.education = jQuery.extend({}, $scope.education);
           break;
       }
-
-      console.log($scope.user);
 
       if ($http.put('/api/profile', $scope.user)) {
         switch(block) {

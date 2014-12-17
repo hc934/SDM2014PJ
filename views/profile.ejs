@@ -44,11 +44,11 @@
       </tab>
       <tab class="col-sm-12" ng-show="add.exp">
         <li class=" col-sm-12">
-          <div><%= __("Position") %><input class="form-control" type="text" ng-model="experience.position"></div>
-          <div><%= __("Organization") %><input class="form-control" type="text" ng-model="experience.org"></div>
-          <div><%= __("Org Department") %><input class="form-control" type="text" ng-model="experience.dept"></div>
-          <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="experience.startdate"></div>
-          <div><%= __("End Date") %><input class="form-control" type="text" ng-model="experience.enddate"></div>
+          <div><%= __("Position") %><input class="form-control" type="text" ng-model="add_experience.position"></div>
+          <div><%= __("Organization") %><input class="form-control" type="text" ng-model="add_experience.org"></div>
+          <div><%= __("Org Department") %><input class="form-control" type="text" ng-model="add_experience.dept"></div>
+          <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="add_experience.startdate"></div>
+          <div><%= __("End Date") %><input class="form-control" type="text" ng-model="add_experience.enddate"></div>
         </li>
         <button class="btn btn-default" ng-click="insert('exp');"><%= __("Save") %></button>
         <button class="btn btn-default" ng-click="add.exp = !add.exp; clear()"><%= __("Back") %></button>
@@ -65,12 +65,12 @@
         </div>
       </tab>
       <tab class="col-sm-12" ng-show="edit.exp">
-        <li class=" col-sm-12" ng-repeat="experience in edit_user.experience">
-          <div><%= __("Position") %><input class="form-control" type="text" ng-model="experience.position"></div>
-          <div><%= __("Organization") %><input class="form-control" type="text" ng-model="experience.org"></div>
-          <div><%= __("Org Department") %><input class="form-control" type="text" ng-model="experience.dept"></div>
-          <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="experience.startdate"></div>
-          <div><%= __("End Date") %><input class="form-control" type="text" ng-model="experience.enddate"></div>
+        <li class=" col-sm-12" ng-repeat="edit_experience in edit_user.experience">
+          <div><%= __("Position") %><input class="form-control" type="text" ng-model="edit_experience.position"></div>
+          <div><%= __("Organization") %><input class="form-control" type="text" ng-model="edit_experience.org"></div>
+          <div><%= __("Org Department") %><input class="form-control" type="text" ng-model="edit_experience.dept"></div>
+          <div><%= __("Start Date") %><input class="form-control" type="text" ng-model="edit_experience.startdate"></div>
+          <div><%= __("End Date") %><input class="form-control" type="text" ng-model="edit_experience.enddate"></div>
         </li>
         <button class="btn btn-default" ng-click="update('exp');"><%= __("Save") %></button>
         <button class="btn btn-default" ng-click="edit.exp = !edit.exp; clear()"><%= __("Back") %></button>
