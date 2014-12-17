@@ -52,7 +52,7 @@ router.post('/profile/education', apiEnsureAuthenticated, function(req, res) {
     if (err) throw err;
 
     var sql = 'INSERT INTO education (stuid, degree, institute, dept, startdate, enddate, concentration, obtained) ';
-    sql += 'VALUES("'+id+'","'+req.body.degree+'","'+req.body.institute+'","'+req.body.dept+'", "'+req.body.startdate+'", "'+req.body.enddate+'", "'+req.body.concentration+'", "'+req.body.obtained+'");';
+    sql += 'VALUES("'+connection.escape(id)+'","'+connection.escape(req.body.degree)+'","'+connection.escape(req.body.institute)+'","'+connection.escape(req.body.dept)+'", "'+connection.escape(req.body.startdate)+'", "'+connection.escape(req.body.enddate)+'", "'+connection.escape(req.body.concentration)+'", "'+connection.escape(req.body.obtained)+'");';
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -75,7 +75,7 @@ router.post('/profile/experience', function(req, res) {
     if (err) throw err;
 
     var sql = 'INSERT INTO experience (stuid, org, dept, position, startdate, enddate, description) ';
-    sql += 'VALUES("'+id+'","'+req.body.org+'","'+req.body.dept+'","'+req.body.position+'", "'+req.body.startdate+'", "'+req.body.enddate+'", "'+req.body.description+'");';
+    sql += 'VALUES("'+connection.escape(id)+'","'+connection.escape(req.body.org)+'","'+connection.escape(req.body.dept)+'","'+connection.escape(req.body.position)+'", "'+connection.escape(req.body.startdate)+'", "'+connection.escape(req.body.enddate)+'", "'+connection.escape(req.body.description)+'");';
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -97,9 +97,9 @@ router.post('/profile/:profile_id', function(req, res) {
     if (err) throw err;
     connection.query('SELECT * FROM contact WHERE id="'+ connection.escape(id) +'";', function(err, contacts) {
       if (err) throw err;
-      connection.query('SELECT * FROM experience WHERE stuid="'+ id +'";', function(err, experiences) {
+      connection.query('SELECT * FROM experience WHERE stuid="'+ connection.escape(id) +'";', function(err, experiences) {
         if (err) throw err;
-        connection.query('SELECT * FROM education WHERE stuid="'+ id +'";', function(err, educations) {
+        connection.query('SELECT * FROM education WHERE stuid="'+ connection.escape(id) +'";', function(err, educations) {
           console.log("educations");
           console.log(educations);
 
@@ -177,8 +177,8 @@ router.put('/profile/education', function(req, res) {
     if (err) throw err;
 
     var sql = 'UPDATE education ';
-    sql += 'SET degree="'+req.body.degree+'", institute="'+req.body.institute+'", dept="'+req.body.dept+'", startdate="'+req.body.startdate+'", enddate="'+req.body.enddate+'", concentration="'+req.body.concentration+'", obtained="'+req.body.obtained+'"';
-    sql += ' WHERE stuid="'+ id +'"';
+    sql += 'SET degree="'+connection.escape(req.body.degree)+'", institute="'+connection.escape(req.body.institute)+'", dept="'+connection.escape(req.body.dept)+'", startdate="'+connection.escape(req.body.startdate)+'", enddate="'+connection.escape(req.body.enddate)+'", concentration="'+connection.escape(req.body.concentration)+'", obtained="'+connection.escape(req.body.obtained)+'"';
+    sql += ' WHERE stuid="'+ connection.escape(id) +'"';
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -383,7 +383,7 @@ router.post('/:article_id/checklike', function(req, res) {
     // var id = req.user[0].user_id
     if (err) throw err;
     // find and replace
-    var sql = 'SELECT * FROM forum_like WHERE user_id ="' + id + '" AND article_id = "' + req.params.article_id + '";';
+    var sql = 'SELECT * FROM forum_like WHERE user_id ="' + connection.escape(id) + '" AND article_id = "' + connection.escape(req.params.article_id) + '";';
 
     connection.query(sql, function(err, result) {
       if (err) throw err;
