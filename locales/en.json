@@ -32,5 +32,12 @@
 	"Title": "Title",
 	"Content": "Content",
 	"Job": "Job",
-	"New Job": "New Job"
+	"New Job": "New Job",
+	"Add": "Add",
+	"Edit": "Edit",
+	"SortByTime": "Sort By Time",
+	"SortByLike": "Sort By Likes",
+	"Like": "Like",
+	"Delete": "Delete",
+	"SortByLikes": "SortByLikes"
 }

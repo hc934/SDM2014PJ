@@ -12,8 +12,14 @@
 
   <div class="container" ng-controller="PostController">
   	
-    <input class="col-sm-offset-3 col-sm-6 frame frame-border theme-article title" ng-model="post.title" placeholder="<%= __("Title") %>">
-    <textarea class="col-sm-offset-3 col-sm-6 frame frame-border frame-high content" ng-model="post.content" placeholder="<%= __("Content") %>"></textarea>
+    <div class="row">
+      <h2><small class="col-sm-1 col-sm-offset-2"><%= __("Title") %>：</small></h4>
+      <input class=" col-sm-6 frame frame-border theme-article title" ng-model="post.title" placeholder="<%= __("Title") %>">
+    </div>
+    <div class="row">
+      <h2><small class="col-sm-1 col-sm-offset-2"><%= __("Content") %>：</small></h4>
+      <textarea class=" col-sm-6 frame frame-border frame-high content" ng-model="post.content" placeholder="<%= __("Content") %>"></textarea>
+    </div>
     <div class="col-sm-offset-3 col-sm-6 item-center">
       <button class="btn btn-primary" ng-click="submitArticle()"><%= __("Send") %></button>
     </div> 

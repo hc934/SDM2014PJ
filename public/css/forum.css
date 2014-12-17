@@ -1,0 +1,59 @@
+a{
+	color:black;
+}
+
+.article-title{
+	
+}
+
+.article-content{
+	background-color:#eaeaea;
+
+}
+
+
+div.blank {
+	height: 10px;
+}
+div.line {
+	height:5px;
+	background-color:#d3d3d3;
+}
+
+div.article-comment {
+	background-color: #EAEAEA;
+}
+
+.thumbnail {
+  display: inline-block;
+  padding: 0px;
+  overflow: hidden;
+}
+
+.thumbnail > img {
+  min-width: 80px;
+  min-height: 80px;
+
+}
+
+.right-top-corner {
+  position: absolute;
+  padding: 15px;
+  right: 0px;
+  top: 0px;
+}
+
+.right-bottom-corner {
+  position: absolute;
+  padding: 15px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.article-list > a:hover {
+  color: #000;
+}
+
+.article-list :hover {
+  background-color: #eef1f3;
+}

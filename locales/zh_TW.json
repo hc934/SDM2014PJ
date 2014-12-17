@@ -31,5 +31,13 @@
 	"Welcome": "歡迎來到",
 	"Chinese": "中文",
 	"English": "英文",
-	"Job": "職業"
+	"Edit": "編輯",
+	"Add": "新增",
+	"Job": "職業",
+	"New Job": "New Job",
+	"SortByTime": "以時間排序",
+	"SortByLike": "以讚數排序",
+	"Like": "讚",
+	"Delete": "刪除",
+	"SortByLikes": "SortByLikes"
 }
