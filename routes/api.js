@@ -134,12 +134,14 @@ router.post('/profile/:profile_id', function(req, res) {
 
 router.put('/profile', apiEnsureAuthenticated, function(req, res) {
   // req.body
-  
+
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
+
     var sql = 'UPDATE contact ';
     sql += 'SET name='+connection.escape(req.body.name)+', email='+connection.escape(req.body.email)+', phone_mobile='+connection.escape(req.body.phone_mobile)+', phone_work='+connection.escape(req.body.phone_work)+', phone_home='+connection.escape(req.body.phone_home)+'';
     sql += ' WHERE id='+connection.escape(req.body.id)+';';
+
     connection.query(sql, function(err, res) {
       if (err) throw err;
       console.log(res);

@@ -28,6 +28,7 @@ angular.module('profile', ['lang'])
 
       $http.post('/api/profile/'+profile_id).
         success(function(data, status, headers, config) {
+          console.log(data);
           $scope.user = data;
           $scope.edit_user = jQuery.extend({}, $scope.user); // copy of user 
         }).error(function(data, status, headers, config) {   
@@ -36,7 +37,7 @@ angular.module('profile', ['lang'])
      };
 
      $scope.insert = function() {
-      
+
      }
 
      $scope.update = function(block) {
@@ -44,15 +45,17 @@ angular.module('profile', ['lang'])
         case 'info':
           $scope.user.name = $scope.edit_user.name;
           $scope.user.email = $scope.edit_user.email;
-          $scope.user.mobile_phone = $scope.edit_user.mobile_phone;
-        break;
+          $scope.user.phone_mobile = $scope.edit_user.phone_mobile;
+          break;
         case 'exp':
           $scope.experience = jQuery.extend({}, $scope.experience);
-        break;
+          break;
         case 'edu':
           $scope.education = jQuery.extend({}, $scope.education);
-        break;
+          break;
       }
+
+      console.log($scope.user);
 
       if ($http.put('/api/profile', $scope.user)) {
         switch(block) {
