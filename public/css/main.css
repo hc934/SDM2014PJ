@@ -125,6 +125,15 @@ body {
   justify-content: center;
 }
 
+.align-right{
+    text-align: right;
+}
+
+.align-center{
+    text-align: center;
+}
+
+
 
 
 /*  layout  */
@@ -139,12 +148,3 @@ body {
 .navbar-white {
   background-color: #fff;
 }
-
-.align-right{
-    text-align: right;
-}
-
-.align-center{
-    text-align: center;
-}
-
