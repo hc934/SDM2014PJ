@@ -376,6 +376,34 @@ router.post('/:article_id/like', apiEnsureAuthenticated, function(req, res) {
 
 });
 
+router.post('/:article_id/checklike', function(req, res) {
+  
+  appPool.getConnection(function(err, connection) {
+    var id = 'guest';
+    // var id = req.user[0].user_id
+    if (err) throw err;
+    // find and replace
+    var sql = 'SELECT * FROM forum_like WHERE user_id ="' + id + '" AND article_id = "' + req.params.article_id + '";';
+
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      if (result.length > 0) {
+        // result有值，代表user 已經like過這篇文章
+        connection.release();
+        res.json({"status": "true"});
+        return
+      } else {
+        // user 沒有like過這篇文章
+        connection.release();
+        res.json({"status": "false"});
+        return
+      }
+    });
+
+  });
+
+});
+
 
 router.get('/jobs', function(req, res) {
   appPool.getConnection(function(err, connection) {
