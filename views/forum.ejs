@@ -47,9 +47,9 @@
           <div class="right-top-corner"> 
               <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{article.like_num}} 
           </div>
-          <span class="right-bottom-corner more"> 
+          <a class="right-bottom-corner more" ng-href="/article/{{article.article_id}}"> 
               (<%= __("More") %>)
-          </span>
+          </a>
           </div>
         <!-- <a class="more" ng-href="/article/{{article.article_id}}"><%= __("More") %></a> -->
 
