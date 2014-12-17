@@ -306,7 +306,7 @@ router.post('/:article_id/comment', apiEnsureAuthenticated, function(req, res) {
   
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    var sql = 'INSERT INTO forum_comment (user_id, article_id, content, post_time, edit.time) ';
+    var sql = 'INSERT INTO forum_comment (user_id, article_id, content, post_time, edit_time) ';
     sql += 'VALUE("'+connection.escape(req.body.id)+'","'+connection.escape(req.params.article_id)+'","'+connection.escape(req.body.content)+'",NOW(),NOW());';
     connection.query(sql, function(err, result) {
       if (err) throw err;
