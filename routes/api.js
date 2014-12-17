@@ -66,6 +66,29 @@ router.post('/profile/education', apiEnsureAuthenticated, function(req, res) {
 
 });
 
+// 新增經驗欄位
+router.post('/profile/experience', function(req, res) {
+
+  appPool.getConnection(function(err, connection) {
+    // var id = req.user[0].user_id;
+    var id = 'guest';
+    if (err) throw err;
+
+    var sql = 'INSERT INTO experience (stuid, org, dept, position, startdate, enddate, description) ';
+    sql += 'VALUES("'+id+'","'+req.body.org+'","'+req.body.dept+'","'+req.body.position+'", "'+req.body.startdate+'", "'+req.body.enddate+'", "'+req.body.description+'");';
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json({"status": "true"});
+      return
+
+    });
+
+  });
+
+});
+
 // public api
 router.post('/profile/:profile_id', function(req, res) {
   id = req.params.profile_id;
