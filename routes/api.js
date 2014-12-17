@@ -213,7 +213,7 @@ router.get('/search/:keyword', function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'SELECT * FROM forum_article_info';
-    sql += ' WHERE title LIKE \'%'+connection.escape(req.params.keyword)+'%\' OR content LIKE \'%'+connection.escape(req.params.keyword)+'%\';';
+    sql += ' WHERE title LIKE '+connection.escape('%'+req.params.keyword+'%')+' OR content LIKE '+connection.escape('%'+req.params.keyword+'%')+';';
     connection.query(sql, function(err, articles) {
       // console.log(articles);
       connection.release();
@@ -229,7 +229,7 @@ router.get('/article/:article_id', function(req, res) {
     if (err) throw err;
     var sql = 'SELECT * ';
     sql += 'FROM forum_article_info ';
-    sql += 'WHERE article_id=\''+connection.escape(req.params.article_id)+'\';';
+    sql += 'WHERE article_id='+connection.escape(req.params.article_id)+';';
 
     connection.query(sql, function(err, article) {
       
@@ -238,7 +238,7 @@ router.get('/article/:article_id', function(req, res) {
 
       var sql2 = 'SELECT * ';
       sql2 += 'FROM forum_comment_info ';
-      sql2 += 'WHERE article_id="'+connection.escape(req.params.article_id)+'"';
+      sql2 += 'WHERE article_id='+connection.escape(req.params.article_id)+';';
       
       connection.query(sql2, function(err, comments) {
         for (i in comments) {
