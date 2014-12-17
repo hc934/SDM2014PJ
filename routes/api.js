@@ -146,16 +146,22 @@ router.put('/profile', apiEnsureAuthenticated, function(req, res) {
       if (err) throw err;
       console.log(res);
 
-      var sql2 = 'UPDATE education ';
-      sql2 += 'SET degree='+connection.escape(req.body.education[0].degree)+', institute='+connection.escape(req.body.education[0].institute)+', dept='+connection.escape(req.body.education[0].dept)+', startdate='+connection.escape(req.body.education[0].startdate)+', enddate='+connection.escape(req.body.education[0].enddate)+', concentration='+connection.escape(req.body.education[0].concentration)+', obtained='+connection.escape(req.body.education[0].obtained)+'';
-      sql2 += ' WHERE id='+connection.escape(req.body.education[0].id)+'';
+      for(var i = 0; i < req.body.education.length; i++){
+          var sql2 = 'UPDATE education ';
+          sql2 += 'SET degree='+connection.escape(req.body.education[i].degree)+', institute='+connection.escape(req.body.education[i].institute)+', dept='+connection.escape(req.body.education[i].dept)+', startdate='+connection.escape(req.body.education[i].startdate)+', enddate='+connection.escape(req.body.education[i].enddate)+', concentration='+connection.escape(req.body.education[i].concentration)+', obtained='+connection.escape(req.body.education[i].obtained)+'';
+          sql2 += ' WHERE id='+connection.escape(req.body.education[i].id)+';';
+      }
+
       connection.query(sql2, function(err, res) {
         if (err) throw err;
         console.log(res);
 
-        var sql3 = 'UPDATE experience '; 
-        sql3 += 'SET org='+connection.escape(req.body.experience[0].org)+', dept='+connection.escape(req.body.experience[0].dept)+', position='+connection.escape(req.body.experience[0].position)+', startdate='+connection.escape(req.body.experience[0].startdate)+', enddate='+connection.escape(req.body.experience[0].enddate)+', description='+connection.escape(req.body.experience[0].description)+'';
-        sql3 += ' WHERE id='+connection.escape(req.body.experience[0].id)+'';
+        for(var i = 0; i < req.body.experience.length; i++){
+            var sql3 = 'UPDATE experience ';
+            sql3 += 'SET org='+connection.escape(req.body.experience[i].org)+', dept='+connection.escape(req.body.experience[i].dept)+', position='+connection.escape(req.body.experience[i].position)+', startdate='+connection.escape(req.body.experience[i].startdate)+', enddate='+connection.escape(req.body.experience[i].enddate)+', description='+connection.escape(req.body.experience[i].description)+'';
+            sql3 += ' WHERE id='+connection.escape(req.body.experience[i].id)+';';
+        }
+
         connection.query(sql3, function(err, res) {
           if (err) throw err;
           console.log(res);
