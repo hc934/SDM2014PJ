@@ -23,7 +23,7 @@
           <div class="phone">{{user.phone_mobile}}</div>
         </div>
         <div class="col-sm-2">
-          <button class="btn btn-default btn-right" ng-click="edit.info = !edit.info"><%= __("Edit Profile") %></button>
+          <button class="btn btn-default btn-right" ng-click="edit.info = !edit.info" ng-show="_user!='null'"><%= __("Edit Profile") %></button>
         </div>
       </tab>
       <tab ng-show="edit.info">
@@ -40,7 +40,7 @@
     <ul class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
       <div class="subtitle col-sm-12"><%= __("Experience") %></div>
       <tab class="col-sm-12" ng-show="!add.exp">
-        <button class="btn btn-default" ng-click="add.exp = !add.exp"><%= __("Add") %></button>
+        <button class="btn btn-default" ng-click="add.exp = !add.exp" ng-show="_user!='null'"><%= __("Add") %></button>
       </tab>
       <tab class="col-sm-12" ng-show="add.exp">
         <li class=" col-sm-12">
@@ -61,7 +61,7 @@
           <span class="date">{{experience.startdate | date:'yyyy.MM'}} - {{experience.enddate | date:'yyyy.MM'}}</span>
         </li>
         <div class="col-sm-2">
-          <button class="btn btn-default btn-right" ng-click="edit.exp = !edit.exp"><%= __("Edit") %></button>
+          <button class="btn btn-default btn-right" ng-click="edit.exp = !edit.exp" ng-show="_user!='null'"><%= __("Edit") %></button>
         </div>
       </tab>
       <tab class="col-sm-12" ng-show="edit.exp">
@@ -79,7 +79,7 @@
     <ul class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
       <div class="subtitle col-sm-12"><%= __("Education") %></div>
       <div class="col-sm-12">
-        <button class="btn btn-default" ng-click="edit.edu = !edit.edu; clear()"><%= __("Add") %></button>
+        <button class="btn btn-default" ng-click="edit.edu = !edit.edu; clear()" ng-show="_user!='null'"><%= __("Add") %></button>
       </div>
       <tab class="col-sm-12" ng-show="!edit.edu">
         <li class=" col-sm-10" ng-repeat="education in edit_user.education">
@@ -88,8 +88,8 @@
           <span class="sub">{{education.dept}}</span>
           <span class="date">{{education.startdate | date:'yyyy.MM'}} - {{education.enddate | date:'yyyy.MM'}}</span>
         </li>
-        <div class="col-sm-2">
-          <button class="btn btn-default btn-right" ng-click="edit.edu = !edit.edu"><%= __("Edit") %></button>
+        <div class="col-sm-2" ng-show"_user!=null">
+          <button class="btn btn-default btn-right" ng-click="edit.edu = !edit.edu" ng-show="_user!='null'"><%= __("Edit") %></button>
         </div>
       </tab>
       <tab class="col-sm-12" ng-show="edit.edu">
