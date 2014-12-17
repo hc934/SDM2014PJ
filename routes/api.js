@@ -258,7 +258,7 @@ router.put('/article', apiEnsureAuthenticated, function(req, res) {
   console.log(req.body);
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    var sql = 'UPDATE forum_article SET article_id ='+connection.escape(req.body.article_id)+', title = '+connection.escape(req.body.title)+', content='+connection.escape(req.body.content)+', edit_time = NOW();'
+    var sql = 'UPDATE forum_article SET title = '+connection.escape(req.body.title)+', content='+connection.escape(req.body.content)+', edit_time = NOW() WHERE article_id ='+connection.escape(req.body.article_id)+';'
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
