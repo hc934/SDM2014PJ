@@ -37,6 +37,7 @@
 	"Edit": "Edit",
 	"SortByTime": "Sort By Time",
 	"SortByLike": "Sort By Likes",
-	"Like":"Like",
-	"Delete":"Delete"
+	"Like": "Like",
+	"Delete": "Delete",
+	"SortByLikes": "SortByLikes"
 }
