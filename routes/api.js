@@ -308,7 +308,7 @@ router.get('/jobs', function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'SELECT * ';
-    sql += 'FROM job_content';
+    sql += 'FROM job_content ORDER BY `post_time` DESC';
     connection.query(sql, function(err, jobs) {
       connection.release();
       res.json(jobs);
@@ -322,8 +322,8 @@ router.post('/new_jobs', function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     console.log("before send sql");
-    var sql = 'INSERT INTO job_content ( student_id, corporation, job_type, location, work_type, payment, characters, work_experience, education, major_in, language_requirement, other_requirement) ';
-    sql += 'VALUE("'+req.body.id+'","'+req.body.corporation+'","'+req.body.job_type+'","'+req.body.location+'","'+req.body.work_type+'","'+req.body.payment+'","'+req.body.characters+'","'+req.body.work_experience+'","'+req.body.education+'","'+req.body.major_in+'","'+req.body.language_requirement+'","'+req.body.other_requirement+'");';
+    var sql = 'INSERT INTO job_content ( stuid, corporation, job_type, location, work_type, payment, characters, work_experience, education, major_in, language_requirement, other_requirement, post_time, edit_time) ';
+    sql += 'VALUE("'+req.body.id+'","'+req.body.corporation+'","'+req.body.job_type+'","'+req.body.location+'","'+req.body.work_type+'","'+req.body.payment+'","'+req.body.characters+'","'+req.body.work_experience+'","'+req.body.education+'","'+req.body.major_in+'","'+req.body.language_requirement+'","'+req.body.other_requirement+'", NOW(), NOW());';
     console.log(sql);
     connection.query(sql, function(err, result) {
       console.log("before enter if");
@@ -334,18 +334,6 @@ router.post('/new_jobs', function(req, res) {
       return true;
     });
   });
-});
-
-router.post('/setLocale/:language', function(req, res) {
-  var locale;
-  if (req.params.language == 'English') {
-    locale = 'en';
-  } else if (req.params.language == 'Chinese') {
-    locale = 'zh_TW';
-  }
-  // console.log(locale);
-  res.setLocale(locale);
-  return true;
 });
 
 // router.get('/example', function(req, res) {
@@ -371,6 +359,18 @@ router.get('/show_job/:job_id', function(req, res) {
       res.json(show_job);
     });
   });
+});
+
+router.post('/setLocale/:language', function(req, res) {
+    var locale;
+    if (req.params.language == 'English') {
+        locale = 'en';
+    } else if (req.params.language == 'Chinese') {
+        locale = 'zh_TW';
+    }
+    // console.log(locale);
+    res.setLocale(locale);
+    return true;
 });
 
 module.exports = router;
