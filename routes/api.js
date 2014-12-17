@@ -23,6 +23,7 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 // Strategies
 passport.use(new LocalStrategy(
   function(username, password, done) {
+    var _user = {};
     appPool.getConnection(function(err, connection) {
       if (err) throw err;
       var sql = 'SELECT * FROM user_login WHERE user_id="'+connection.escape(username)+'" AND user_password="'+connection.escape(password)+'"';
@@ -43,6 +44,51 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+// 新增教育欄位
+router.post('/profile/education', apiEnsureAuthenticated, function(req, res) {
+
+  appPool.getConnection(function(err, connection) {
+    var id = req.user[0].user_id;
+    if (err) throw err;
+
+    var sql = 'INSERT INTO education (stuid, degree, institute, dept, startdate, enddate, concentration, obtained) ';
+    sql += 'VALUES("'+id+'","'+req.body.degree+'","'+req.body.institute+'","'+req.body.dept+'", "'+req.body.startdate+'", "'+req.body.enddate+'", "'+req.body.concentration+'", "'+req.body.obtained+'");';
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json({"status": "true"});
+      return
+
+    });
+
+  });
+
+});
+
+// 新增經驗欄位
+router.post('/profile/experience', function(req, res) {
+
+  appPool.getConnection(function(err, connection) {
+    // var id = req.user[0].user_id;
+    var id = 'guest';
+    if (err) throw err;
+
+    var sql = 'INSERT INTO experience (stuid, org, dept, position, startdate, enddate, description) ';
+    sql += 'VALUES("'+id+'","'+req.body.org+'","'+req.body.dept+'","'+req.body.position+'", "'+req.body.startdate+'", "'+req.body.enddate+'", "'+req.body.description+'");';
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json({"status": "true"});
+      return
+
+    });
+
+  });
+
+});
+
 // public api
 router.post('/profile/:profile_id', function(req, res) {
   id = req.params.profile_id;
@@ -51,20 +97,28 @@ router.post('/profile/:profile_id', function(req, res) {
     if (err) throw err;
     connection.query('SELECT * FROM contact WHERE id="'+ connection.escape(id) +'";', function(err, contacts) {
       if (err) throw err;
-      connection.query('SELECT * FROM experience;', function(err, experiences) {
+      connection.query('SELECT * FROM experience WHERE stuid="'+ id +'";', function(err, experiences) {
         if (err) throw err;
-        connection.query('SELECT * FROM education;', function(err, educations) {
+        connection.query('SELECT * FROM education WHERE stuid="'+ id +'";', function(err, educations) {
+          console.log("educations");
+          console.log(educations);
+
+          console.log("experiences");
+          console.log(experiences);
+
+          console.log("contacts");
+          console.log(contacts);
           var profile = contacts;
           for (i in profile) {
             profile[i].experience = [];
             profile[i].education = [];
             for (j in experiences) {
-              if (profile[i].id == experiences[j].id) {
+              if (profile[i].id == experiences[j].stuid) {
                 profile[i].experience.push(experiences[j]);
               }
             } // end for
             for (k in educations) {
-              if (profile[i].id == educations[k].id) {
+              if (profile[i].id == educations[k].stuid) {
                 profile[i].education.push(educations[k]);
               }
             } // end for
@@ -113,6 +167,32 @@ router.put('/profile', apiEnsureAuthenticated, function(req, res) {
 
   });
 });
+
+// 修改欄位
+router.put('/profile/education', function(req, res) {
+
+  appPool.getConnection(function(err, connection) {
+    var id = 'guest';
+    // req.user[0].user_id
+    if (err) throw err;
+
+    var sql = 'UPDATE education ';
+    sql += 'SET degree="'+req.body.degree+'", institute="'+req.body.institute+'", dept="'+req.body.dept+'", startdate="'+req.body.startdate+'", enddate="'+req.body.enddate+'", concentration="'+req.body.concentration+'", obtained="'+req.body.obtained+'"';
+    sql += ' WHERE stuid="'+ id +'"';
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json({"status": "true"});
+      return
+
+    });
+
+  });
+
+});
+
+
 
 router.get('/articles', function(req, res) {
   appPool.getConnection(function(err, connection) {
@@ -289,6 +369,34 @@ router.post('/:article_id/like', apiEnsureAuthenticated, function(req, res) {
           res.json({"status": "add one like to article"});
           return true;
         });
+      }
+    });
+
+  });
+
+});
+
+router.post('/:article_id/checklike', function(req, res) {
+  
+  appPool.getConnection(function(err, connection) {
+    var id = 'guest';
+    // var id = req.user[0].user_id
+    if (err) throw err;
+    // find and replace
+    var sql = 'SELECT * FROM forum_like WHERE user_id ="' + id + '" AND article_id = "' + req.params.article_id + '";';
+
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      if (result.length > 0) {
+        // result有值，代表user 已經like過這篇文章
+        connection.release();
+        res.json({"status": "true"});
+        return
+      } else {
+        // user 沒有like過這篇文章
+        connection.release();
+        res.json({"status": "false"});
+        return
       }
     });
 
