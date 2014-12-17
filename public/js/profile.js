@@ -13,11 +13,19 @@ angular.module('profile', ['lang'])
     }
     $scope.user;
     $scope.edit_user;
-
+    // get session from server;
+    $scope._user = window._user;
     $scope.init = function() {
+      console.log($scope._user)
+
       var temp_array = location.href.split('/');
       var profile_id = temp_array[temp_array.length-1];
       
+      // if no session, go to url profile_id
+      if($scope._user!="null"){
+        profile_id = $scope._user;
+      }
+
       $http.post('/api/profile/'+profile_id).
         success(function(data, status, headers, config) {
           $scope.user = data;

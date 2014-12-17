@@ -23,12 +23,15 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 // Strategies
 passport.use(new LocalStrategy(
   function(username, password, done) {
+    var _user = {};
     appPool.getConnection(function(err, connection) {
       if (err) throw err;
       var sql = 'SELECT * FROM user_login WHERE user_id="'+username+'" AND user_password="'+password+'"';
       connection.query(sql, function(err, user) {
         if (err) { return done(err); }
-        return done(null, user);
+        _user.id = username;
+        _user.psw = password;
+        return done(null, _user);
       });
     });
   }
