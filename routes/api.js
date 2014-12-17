@@ -25,7 +25,7 @@ passport.use(new LocalStrategy(
   function(username, password, done) {
     appPool.getConnection(function(err, connection) {
       if (err) throw err;
-      var sql = 'SELECT * FROM user_login WHERE user_id="'+username+'" AND user_password="'+password+'"';
+      var sql = 'SELECT * FROM user_login WHERE user_id="'+connection.escape(username)+'" AND user_password="'+connection.escape(password)+'"';
       connection.query(sql, function(err, user) {
         if (err) { return done(err); }
         return done(null, user);
@@ -49,7 +49,7 @@ router.post('/profile/:profile_id', function(req, res) {
 
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    connection.query('SELECT * FROM contact WHERE id="'+ id +'";', function(err, contacts) {
+    connection.query('SELECT * FROM contact WHERE id="'+ connection.escape(id) +'";', function(err, contacts) {
       if (err) throw err;
       connection.query('SELECT * FROM experience;', function(err, experiences) {
         if (err) throw err;
@@ -84,22 +84,22 @@ router.put('/profile', apiEnsureAuthenticated, function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'UPDATE contact ';
-    sql += 'SET name="'+req.body.name+'", email="'+req.body.email+'", phone_mobile="'+req.body.phone_mobile+'", phone_work="'+req.body.phone_work+'", phone_home="'+req.body.phone_home+'"';
-    sql += ' WHERE id="'+req.body.id+'"';
+    sql += 'SET name="'+connection.escape(req.body.name)+'", email="'+connection.escape(req.body.email)+'", phone_mobile="'+connection.escape(req.body.phone_mobile)+'", phone_work="'+connection.escape(req.body.phone_work)+'", phone_home="'+connection.escape(req.body.phone_home)+'"';
+    sql += ' WHERE id="'+connection.escape(req.body.id)+'"';
     connection.query(sql, function(err, res) {
       if (err) throw err;
       console.log(res);
 
       var sql2 = 'UPDATE education ';
-      sql2 += 'SET degree="'+req.body.education[0].degree+'", institute="'+req.body.education[0].institute+'", dept="'+req.body.education[0].dept+'", startdate="'+req.body.education[0].startdate+'", enddate="'+req.body.education[0].enddate+'", concentration="'+req.body.education[0].concentration+'", obtained="'+req.body.education[0].obtained+'"';
-      sql2 += ' WHERE id="'+req.body.id+'"';
+      sql2 += 'SET degree="'+connection.escape(req.body.education[0].degree)+'", institute="'+connection.escape(req.body.education[0].institute)+'", dept="'+connection.escape(req.body.education[0].dept)+'", startdate="'+connection.escape(req.body.education[0].startdate)+'", enddate="'+connection.escape(req.body.education[0].enddate)+'", concentration="'+connection.escape(req.body.education[0].concentration)+'", obtained="'+connection.escape(req.body.education[0].obtained)+'"';
+      sql2 += ' WHERE id="'+connection.escape(req.body.id)+'"';
       connection.query(sql2, function(err, res) {
         if (err) throw err;
         console.log(res);
 
         var sql3 = 'UPDATE experience '; 
-        sql3 += 'SET org="'+req.body.experience[0].org+'", dept="'+req.body.experience[0].dept+'", position="'+req.body.experience[0].position+'", startdate="'+req.body.experience[0].startdate+'", enddate="'+req.body.experience[0].enddate+'", description="'+req.body.experience[0].description+'"';
-        sql3 += ' WHERE id="'+req.body.id+'"';
+        sql3 += 'SET org="'+connection.escape(req.body.experience[0].org)+'", dept="'+connection.escape(req.body.experience[0].dept)+'", position="'+connection.escape(req.body.experience[0].position)+'", startdate="'+connection.escape(req.body.experience[0].startdate)+'", enddate="'+connection.escape(req.body.experience[0].enddate)+'", description="'+connection.escape(req.body.experience[0].description)+'"';
+        sql3 += ' WHERE id="'+connection.escape(req.body.id)+'"';
         connection.query(sql3, function(err, res) {
           if (err) throw err;
           console.log(res);
@@ -133,7 +133,7 @@ router.get('/search/:keyword', function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'SELECT * FROM forum_article_info';
-    sql += ' WHERE title LIKE \'%'+req.params.keyword+'%\' OR content LIKE \'%'+req.params.keyword+'%\';';
+    sql += ' WHERE title LIKE \'%'+connection.escape(req.params.keyword)+'%\' OR content LIKE \'%'+connection.escape(req.params.keyword)+'%\';';
     connection.query(sql, function(err, articles) {
       // console.log(articles);
       connection.release();
@@ -149,7 +149,7 @@ router.get('/article/:article_id', function(req, res) {
     if (err) throw err;
     var sql = 'SELECT * ';
     sql += 'FROM forum_article_info ';
-    sql += 'WHERE article_id=\''+req.params.article_id+'\';';
+    sql += 'WHERE article_id=\''+connection.escape(req.params.article_id)+'\';';
 
     connection.query(sql, function(err, article) {
       
@@ -158,7 +158,7 @@ router.get('/article/:article_id', function(req, res) {
 
       var sql2 = 'SELECT * ';
       sql2 += 'FROM forum_comment_info ';
-      sql2 += 'WHERE article_id="'+req.params.article_id+'"';
+      sql2 += 'WHERE article_id="'+connection.escape(req.params.article_id)+'"';
       
       connection.query(sql2, function(err, comments) {
         for (i in comments) {
@@ -178,7 +178,7 @@ router.put('/article', apiEnsureAuthenticated, function(req, res) {
   console.log(req.body);
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    var sql = 'UPDATE forum_article SET article_id ='+req.body.article_id+', title = '+req.body.title+', content='+req.body.content+', edit_time = NOW();'
+    var sql = 'UPDATE forum_article SET article_id ='+connection.escape(req.body.article_id)+', title = '+connection.escape(req.body.title)+', content='+connection.escape(req.body.content)+', edit_time = NOW();'
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -193,7 +193,7 @@ router.delete('/article', apiEnsureAuthenticated, function(req, res) {
   console.log(req.body);
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    var sql = 'DELETE FROM forum_article WHERE article_id ='+req.body.article_id+';'
+    var sql = 'DELETE FROM forum_article WHERE article_id ='+connection.escape(req.body.article_id)+';'
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -211,7 +211,7 @@ router.post('/article', apiEnsureAuthenticated, function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'INSERT INTO forum_article (user_id, title, content, post_time, edit.time) ';
-    sql += 'VALUE("'+req.body.id+'","'+req.body.title+'","'+req.body.content+'",NOW(),NOW());';
+    sql += 'VALUE("'+connection.escape(req.body.id)+'","'+connection.escape(req.body.title)+'","'+connection.escape(req.body.content)+'",NOW(),NOW());';
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -227,7 +227,7 @@ router.post('/:article_id/comment', apiEnsureAuthenticated, function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'INSERT INTO forum_comment (user_id, article_id, content, post_time, edit.time) ';
-    sql += 'VALUE("'+req.body.id+'","'+req.params.article_id+'","'+req.body.content+'",NOW(),NOW());';
+    sql += 'VALUE("'+connection.escape(req.body.id)+'","'+connection.escape(req.params.article_id)+'","'+connection.escape(req.body.content)+'",NOW(),NOW());';
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -244,7 +244,7 @@ router.delete('/:article_id/comment', apiEnsureAuthenticated, function(req, res)
     if (err) throw err;
     var user_id = 'b00705033';
     var sql = 'DELETE FROM forum_comment ';
-    sql += 'WHERE user_id="'+user_id+'" AND article_id="'+req.params.article_id+'";';
+    sql += 'WHERE user_id="'+connection.escape(user_id)+'" AND article_id="'+connection.escape(req.params.article_id)+'";';
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -261,7 +261,7 @@ router.post('/:article_id/like', apiEnsureAuthenticated, function(req, res) {
     
     if (err) throw err;
     // find and replace
-    var sql = 'SELECT * FROM forum_like WHERE user_id ="' + req.user[0].user_id + '" AND article_id = "' + req.params.article_id + '";';
+    var sql = 'SELECT * FROM forum_like WHERE user_id ="' + connection.escape(req.user[0].user_id) + '" AND article_id = "' + connection.escape(req.params.article_id) + '";';
 
     connection.query(sql, function(err, result) {
       if (err) throw err;
@@ -270,7 +270,7 @@ router.post('/:article_id/like', apiEnsureAuthenticated, function(req, res) {
       // user already like the article
       console.log(result.length);
       if (result.length > 0) {
-        var sql2 = 'DELETE FROM forum_like WHERE user_id ="' + req.user[0].user_id + '" AND article_id = "' + req.params.article_id + '";';
+        var sql2 = 'DELETE FROM forum_like WHERE user_id ="' + connection.escape(req.user[0].user_id) + '" AND article_id = "' + connection.escape(req.params.article_id) + '";';
         connection.query(sql2, function(err, result) {
           if (err) throw err;
           console.log(result);
@@ -281,7 +281,7 @@ router.post('/:article_id/like', apiEnsureAuthenticated, function(req, res) {
       } else {
         // user had not liked the article
         var sql2 = 'INSERT INTO forum_like (user_id, article_id) ';
-        sql2 += 'VALUES ("' + req.user[0].user_id + '","' + req.params.article_id + '");';
+        sql2 += 'VALUES ("' + connection.escape(req.user[0].user_id) + '","' + connection.escape(req.params.article_id) + '");';
         connection.query(sql2, function(err, result) {
           if (err) throw err;
           console.log(result);
@@ -316,7 +316,7 @@ router.post('/new_jobs', apiEnsureAuthenticated, function(req, res) {
     if (err) throw err;
     console.log("before send sql");
     var sql = 'INSERT INTO job_content ( student_id, corporation, job_type, location, work_type, payment, characters, work_experience, education, major_in, language_requirement, other_requirement) ';
-    sql += 'VALUE("'+req.body.id+'","'+req.body.corporation+'","'+req.body.job_type+'","'+req.body.location+'","'+req.body.work_type+'","'+req.body.payment+'","'+req.body.characters+'","'+req.body.work_experience+'","'+req.body.education+'","'+req.body.major_in+'","'+req.body.language_requirement+'","'+req.body.other_requirement+'");';
+    sql += 'VALUE("'+connection.escape(req.body.id)+'","'+connection.escape(req.body.corporation)+'","'+connection.escape(req.body.job_type)+'","'+connection.escape(req.body.location)+'","'+connection.escape(req.body.work_type)+'","'+connection.escape(req.body.payment)+'","'+connection.escape(req.body.characters)+'","'+connection.escape(req.body.work_experience)+'","'+connection.escape(req.body.education)+'","'+connection.escape(req.body.major_in)+'","'+connection.escape(req.body.language_requirement)+'","'+connection.escape(req.body.other_requirement)+'");';
     console.log(sql);
     connection.query(sql, function(err, result) {
       console.log("before enter if");
@@ -348,7 +348,7 @@ router.get('/show_job/:job_id', function(req, res) {
     if (err) throw err;
     var sql = 'SELECT * ';
     sql += 'FROM job_content ';
-    sql += 'WHERE id="'+req.params.job_id+'";';
+    sql += 'WHERE id="'+connection.escape(req.params.job_id)+'";';
     connection.query(sql, function(err, show_job) {
       //console.log(sql);
       connection.release();
