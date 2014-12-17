@@ -88,7 +88,7 @@
           <span class="sub">{{education.dept}}</span>
           <span class="date">{{education.startdate | date:'yyyy.MM'}} - {{education.enddate | date:'yyyy.MM'}}</span>
         </li>
-        <div class="col-sm-2" ng-show"_user!=null">
+        <div class="col-sm-2" ng-show="_user!=null">
           <button class="btn btn-default btn-right" ng-click="edit.edu = !edit.edu" ng-show="_user!='null'"><%= __("Edit") %></button>
         </div>
       </tab>
