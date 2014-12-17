@@ -44,6 +44,28 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+// 新增教育欄位
+router.post('/profile/education', apiEnsureAuthenticated, function(req, res) {
+
+  appPool.getConnection(function(err, connection) {
+    var id = req.user[0].user_id;
+    if (err) throw err;
+
+    var sql = 'INSERT INTO education (stuid, degree, institute, dept, startdate, enddate, concentration, obtained) ';
+    sql += 'VALUES("'+id+'","'+req.body.degree+'","'+req.body.institute+'","'+req.body.dept+'", "'+req.body.startdate+'", "'+req.body.enddate+'", "'+req.body.concentration+'", "'+req.body.obtained+'");';
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json({"status": "true"});
+      return
+
+    });
+
+  });
+
+});
+
 // public api
 router.post('/profile/:profile_id', function(req, res) {
   id = req.params.profile_id;
@@ -122,6 +144,32 @@ router.put('/profile', apiEnsureAuthenticated, function(req, res) {
 
   });
 });
+
+// 修改欄位
+router.put('/profile/education', function(req, res) {
+
+  appPool.getConnection(function(err, connection) {
+    var id = 'guest';
+    // req.user[0].user_id
+    if (err) throw err;
+
+    var sql = 'UPDATE education ';
+    sql += 'SET degree="'+req.body.degree+'", institute="'+req.body.institute+'", dept="'+req.body.dept+'", startdate="'+req.body.startdate+'", enddate="'+req.body.enddate+'", concentration="'+req.body.concentration+'", obtained="'+req.body.obtained+'"';
+    sql += ' WHERE stuid="'+ id +'"';
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json({"status": "true"});
+      return
+
+    });
+
+  });
+
+});
+
+
 
 router.get('/articles', function(req, res) {
   appPool.getConnection(function(err, connection) {
