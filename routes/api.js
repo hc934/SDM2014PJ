@@ -132,48 +132,96 @@ router.post('/profile/:profile_id', function(req, res) {
 
 });
 
+//router.put('/profile', apiEnsureAuthenticated, function(req, res) {
+//  // req.body
+//
+//  appPool.getConnection(function(err, connection) {
+//    if (err) throw err;
+//
+//    var sql = 'UPDATE contact ';
+//    sql += 'SET name='+connection.escape(req.body.name)+', email='+connection.escape(req.body.email)+', phone_mobile='+connection.escape(req.body.phone_mobile)+', phone_work='+connection.escape(req.body.phone_work)+', phone_home='+connection.escape(req.body.phone_home)+'';
+//    sql += ' WHERE id='+connection.escape(req.body.id)+';';
+//
+//    connection.query(sql, function(err, res) {
+//      if (err) throw err;
+//      console.log(res);
+//
+//      var sql2 = "";
+//      for(var i = 0; i < req.body.education.length; i++){
+//          sql2 += 'UPDATE education ';
+//          sql2 += 'SET degree='+connection.escape(req.body.education[i].degree)+', institute='+connection.escape(req.body.education[i].institute)+', dept='+connection.escape(req.body.education[i].dept)+', startdate='+connection.escape(req.body.education[i].startdate)+', enddate='+connection.escape(req.body.education[i].enddate)+', concentration='+connection.escape(req.body.education[i].concentration)+', obtained='+connection.escape(req.body.education[i].obtained)+'';
+//          sql2 += ' WHERE id='+connection.escape(req.body.education[i].id)+'; ';
+//      }
+//
+//      connection.query(sql2, function(err, res) {
+//        if (err) throw err;
+//        //console.log(res);
+//
+//        console.log(req.body.experience);
+//        var sql3 = "";
+//        for(var i = 0; i < req.body.experience.length; i++){
+//            sql3 += 'UPDATE experience ';
+//            sql3 += 'SET org='+connection.escape(req.body.experience[i].org)+', dept='+connection.escape(req.body.experience[i].dept)+', position='+connection.escape(req.body.experience[i].position)+', startdate='+connection.escape(req.body.experience[i].startdate)+', enddate='+connection.escape(req.body.experience[i].enddate)+', description='+connection.escape(req.body.experience[i].description)+'';
+//            sql3 += ' WHERE id='+connection.escape(req.body.experience[i].id)+ '; ';
+//            console.log("sql = " + sql3);
+//        }
+//
+//        console.log("sql = " + sql3);
+//        connection.query(sql3, function(err, res) {
+//          if (err) throw err;
+//          console.log(res);
+//          connection.release();
+//          return true;
+//        });
+//
+//      });
+//
+//    });
+//
+//  });
+//});
+
 router.put('/profile', apiEnsureAuthenticated, function(req, res) {
-  // req.body
+    // req.body
 
-  appPool.getConnection(function(err, connection) {
-    if (err) throw err;
-
-    var sql = 'UPDATE contact ';
-    sql += 'SET name='+connection.escape(req.body.name)+', email='+connection.escape(req.body.email)+', phone_mobile='+connection.escape(req.body.phone_mobile)+', phone_work='+connection.escape(req.body.phone_work)+', phone_home='+connection.escape(req.body.phone_home)+'';
-    sql += ' WHERE id='+connection.escape(req.body.id)+';';
-
-    connection.query(sql, function(err, res) {
-      if (err) throw err;
-      console.log(res);
-
-      for(var i = 0; i < req.body.education.length; i++){
-          var sql2 = 'UPDATE education ';
-          sql2 += 'SET degree='+connection.escape(req.body.education[i].degree)+', institute='+connection.escape(req.body.education[i].institute)+', dept='+connection.escape(req.body.education[i].dept)+', startdate='+connection.escape(req.body.education[i].startdate)+', enddate='+connection.escape(req.body.education[i].enddate)+', concentration='+connection.escape(req.body.education[i].concentration)+', obtained='+connection.escape(req.body.education[i].obtained)+'';
-          sql2 += ' WHERE id='+connection.escape(req.body.education[i].id)+';';
-      }
-
-      connection.query(sql2, function(err, res) {
+    appPool.getConnection(function(err, connection) {
         if (err) throw err;
-        console.log(res);
+
+        var sql = 'UPDATE contact ';
+        sql += 'SET name='+connection.escape(req.body.name)+', email='+connection.escape(req.body.email)+', phone_mobile='+connection.escape(req.body.phone_mobile)+', phone_work='+connection.escape(req.body.phone_work)+', phone_home='+connection.escape(req.body.phone_home)+'';
+        sql += ' WHERE id='+connection.escape(req.body.id)+';';
+
+        connection.query(sql, function(err, res) {
+            if (err) throw err;
+            console.log(res);
+        });
+
+        for(var i = 0; i < req.body.education.length; i++){
+            var sql2 = 'UPDATE education ';
+            sql2 += 'SET degree='+connection.escape(req.body.education[i].degree)+', institute='+connection.escape(req.body.education[i].institute)+', dept='+connection.escape(req.body.education[i].dept)+', startdate='+connection.escape(req.body.education[i].startdate)+', enddate='+connection.escape(req.body.education[i].enddate)+', concentration='+connection.escape(req.body.education[i].concentration)+', obtained='+connection.escape(req.body.education[i].obtained)+'';
+            sql2 += ' WHERE id='+connection.escape(req.body.education[i].id)+'; ';
+            connection.query(sql2, function(err, res) {
+                if (err) throw err;
+                console.log(res);
+            });
+        }
 
         for(var i = 0; i < req.body.experience.length; i++){
             var sql3 = 'UPDATE experience ';
             sql3 += 'SET org='+connection.escape(req.body.experience[i].org)+', dept='+connection.escape(req.body.experience[i].dept)+', position='+connection.escape(req.body.experience[i].position)+', startdate='+connection.escape(req.body.experience[i].startdate)+', enddate='+connection.escape(req.body.experience[i].enddate)+', description='+connection.escape(req.body.experience[i].description)+'';
-            sql3 += ' WHERE id='+connection.escape(req.body.experience[i].id)+';';
+            sql3 += ' WHERE id='+connection.escape(req.body.experience[i].id)+ '; ';
+            connection.query(sql3, function(err, res) {
+                if (err) throw err;
+                console.log(res);
+            });
         }
 
-        connection.query(sql3, function(err, res) {
-          if (err) throw err;
-          console.log(res);
-          connection.release();
-          return true;
-        });
 
-      });
+
+        connection.release();
+        return true;
 
     });
-
-  });
 });
 
 // 修改欄位
