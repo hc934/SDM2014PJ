@@ -36,7 +36,7 @@
             </div>
             <div class="col-sm-10">
               <div class="col-sm-12">
-                <span class="name"> {{article.user_name}} </span>
+                <span class="name"> <a ng-href="/profile/{{article.user_id}}">{{article.user_name}}</a> </span>
                 <span class="time"> {{article.post_time | date:'yyyy/MM/dd  h:mma'}} </span>
               </div>
               <div class="col-sm-12 padding-5">

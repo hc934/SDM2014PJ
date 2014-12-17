@@ -14,11 +14,13 @@ router.get('/login', function(req, res) {
 /* GET profile page. */
 
 router.get('/profile', function(req, res) {
-  res.render('profile', { title: 'NTUIM 校友系統' });
+  //console.log(req.user.id);
+  //console.log(req.user);
+  res.render('profile', { title: 'NTUIM 校友系統', _user: req.user.id });
 });
 
 router.get('/profile/:profile_id', function(req, res) {
-  res.render('profile', { title: 'NTUIM 校友系統' });
+  res.render('profile', { title: 'NTUIM 校友系統', _user: null });
 });
 
 router.get('/profile/edit', function(req, res) {
@@ -56,6 +58,7 @@ router.get('/new_job', ensureAuthenticated, function(req, res) {
 });*/
 
 function ensureAuthenticated(req, res, next) {
+  console.log(req.user);
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login');
 }
