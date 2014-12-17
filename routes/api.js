@@ -238,7 +238,7 @@ router.get('/article/:article_id', function(req, res) {
 
       var sql2 = 'SELECT * ';
       sql2 += 'FROM forum_comment_info ';
-      sql2 += 'WHERE article_id="'+connection.escape(req.params.article_id)+'"';
+      sql2 += 'WHERE article_id='+connection.escape(req.params.article_id)+';';
       
       connection.query(sql2, function(err, comments) {
         for (i in comments) {
@@ -309,7 +309,7 @@ router.post('/:article_id/comment', apiEnsureAuthenticated, function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'INSERT INTO forum_comment (user_id, article_id, content, post_time, edit_time) ';
-    sql += 'VALUE("'+connection.escape(req.body.id)+'","'+connection.escape(req.params.article_id)+'","'+connection.escape(req.body.content)+'",NOW(),NOW());';
+    sql += 'VALUE('+connection.escape(req.body.id)+','+connection.escape(req.params.article_id)+','+connection.escape(req.body.content)+',NOW(),NOW());';
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -326,7 +326,7 @@ router.delete('/:article_id/comment', apiEnsureAuthenticated, function(req, res)
     if (err) throw err;
     var user_id = 'b00705033';
     var sql = 'DELETE FROM forum_comment ';
-    sql += 'WHERE user_id="'+connection.escape(user_id)+'" AND article_id="'+connection.escape(req.params.article_id)+'";';
+    sql += 'WHERE user_id='+connection.escape(user_id)+' AND article_id='+connection.escape(req.params.article_id)+';';
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -343,7 +343,7 @@ router.post('/:article_id/like', apiEnsureAuthenticated, function(req, res) {
     
     if (err) throw err;
     // find and replace
-    var sql = 'SELECT * FROM forum_like WHERE user_id ="' + connection.escape(req.user[0].user_id) + '" AND article_id = "' + connection.escape(req.params.article_id) + '";';
+    var sql = 'SELECT * FROM forum_like WHERE user_id =' + connection.escape(req.user[0].user_id) + ' AND article_id = ' + connection.escape(req.params.article_id) + ';';
 
     connection.query(sql, function(err, result) {
       if (err) throw err;
@@ -352,7 +352,7 @@ router.post('/:article_id/like', apiEnsureAuthenticated, function(req, res) {
       // user already like the article
       console.log(result.length);
       if (result.length > 0) {
-        var sql2 = 'DELETE FROM forum_like WHERE user_id ="' + connection.escape(req.user[0].user_id) + '" AND article_id = "' + connection.escape(req.params.article_id) + '";';
+        var sql2 = 'DELETE FROM forum_like WHERE user_id =' + connection.escape(req.user[0].user_id) + ' AND article_id = ' + connection.escape(req.params.article_id) + ';';
         connection.query(sql2, function(err, result) {
           if (err) throw err;
           console.log(result);
@@ -363,7 +363,7 @@ router.post('/:article_id/like', apiEnsureAuthenticated, function(req, res) {
       } else {
         // user had not liked the article
         var sql2 = 'INSERT INTO forum_like (user_id, article_id) ';
-        sql2 += 'VALUES ("' + connection.escape(req.user[0].user_id) + '","' + connection.escape(req.params.article_id) + '");';
+        sql2 += 'VALUES (' + connection.escape(req.user[0].user_id) + ',' + connection.escape(req.params.article_id) + ');';
         connection.query(sql2, function(err, result) {
           if (err) throw err;
           console.log(result);
@@ -385,7 +385,7 @@ router.post('/:article_id/checklike', function(req, res) {
     // var id = req.user[0].user_id
     if (err) throw err;
     // find and replace
-    var sql = 'SELECT * FROM forum_like WHERE user_id ="' + connection.escape(id) + '" AND article_id = "' + connection.escape(req.params.article_id) + '";';
+    var sql = 'SELECT * FROM forum_like WHERE user_id =' + connection.escape(id) + ' AND article_id = ' + connection.escape(req.params.article_id) + ';';
 
     connection.query(sql, function(err, result) {
       if (err) throw err;
