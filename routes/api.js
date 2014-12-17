@@ -29,9 +29,7 @@ passport.use(new LocalStrategy(
       var sql = 'SELECT * FROM user_login WHERE user_id="'+username+'" AND user_password="'+password+'"';
       connection.query(sql, function(err, user) {
         if (err) { return done(err); }
-        _user.id = username;
-        _user.psw = password;
-        return done(null, _user);
+        return done(null, user);
       });
     });
   }

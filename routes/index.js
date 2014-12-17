@@ -13,10 +13,10 @@ router.get('/login', function(req, res) {
 
 /* GET profile page. */
 
-router.get('/profile', function(req, res) {
+router.get('/profile', ensureAuthenticated, function(req, res) {
   //console.log(req.user.id);
   //console.log(req.user);
-  res.render('profile', { title: 'NTUIM 校友系統', _user: req.user.id });
+  res.render('profile', { title: 'NTUIM 校友系統', _user: req.user[0].user_id });
 });
 
 router.get('/profile/:profile_id', function(req, res) {
