@@ -161,7 +161,6 @@ router.put('/profile', function(req, res) {
   });
 });
 
-
 router.get('/articles', function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
@@ -175,15 +174,29 @@ router.get('/articles', function(req, res) {
   });
 });
 
-router.get('/article/:article_id', function(req, res) {
+router.get('/search/:keyword', function(req, res) {
 
+  console.log("hello");
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'SELECT * FROM forum_article_info';
+    sql += ' WHERE title LIKE \'%'+req.params.keyword+'%\' OR content LIKE \'%'+req.params.keyword+'%\';';
+    connection.query(sql, function(err, articles) {
+      // console.log(articles);
+      connection.release();
+      res.json(articles);
+    });
+  });
+});
+
+router.get('/article/:article_id', function(req, res) {
   console.log(req.params.article_id);
   
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'SELECT * ';
     sql += 'FROM forum_article_info ';
-    sql += 'WHERE article_id="'+req.params.article_id+'"';
+    sql += 'WHERE article_id=\''+req.params.article_id+'\';';
 
     connection.query(sql, function(err, article) {
       
@@ -205,6 +218,36 @@ router.get('/article/:article_id', function(req, res) {
 
     });
 
+  });
+});
+
+router.put('/article', function(req, res) {
+  console.log(req.body);
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'UPDATE forum_article SET article_id ='+req.body.article_id+', title = '+req.body.title+', content='+req.body.content+', edit_time = NOW();'
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json(result);
+      return true;
+    });
+  });
+});
+
+router.delete('/article', function(req, res) {
+  console.log(req.body);
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'DELETE FROM forum_article WHERE article_id ='+req.body.article_id+';'
+    connection.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json(result);
+      return true;
+    });
   });
 });
 
@@ -259,6 +302,38 @@ router.delete('/:article_id/comment', function(req, res) {
   });
 });
 
+router.get('/jobs', function(req, res) {
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'SELECT * ';
+    sql += 'FROM job_content';
+    connection.query(sql, function(err, jobs) {
+      connection.release();
+      res.json(jobs);
+    });
+  });
+});
+
+router.post('/new_jobs', function(req, res) {
+  // req.body
+  console.log("before conn");
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    console.log("before send sql");
+    var sql = 'INSERT INTO job_content ( student_id, corporation, job_type, location, work_type, payment, characters, work_experience, education, major_in, language_requirement, other_requirement) ';
+    sql += 'VALUE("'+req.body.id+'","'+req.body.corporation+'","'+req.body.job_type+'","'+req.body.location+'","'+req.body.work_type+'","'+req.body.payment+'","'+req.body.characters+'","'+req.body.work_experience+'","'+req.body.education+'","'+req.body.major_in+'","'+req.body.language_requirement+'","'+req.body.other_requirement+'");';
+    console.log(sql);
+    connection.query(sql, function(err, result) {
+      console.log("before enter if");
+      if (err) throw err;
+      console.log(result);
+      connection.release();
+      res.json(result);
+      return true;
+    });
+  });
+});
+
 router.post('/setLocale/:language', function(req, res) {
   var locale;
   if (req.params.language == 'English') {
@@ -280,5 +355,20 @@ router.post('/setLocale/:language', function(req, res) {
 
 //     )};
 // });
+
+/*api for show_job*/
+router.get('/show_job/:job_id', function(req, res) {
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'SELECT * ';
+    sql += 'FROM job_content ';
+    sql += 'WHERE id="'+req.params.job_id+'";';
+    connection.query(sql, function(err, show_job) {
+      //console.log(sql);
+      connection.release();
+      res.json(show_job);
+    });
+  });
+});
 
 module.exports = router;

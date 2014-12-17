@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <% include ../views/partials/head %>
+    <script src="js/job.js"></script>
+</head>
+
+<body ng-app="job">
+
+    <% include ../views/partials/nav %>
+
+    <div class="container" ng-controller="NewJobController">
+    <form novalidate class="simple-form">
+        <div class="row">
+            <h3 class="col-sm-3 align-center">Information</h3>
+        </div><br>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Corporation</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="job_model.corporation" placeholder="Google">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Job Type</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="job_model.job_type" placeholder="QQQ">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Location</label><input class="col-sm-6 frame frame-border theme-article title" ng-model="job_model.location" placeholder="Taipei 101">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Work Type</label>
+            <select ng-model="job_model.work_type">
+                <option value="0" selected="selected" >Full-time</option>
+                <option value="1">Part-time</option>
+                <option value="2">Intern</option>
+            </select>
+    
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Payment</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="job_model.payment" placeholder="$100/hour">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-3 align-right">Characters</label>
+            <textarea class="col-sm-6 frame frame-border frame-high content" ng-model="job_model.characters"></textarea>
+        </div>
+
+        <br><div class="row">
+            <h3 class="col-sm-3 align-center">Qualifications</h3>
+        </div><br>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Work Experience</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="job_model.work_experience" placeholder="3 years work experience">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Education</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="job_model.education" placeholder="University">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Major In</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="job_model.major_in" placeholder="Information Management">
+        </div>
+
+        <div class="row">
+            <label class="col-sm-2 col-sm-offset-1 align-right">Language Requirement</label>
+            <input class="col-sm-6 frame frame-border theme-article title" ng-model="job_model.language_requirement" placeholder="Japanese/Chinese">
+        </div>
+
+
+        <br><div class="row">
+            <h3 class="col-sm-3 align-center">Other Requirement</h3>
+        </div><br>
+
+        <div>
+            <textarea class="col-sm-offset-3 col-sm-6 frame frame-border frame-high content" ng-model="job_model.other_requirement"></textarea>
+        </div>
+
+        <div class="col-sm-offset-3 col-sm-6 item-center">
+            <button class="btn btn-primary" ng-click="sendMessage(job_model)"><%= __("Send") %></button>
+        </div>
+    </form>
+
+    </div>
+
+    <% include ../views/partials/js %>
+
+</body>
+</html>

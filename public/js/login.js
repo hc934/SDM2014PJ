@@ -18,19 +18,19 @@ angular.module('login', ['lang'])
         success(function(data, status, headers, config) {
           console.log(data);
           if(data.status){
-            sessionStorage.setItem('id',$scope.user.id); // SAVE USERINFO VIA COOKIE
+            sessionStorage.setItem('id',$scope.user.username); // SAVE USERINFO VIA COOKIE
             window.location.href = "/forum";
           } else {
             $scope.showMsg = true;
             $scope.message = '帳號或密碼錯誤'
-            $scope.user.id = null;
+            $scope.user.username = null;
             $scope.user.password = null;
           }
         }).
         error(function(data, status, headers, config) {
           $scope.showMsg = true;
           $scope.message = 'OH NO，有問題！'
-          $scope.user.id = null;
+          $scope.user.username = null;
           $scope.user.password = null;
           // window.location.href = "/";
           console.log(data);

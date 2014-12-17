@@ -139,3 +139,12 @@ body {
 .navbar-white {
   background-color: #fff;
 }
+
+.align-right{
+    text-align: right;
+}
+
+.align-center{
+    text-align: center;
+}
+
