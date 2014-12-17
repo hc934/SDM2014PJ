@@ -213,7 +213,7 @@ router.get('/search/:keyword', function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'SELECT * FROM forum_article_info';
-    sql += ' WHERE title LIKE \'%'+connection.escape(req.params.keyword)+'%\' OR content LIKE \'%'+connection.escape(req.params.keyword)+'%\';';
+    sql += ' WHERE title LIKE '+connection.escape('%'+req.params.keyword+'%')+' OR content LIKE '+connection.escape('%'+req.params.keyword+'%')+';';
     connection.query(sql, function(err, articles) {
       // console.log(articles);
       connection.release();
@@ -290,10 +290,8 @@ router.post('/article', apiEnsureAuthenticated, function(req, res) {
 
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-
     var sql = 'INSERT INTO forum_article (user_id, title, content, post_time, edit_time) ';
     sql += 'VALUE('+connection.escape(req.body.id)+','+connection.escape(req.body.title)+','+connection.escape(req.body.content)+',NOW(),NOW());';
-
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
