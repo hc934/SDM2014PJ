@@ -290,7 +290,7 @@ router.post('/article', apiEnsureAuthenticated, function(req, res) {
 
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    var sql = 'INSERT INTO forum_article (user_id, title, content, post_time, edit.time) ';
+    var sql = 'INSERT INTO forum_article (user_id, title, content, post_time, edit_time) ';
     sql += 'VALUE("'+connection.escape(req.body.id)+'","'+connection.escape(req.body.title)+'","'+connection.escape(req.body.content)+'",NOW(),NOW());';
     connection.query(sql, function(err, result) {
       if (err) throw err;
