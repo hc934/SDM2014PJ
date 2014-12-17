@@ -219,7 +219,7 @@ router.post('/article', apiEnsureAuthenticated, function(req, res) {
 
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    var sql = 'INSERT INTO forum_article (user_id, title, content, post_time, edit.time) ';
+    var sql = 'INSERT INTO forum_article (user_id, title, content, post_time, edit_time) ';
     sql += 'VALUE("'+req.body.id+'","'+req.body.title+'","'+req.body.content+'",NOW(),NOW());';
     connection.query(sql, function(err, result) {
       if (err) throw err;
@@ -324,7 +324,7 @@ router.post('/new_jobs', apiEnsureAuthenticated, function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     console.log("before send sql");
-    var sql = 'INSERT INTO job_content ( student_id, corporation, job_type, location, work_type, payment, characters, work_experience, education, major_in, language_requirement, other_requirement) ';
+    var sql = 'INSERT INTO job_content ( stuid, corporation, job_type, location, work_type, payment, characters, work_experience, education, major_in, language_requirement, other_requirement) ';
     sql += 'VALUE("'+req.body.id+'","'+req.body.corporation+'","'+req.body.job_type+'","'+req.body.location+'","'+req.body.work_type+'","'+req.body.payment+'","'+req.body.characters+'","'+req.body.work_experience+'","'+req.body.education+'","'+req.body.major_in+'","'+req.body.language_requirement+'","'+req.body.other_requirement+'");';
     console.log(sql);
     connection.query(sql, function(err, result) {
