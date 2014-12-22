@@ -486,11 +486,17 @@ router.post('/new_jobs', apiEnsureAuthenticated, function(req, res) {
     console.log(sql);
     connection.query(sql, function(err, result) {
       console.log("before enter if");
-      if (err) throw err;
-      console.log(result);
-      connection.release();
-      res.json(result);
-      return true;
+      if (err) {
+          res.json({"status": false});
+          throw err;
+          return false;
+      }else{
+          console.log(result);
+          connection.release();
+          //res.json(result);
+          res.json({"status": true});
+          return true;
+      }
     });
   });
 });
@@ -501,9 +507,9 @@ router.get('/show_job/:job_id', function(req, res) {
     if (err) throw err;
     var sql = 'SELECT * ';
     sql += 'FROM job_content ';
-    sql += 'WHERE id='+connection.escape(req.params.job_id)+';';
+    sql += 'WHERE job_id='+connection.escape(req.params.job_id)+';';
     connection.query(sql, function(err, show_job) {
-      //console.log(sql);
+      console.log(show_job);
       connection.release();
       res.json(show_job);
     });
