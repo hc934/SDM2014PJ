@@ -263,6 +263,7 @@ router.get('/articles', function(req, res) {
   });
 });
 
+//搜尋文章標題、內容
 router.get('/search/:keyword', function(req, res) {
 
   console.log("hello");
@@ -278,6 +279,7 @@ router.get('/search/:keyword', function(req, res) {
   });
 });
 
+//取得特定文章
 router.get('/article/:article_id', function(req, res) {
   console.log(req.params.article_id);
   
