@@ -329,7 +329,7 @@ router.delete('/article', apiEnsureAuthenticated, function(req, res) {
   console.log(req.body);
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
-    var sql = 'DELETE FROM forum_article WHERE article_id ='+connection.escape(req.body.article_id)+';'
+    var sql = 'DELETE FROM forum_article WHERE article_id = '+connection.escape(req.body.article_id)+' ;'
     connection.query(sql, function(err, result) {
       if (err) throw err;
       console.log(result);
