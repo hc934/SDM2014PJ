@@ -12,10 +12,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var api = require('./routes/api');
-var article = require('./routes/article');
-var show_job = require('./routes/show_job');
 
 var app = express();
 
@@ -58,15 +55,7 @@ appPool = mysql.createPool({
 });
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/api', api);
-app.use('/article', article);
-app.use('/show_job', show_job);
-app.use('/login', passport.authenticate('local'), function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.redirect('/forum');
-  });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -106,7 +95,12 @@ function ensureAuthenticated(req, res, next) {
 
 function apiEnsureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.json({ "status": "false"});
+  res.status(400);
+  res.json({
+    "status": 400,
+    "message": "Not Authenticated"
+  });
+  return;
 }
 
 module.exports = app;
