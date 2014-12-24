@@ -28,7 +28,6 @@ router.get('/articles', apiEnsureAuthenticated, function(req, res) {
       // console.log(articles);
       connection.release();
       res.json(articles);
-
     });
   });
 });
@@ -75,7 +74,10 @@ passport.use(new LocalStrategy(
       var sql = 'SELECT * FROM user_login WHERE user_id='+connection.escape(username)+' AND user_password='+connection.escape(password)+'';
       connection.query(sql, function(err, user) {
         if (err) { return done(err); }
-        return done(null, user);
+        if (user.length > 0)
+          return done(null, user);
+        else
+          return done(err);
       });
     });
   }
