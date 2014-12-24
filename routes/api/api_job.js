@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/jobs', function(req, res) {
+router.get('/list', function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'SELECT * ';
@@ -13,7 +13,7 @@ router.get('/jobs', function(req, res) {
   });
 });
 
-router.post('/new_jobs', function(req, res) {
+router.post('/new', function(req, res) {
   // req.body
   console.log("before conn");
   appPool.getConnection(function(err, connection) {
@@ -21,7 +21,7 @@ router.post('/new_jobs', function(req, res) {
     console.log("before send sql");
 
     var sql = 'INSERT INTO job_content ( stuid, corporation, job_type, location, work_type, payment, characters, work_experience, education, major_in, language_requirement, other_requirement, post_time, edit_time) ';
-    sql += 'VALUE("'+req.body.id+'","'+req.body.corporation+'","'+req.body.job_type+'","'+req.body.location+'","'+req.body.work_type+'","'+req.body.payment+'","'+req.body.characters+'","'+req.body.work_experience+'","'+req.body.education+'","'+req.body.major_in+'","'+req.body.language_requirement+'","'+req.body.other_requirement+'", NOW(), NOW());';
+    sql += 'VALUE("'+req.body.stuid+'","'+req.body.corporation+'","'+req.body.job_type+'","'+req.body.location+'","'+req.body.work_type+'","'+req.body.payment+'","'+req.body.characters+'","'+req.body.work_experience+'","'+req.body.education+'","'+req.body.major_in+'","'+req.body.language_requirement+'","'+req.body.other_requirement+'", NOW(), NOW());';
 
     console.log(sql);
     connection.query(sql, function(err, result) {
@@ -41,7 +41,7 @@ router.post('/new_jobs', function(req, res) {
   });
 });
 
-router.get('/show_job/:job_id', function(req, res) {
+router.get('/info/:job_id', function(req, res) {
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
     var sql = 'SELECT * ';

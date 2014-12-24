@@ -62,7 +62,7 @@ router.post('/setLocale/:language', apiEnsureAuthenticated, function(req, res) {
 
 router.use('/profile', apiEnsureAuthenticated, profile);
 router.use('/article', apiEnsureAuthenticated, article);
-router.use('/', apiEnsureAuthenticated, job);
+router.use('/job', apiEnsureAuthenticated, job);
 
 // Strategies
 passport.use(new LocalStrategy(

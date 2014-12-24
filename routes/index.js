@@ -46,16 +46,16 @@ router.get('/job', ensureAuthenticated, function(req, res) {
     res.render('job/job', { title: 'NTUIM 校友系統' });
 });
 
-router.get('/new_job', ensureAuthenticated, function(req, res) {
-    res.render('job/new_job', { title: 'NTUIM 校友系統' });
+router.get('/job/new', ensureAuthenticated, function(req, res) {
+    res.render('job/new', { title: 'NTUIM 校友系統' });
 });
 
-router.get('/show_job', ensureAuthenticated, function(req, res) {
-    res.render('job/single_job', { title: 'new_job' });
+router.get('/job/info', ensureAuthenticated, function(req, res) {
+    res.render('job/info', { title: 'new_job' });
 });
 
-router.get('/show_job/:job_id', ensureAuthenticated, function(req, res) {
-  res.render('job/single_job', { title: 'new_job' });
+router.get('/job/info/:job_id', ensureAuthenticated, function(req, res) {
+  res.render('job/info', { title: 'new_job' });
 });
 
 

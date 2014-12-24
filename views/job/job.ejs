@@ -12,7 +12,7 @@
     <div class="container" ng-controller="JobController">
         <div class="row">
             <div class="col-sm-offset-3 col-sm-5 item-center">
-                <button class="btn btn-primary" onclick="location.href='/new_job'"><%= __("New Job") %></button>
+                <button class="btn btn-primary" onclick="location.href='/job/new'"><%= __("New Job") %></button>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-sm-offset-1">{{job.job_type}}</div>
                 </div>
-                <a class="more" ng-href="/show_job/{{job.job_id}}"><%= __("More") %></a>
+                <a class="more" ng-href="/job/info/{{job.job_id}}"><%= __("More") %></a>
             </div>
         </div>
     </div>
