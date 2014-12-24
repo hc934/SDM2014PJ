@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 
-  <% include ../views/partials/head %>
+  <% include ../partials/head %>
   <script src="/js/profile.js"></script>
 </head>
 
 <body ng-app="profile">
 
-  <% include ../views/partials/nav %>
+  <% include ../partials/nav %>
   <div class="container" ng-controller="ProfileController" ng-init="init()">
 
     <div class="col-sm-offset-1 col-sm-8 frame frame-border theme-profile">
@@ -106,7 +106,7 @@
     </ul>
   </div>
 
-  <% include ../views/partials/js %>
+  <% include ../partials/js %>
   <script type="text/javascript">
   _user = "<%= _user%>";
   </script>

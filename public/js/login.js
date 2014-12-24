@@ -19,7 +19,7 @@ angular.module('login', ['lang'])
           console.log(data);
           if(data.status){
             sessionStorage.setItem('id',$scope.user.username); // SAVE USERINFO VIA COOKIE
-            window.location.href = "/forum";
+            window.location.href = "/";
           } else {
             $scope.showMsg = true;
             $scope.message = '帳號或密碼錯誤'
