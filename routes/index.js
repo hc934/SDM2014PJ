@@ -43,7 +43,7 @@ router.get('/article/:article_id', ensureAuthenticated, function(req, res) {
 
 /* GET job relative page. */
 router.get('/job', ensureAuthenticated, function(req, res) {
-    res.render('job/job', { title: 'NTUIM 校友系統' });
+    res.render('job/list', { title: 'NTUIM 校友系統' });
 });
 
 router.get('/job/new', ensureAuthenticated, function(req, res) {
