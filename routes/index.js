@@ -58,7 +58,6 @@ router.get('/job/info/:job_id', ensureAuthenticated, function(req, res) {
   res.render('job/info', { title: 'new_job' });
 });
 
-
 function ensureAuthenticated(req, res, next) {
   console.log(req.user);
   if (req.isAuthenticated()) { return next(); }

@@ -55,5 +55,27 @@ router.get('/info/:job_id', function(req, res) {
   });
 });
 
+/*
+router.get('/search', function(req, res) {
+  appPool.getConnection(function(err, connection) {
+    console.log("before");
+    if (err) throw err;
+    var sql = 'SELECT * ';
+    sql += 'FROM job_content ';
+    sql += 'WHERE corporation, job_type, location, work_type,'; 
+    sql += 'payment, characters, work_experience, education, major_in,';
+    sql += 'language_requirement, other_requirement, post_time) AGAINST(';
+    sql += connection.escape(req.params.job_kw)+');';
+
+    console.log(req.params.job_kw);
+    console.log(sql);
+    connection.query(sql, function(err, search_result) {
+      console.log(search_result);
+      connection.release();
+      res.json(search_result);
+    });
+  });
+});
+*/
 
 module.exports = router;
