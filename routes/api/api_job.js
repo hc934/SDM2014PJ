@@ -14,7 +14,6 @@ router.get('/list', function(req, res) {
 });
 
 router.post('/new', function(req, res) {
-  // req.body
   console.log("before conn");
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
@@ -54,6 +53,7 @@ router.get('/info/:job_id', function(req, res) {
     });
   });
 });
+
 
 /* Search for: 
 stuid, user_name, corporation, job_type, location, work_type, 
@@ -100,6 +100,36 @@ router.get('/search', function(req, res) {
     connection.query(sql, function(err, results) {
       connection.release();
       res.json(results);
+    });
+  });
+});
+
+
+router.put('/edit', function(req, res) {
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    var sql = 'UPDATE job_content ';
+    sql += 'SET corporation='+connection.escape(req.body.corporation)+', ';
+    sql += 'job_type='+connection.escape(req.body.job_type)+', location='+connection.escape(req.body.location)+', ';
+    sql += 'work_type='+connection.escape(req.body.work_type)+', payment='+connection.escape(req.body.payment)+', ';
+    sql += 'characters='+connection.escape(req.body.characters)+', work_experience='+connection.escape(req.body.work_experience)+', ';
+    sql += 'education='+connection.escape(req.body.education)+', major_in='+connection.escape(req.body.major_in)+', ';
+    sql += 'language_requirement='+connection.escape(req.body.language_requirement)+', ';
+    sql += 'other_requirement='+connection.escape(req.body.other_requirement)+', edit_time=NOW() ';
+    sql += 'WHERE job_id='+connection.escape(req.body.job_id);
+    console.log(sql);
+    connection.query(sql, function(err, result) {
+      if (err) {
+        console.log(result);
+        res.json({"status": false});
+        throw err;
+        return false;
+      }else{
+        console.log(result);
+        connection.release();
+        res.json({"status": true});
+        return true;
+      }
     });
   });
 });

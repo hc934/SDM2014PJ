@@ -61,6 +61,17 @@ router.post('/setLocale/:language', apiEnsureAuthenticated, function(req, res) {
     return true;
 });
 
+router.post('/is_author', function(req, res) {
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+    console.log(req.user[0].user_id);
+    if (req.user[0].user_id == req.body.stuid)
+      res.json({"status": true});
+    else
+      res.json({"status": false});
+    });
+});
+
 router.use('/profile', apiEnsureAuthenticated, profile);
 router.use('/article', apiEnsureAuthenticated, article);
 router.use('/job', apiEnsureAuthenticated, job);
