@@ -14,7 +14,6 @@ router.get('/list', function(req, res) {
 });
 
 router.post('/new', function(req, res) {
-  // req.body
   console.log("before conn");
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
