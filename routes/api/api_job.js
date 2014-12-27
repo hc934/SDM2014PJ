@@ -55,5 +55,54 @@ router.get('/info/:job_id', function(req, res) {
   });
 });
 
+/* Search for: 
+stuid, user_name, corporation, job_type, location, work_type, 
+payment, characters, work_experience, education, major_in, 
+language_requirement, finished*/
+router.get('/search', function(req, res) {
+  appPool.getConnection(function(err, connection) {
+    if (err) throw err;
+
+    var query = require('url').parse(req.url,true).query;
+    console.log(query);
+    if(query.stuid == undefined) query.stuid = '';
+    if(query.user_name == undefined) query.user_name = '';
+    if(query.corporation == undefined) query.corporation = '';
+    if(query.job_type == undefined) query.job_type = '';
+    if(query.location == undefined) query.location = '';
+    if(query.work_type == undefined) query.work_type = '';
+    if(query.payment == undefined) query.payment = '';
+    if(query.characters == undefined) query.characters = '';
+    if(query.work_experience == undefined) query.work_experience = '';
+    if(query.education == undefined) query.education = '';
+    if(query.major_in == undefined) query.major_in = '';
+    if(query.language_requirement == undefined) query.language_requirement = '';
+    if(query.finished == undefined) query.finished = '';
+
+    var sql = 'SELECT * ';
+    sql += 'FROM job_content_info '
+    sql += 'Where ';
+    sql += 'stuid LIKE '+ connection.escape('%'+query.stuid+'%') +' AND ';
+    sql += 'user_name LIKE '+ connection.escape('%'+query.user_name+'%') +' AND ';
+    sql += 'corporation LIKE '+ connection.escape('%'+query.corporation+'%') +' AND ';
+    sql += 'job_type LIKE '+ connection.escape('%'+query.job_type+'%') +' AND ';
+    sql += 'location LIKE '+ connection.escape('%'+query.location+'%') +' AND ';
+    sql += 'work_type LIKE '+ connection.escape('%'+query.work_type+'%') +' AND ';
+    sql += 'payment LIKE '+ connection.escape('%'+query.payment+'%') +' AND ';
+    sql += 'characters LIKE '+ connection.escape('%'+query.characters+'%') +' AND ';
+    sql += 'work_experience LIKE '+ connection.escape('%'+query.work_experience+'%') +' AND ';
+    sql += 'education LIKE '+ connection.escape('%'+query.education+'%') +' AND ';
+    sql += 'major_in LIKE '+ connection.escape('%'+query.major_in+'%') +' AND ';
+    sql += 'language_requirement LIKE '+ connection.escape('%'+query.language_requirement+'%') +' AND ';
+    sql += 'finished LIKE  ' + connection.escape('%'+query.finished+'%') ;
+    sql += ' ORDER BY `post_time` DESC ';
+    //console.log(sql);
+    connection.query(sql, function(err, results) {
+      connection.release();
+      res.json(results);
+    });
+  });
+});
+
 
 module.exports = router;

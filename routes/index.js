@@ -58,6 +58,9 @@ router.get('/job/info/:job_id', ensureAuthenticated, function(req, res) {
   res.render('job/info', { title: 'new_job' });
 });
 
+router.get('/job/:search_requirement', ensureAuthenticated, function(req, res) {
+    res.render('job/search', { title: 'NTUIM 校友系統' });
+});
 
 function ensureAuthenticated(req, res, next) {
   console.log(req.user);
