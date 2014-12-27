@@ -14,7 +14,6 @@ router.get('/list', function(req, res) {
 });
 
 router.post('/new', function(req, res) {
-  // req.body
   console.log("before conn");
   appPool.getConnection(function(err, connection) {
     if (err) throw err;
@@ -55,27 +54,69 @@ router.get('/info/:job_id', function(req, res) {
   });
 });
 
-/*
-router.get('/search', function(req, res) {
+router.put('/edit', function(req, res) {
   appPool.getConnection(function(err, connection) {
-    console.log("before");
     if (err) throw err;
-    var sql = 'SELECT * ';
-    sql += 'FROM job_content ';
-    sql += 'WHERE corporation, job_type, location, work_type,'; 
-    sql += 'payment, characters, work_experience, education, major_in,';
-    sql += 'language_requirement, other_requirement, post_time) AGAINST(';
-    sql += connection.escape(req.params.job_kw)+');';
-
-    console.log(req.params.job_kw);
+    var sql = 'UPDATE job_content ';
+    sql += 'SET corporation='+connection.escape(req.body.corporation)+', ';
+    sql += 'job_type='+connection.escape(req.body.job_type)+', location='+connection.escape(req.body.location)+', ';
+    sql += 'work_type='+connection.escape(req.body.work_type)+', payment='+connection.escape(req.body.payment)+', ';
+    sql += 'characters='+connection.escape(req.body.characters)+', work_experience='+connection.escape(req.body.work_experience)+', ';
+    sql += 'education='+connection.escape(req.body.education)+', major_in='+connection.escape(req.body.major_in)+', ';
+    sql += 'language_requirement='+connection.escape(req.body.language_requirement)+', ';
+    sql += 'other_requirement='+connection.escape(req.body.other_requirement)+', edit_time=NOW() ';
+    sql += 'WHERE job_id='+connection.escape(req.body.job_id);
     console.log(sql);
-    connection.query(sql, function(err, search_result) {
-      console.log(search_result);
-      connection.release();
-      res.json(search_result);
+    connection.query(sql, function(err, result) {
+      if (err) {
+        console.log(result);
+        res.json({"status": false});
+        throw err;
+        return false;
+      }else{
+        console.log(result);
+        connection.release();
+        res.json({"status": true});
+        return true;
+      }
     });
   });
 });
-*/
+
+router.put('/end/:job_id', function(req, res){
+  appPool.getConnection(function(err,connection){
+    if (err) throw err;
+    var sql = 'UPDATE job_content SET finished=1 WHERE job_id='+connection.escape(req.params.job_id)+';';
+    connection.query(sql, function(err, result) {
+      if (err) {
+        res.json({"status": false});
+        throw err;
+        return false;
+      } else{
+        connection.release();
+        res.json({"status": true});
+        return true;
+      }
+    });
+  });
+});
+
+router.delete('/delete/:job_id', function(req, res){
+  appPool.getConnection(function(err,connection){
+    if (err) throw err;
+    var sql = 'DELETE FROM job_content WHERE job_id ='+connection.escape(req.params.job_id)+';';
+    connection.query(sql, function(err, result) {
+      if (err) {
+        res.json({"status": false});
+        throw err;
+        return false;
+      } else{
+        connection.release();
+        res.json({"status": true});
+        return true;
+      }
+    });
+  });
+});
 
 module.exports = router;
