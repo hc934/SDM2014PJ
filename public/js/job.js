@@ -1,22 +1,9 @@
 angular.module('job', ['lang'])
 
 .controller('JobController', ['$scope','$http',function($scope,$http){
-    /*$scope.jobs = [
-        {
-            corporation: "Google",
-            job_type: "Programmer"
-        },
-        {
-            corporation: "Yahoo!",
-            job_type: "UI/UX Designer"
-        },
-         {
-            corporation: "ROC army",
-            job_type: "Commander"
-        }
-    ];*/
-    console.log('before get');   
+    $scope.localCookies = sessionStorage.getItem('id');
     $scope.jobs;
+    //console.log('before get');   
     $http.get('/api/job/list').
         success(function(data, status, headers, config) { 
         console.log(data);   
@@ -77,8 +64,6 @@ angular.module('job', ['lang'])
             console.log(data);
             });     
     };
-
-
     // $scope.placeholder = function() {
     //     return function(input){
     //         if(!(input == undefined || input == null)){
@@ -88,5 +73,35 @@ angular.module('job', ['lang'])
     //         }
     //     }
     // };
+}])
 
-}]);
+
+.controller('SearchJobController', ['$scope','$http',function($scope,$http){
+    console.log('before get');   
+    $scope.localCookies = sessionStorage.getItem('id');
+    $scope.jobs;
+
+    var temp_array = location.href.split('/');
+    var requirement = temp_array[temp_array.length-1];
+    $http.get('/api/job/'+requirement).
+        success(function(data, status, headers, config) { 
+        console.log(data); ;  
+        $scope.jobs = data;
+        }).
+        error(function(data, status, headers, config) {   
+        console.log(data);   
+        }); 
+}])
+
+
+
+
+
+
+
+
+
+
+
+
+;

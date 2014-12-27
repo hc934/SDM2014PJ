@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+
+<!--search.ejs
+東西是用GET的方式去搜尋的，所以搜尋欄位可能要弄一下
+連上api的網址會像是 http://localhost:3000/api/job/search?corporation=Google
+基本上長得跟 Job List 差不多就好惹
+但是是未來的 Job List，現在的Job List 顯示的東西太少了-->
+
 <html lang="en">
 <head>
     <% include ../partials/head %>
@@ -9,7 +16,7 @@
 
     <% include ../partials/nav %>
 
-    <div class="container" ng-controller="JobController" ng-init="init()">
+    <div class="container" ng-controller="SearchJobController" ng-init="init()">
         <div class="row">
             <div class="col-sm-offset-3 col-sm-5 item-center">
                 <button class="btn btn-primary" onclick="location.href='/job/new'"><%= __("New Job") %></button>
